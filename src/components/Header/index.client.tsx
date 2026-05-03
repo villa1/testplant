@@ -1,11 +1,10 @@
 'use client'
 
+import { AccountPanel } from '@/components/Header/AccountPanel'
 import { Cart } from '@/components/Cart'
 import { OpenCartButton } from '@/components/Cart/OpenCart'
 import { Logo } from '@/components/Logo/Logo'
-import { useAuth } from '@/providers/Auth'
 import { cn } from '@/utilities/cn'
-import { UserRound } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import React, { Suspense } from 'react'
@@ -25,10 +24,7 @@ const utilityButtonClass =
 
 export function HeaderClient({ header }: Props) {
   const pathname = usePathname()
-  const { user } = useAuth()
   const { identity, navItems } = header
-  const accountHref = user ? '/account' : '/login'
-  const accountLabel = user ? 'Akun' : 'Masuk'
   const prefersLogoWordmark = identity.effectiveMode === 'logo' || identity.effectiveMode === 'logoText'
   const displayBrandName = identity.brandName.replace(/^PT\s+/i, '')
 
@@ -99,14 +95,7 @@ export function HeaderClient({ header }: Props) {
           )}
 
           <div className="flex items-center justify-end gap-2 md:gap-3">
-            <Link
-              aria-label={accountLabel}
-              className={utilityButtonClass}
-              href={accountHref}
-              title={accountLabel}
-            >
-              <UserRound className="h-[18px] w-[18px]" />
-            </Link>
+            <AccountPanel className={utilityButtonClass} />
 
             <Suspense fallback={<OpenCartButton />}>
               <Cart />

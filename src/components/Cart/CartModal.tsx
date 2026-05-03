@@ -7,7 +7,6 @@ import {
   SheetDescription,
   SheetHeader,
   SheetTitle,
-  SheetTrigger,
 } from '@/components/ui/sheet'
 import { useCart } from '@payloadcms/plugin-ecommerce/client/react'
 import { ShoppingCart } from 'lucide-react'
@@ -40,9 +39,7 @@ export function CartModal() {
 
   return (
     <Sheet onOpenChange={setIsOpen} open={isOpen}>
-      <SheetTrigger asChild>
-        <OpenCartButton quantity={totalQuantity} />
-      </SheetTrigger>
+      <OpenCartButton onClick={() => setIsOpen(true)} quantity={totalQuantity} />
 
       <SheetContent className="flex flex-col">
         <SheetHeader>

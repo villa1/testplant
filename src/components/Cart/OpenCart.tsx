@@ -7,8 +7,7 @@ export function OpenCartButton({
   className,
   quantity,
   ...rest
-}: {
-  className?: string
+}: React.ComponentProps<typeof Button> & {
   quantity?: number
 }) {
   return (
