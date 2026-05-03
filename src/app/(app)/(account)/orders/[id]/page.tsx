@@ -105,7 +105,7 @@ export default async function Order({ params, searchParams }: PageProps) {
       order = orderResult
     }
   } catch (error) {
-    console.error(error)
+    payload.logger.error({ msg: 'Failed to load order details', error })
   }
 
   if (!order) {

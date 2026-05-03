@@ -40,6 +40,14 @@ export const FormBlock: Block = {
       }),
       label: 'Intro Content',
     },
+    {
+      name: 'footerNote',
+      type: 'textarea',
+      label: 'Footer Note',
+      admin: {
+        description: 'Displayed below the form. Useful for privacy or guidance notes.',
+      },
+    },
   ],
   graphQL: {
     singularName: 'FormBlock',

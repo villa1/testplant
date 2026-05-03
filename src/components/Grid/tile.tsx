@@ -2,6 +2,7 @@ import type { Media as MediaType } from '@/payload-types'
 
 import { Media } from '@/components/Media'
 import { Label } from '@/components/Grid/Label'
+import { ProductImageFallback } from '@/components/product/ProductImageFallback'
 import clsx from 'clsx'
 import React from 'react'
 
@@ -13,7 +14,7 @@ type Props = {
     position?: 'bottom' | 'center'
     title: string
   }
-  media: MediaType
+  media?: MediaType | null
 }
 
 export const GridTileImage: React.FC<Props> = ({
@@ -43,7 +44,12 @@ export const GridTileImage: React.FC<Props> = ({
           resource={props.media}
           width={80}
         />
-      ) : null}
+      ) : (
+        <ProductImageFallback
+          className="h-full w-full rounded-none border-0"
+          title={label?.title || 'Produk BMJ'}
+        />
+      )}
       {label ? <Label amount={label.amount} position={label.position} title={label.title} /> : null}
     </div>
   )

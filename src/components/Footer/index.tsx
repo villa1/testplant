@@ -1,67 +1,111 @@
-import type { Footer } from '@/payload-types'
-
-import { FooterMenu } from '@/components/Footer/menu'
-import { ThemeSelector } from '@/providers/Theme/ThemeSelector'
 import { getCachedGlobal } from '@/utilities/getGlobals'
-import Link from 'next/link'
-import React, { Suspense } from 'react'
-import { LogoIcon } from '@/components/icons/logo'
+import React from 'react'
 
-const { COMPANY_NAME, SITE_NAME } = process.env
+import {
+  getFooterBottomBarBlocks,
+  getFooterColumnBlocks,
+  RenderFooterBottomBarBlocks,
+  RenderFooterColumnBlocks,
+} from '@/Footer/RenderBlocks'
+import type { BMJFooter, FooterLayout } from '@/Footer/types'
+
+const gridClassMap: Record<number, string> = {
+  1: 'md:grid-cols-1',
+  2: 'md:grid-cols-2',
+  3: 'md:grid-cols-2 xl:grid-cols-3',
+  4: 'md:grid-cols-2 xl:grid-cols-4',
+}
+
+const currentYear = new Date().getFullYear()
+
+const getFallbackLayout = (): FooterLayout => [
+  {
+    blockType: 'identity',
+    title: 'Identitas',
+    brandName: 'PT Bumi Mekarsari Jaya',
+    tagline: 'Jaringan Petani Cipanas',
+    nib: '0712240010385',
+  },
+  {
+    blockType: 'navigation',
+    title: 'Navigasi',
+    links: [
+      {
+        link: {
+          type: 'custom',
+          label: 'Home',
+          url: '/',
+        },
+      },
+      {
+        link: {
+          type: 'custom',
+          label: 'Tentang',
+          url: '/tentang',
+        },
+      },
+      {
+        link: {
+          type: 'custom',
+          label: 'Layanan',
+          url: '/layanan',
+        },
+      },
+      {
+        link: {
+          type: 'custom',
+          label: 'Kontak',
+          url: '/kontak',
+        },
+      },
+    ],
+  },
+  {
+    blockType: 'contact',
+    title: 'Kontak Cepat',
+    whatsappNumber: '081586664516',
+    phoneNumber: '081586664516',
+    email: 'bumimekarsarijaya@gmail.com',
+    address: 'KP Lebak Pasar, Desa Cimacan, Cipanas, Cianjur 43253',
+    mapsLabel: 'Buka Lokasi',
+    mapsUrl:
+      'https://www.google.com/maps/search/?api=1&query=KP+Lebak+Pasar%2C+Desa+Cimacan%2C+Cipanas%2C+Cianjur+43253',
+    operatingHours: 'Konfirmasi melalui WhatsApp',
+  },
+  {
+    blockType: 'bottomBar',
+    copyrightText: `\u00A9 ${currentYear} PT Bumi Mekarsari Jaya`,
+    items: [
+      {
+        text: 'NIB 0712240010385',
+      },
+      {
+        text: 'Cipanas, Cianjur',
+      },
+    ],
+    links: [],
+  },
+]
 
 export async function Footer() {
-  const footer: Footer = await getCachedGlobal('footer', 1)()
-  const menu = footer.navItems || []
-  const currentYear = new Date().getFullYear()
-  const copyrightDate = 2023 + (currentYear > 2023 ? `-${currentYear}` : '')
-  const skeleton = 'w-full h-6 animate-pulse rounded bg-neutral-200 dark:bg-neutral-700'
-
-  const copyrightName = COMPANY_NAME || SITE_NAME || ''
+  const footerData = (await getCachedGlobal('footer', 2)()) as BMJFooter
+  const layout =
+    footerData?.layout && footerData.layout.length > 0 ? footerData.layout : getFallbackLayout()
+  const columnBlocks = getFooterColumnBlocks(layout)
+  const bottomBarBlocks = getFooterBottomBarBlocks(layout)
+  const totalColumns = Math.min(Math.max(columnBlocks.length, 1), 4)
 
   return (
-    <footer className="text-sm text-neutral-500 dark:text-neutral-400">
-      <div className="container">
-        <div className="flex w-full flex-col gap-6 border-t border-neutral-200 py-12 text-sm md:flex-row md:gap-12 dark:border-neutral-700">
-          <div>
-            <Link className="flex items-center gap-2 text-black md:pt-1 dark:text-white" href="/">
-              <LogoIcon className="w-6" />
-              <span className="sr-only">{SITE_NAME}</span>
-            </Link>
-          </div>
-          <Suspense
-            fallback={
-              <div className="flex h-[188px] w-[200px] flex-col gap-2">
-                <div className={skeleton} />
-                <div className={skeleton} />
-                <div className={skeleton} />
-                <div className={skeleton} />
-                <div className={skeleton} />
-                <div className={skeleton} />
-              </div>
-            }
-          >
-            <FooterMenu menu={menu} />
-          </Suspense>
-          <div className="md:ml-auto flex flex-col gap-4 items-end">
-            <ThemeSelector />
-          </div>
-        </div>
+    <footer className="mt-auto border-t border-border bg-[#1b271b] text-white">
+      <div className={`container grid gap-10 py-12 ${gridClassMap[totalColumns]}`}>
+        <RenderFooterColumnBlocks blocks={layout} />
       </div>
-      <div className="border-t border-neutral-200 py-6 text-sm dark:border-neutral-700">
-        <div className="container mx-auto flex w-full flex-col items-center gap-1 md:flex-row md:gap-0">
-          <p>
-            &copy; {copyrightDate} {copyrightName}
-            {copyrightName.length && !copyrightName.endsWith('.') ? '.' : ''} All rights reserved.
-          </p>
-          <hr className="mx-4 hidden h-4 w-px border-l border-neutral-400 md:inline-block" />
-          <p>Designed in Michigan</p>
-          <p className="md:ml-auto">
-            <a className="text-black dark:text-white" href="https://payloadcms.com">
-              Crafted by Payload
-            </a>
-          </p>
+
+      {bottomBarBlocks.length > 0 ? (
+        <div className="border-t border-white/10">
+          <RenderFooterBottomBarBlocks blocks={layout} />
         </div>
-      </div>
+      ) : null}
     </footer>
   )
 }

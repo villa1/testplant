@@ -1,8 +1,5 @@
 'use client'
 
-import type { Header } from '@/payload-types'
-
-import { CMSLink } from '@/components/Link'
 import { Button } from '@/components/ui/button'
 import {
   Sheet,
@@ -17,19 +14,23 @@ import { MenuIcon } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname, useSearchParams } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
+import type { NormalizedHeaderNavItem } from './normalize'
 
 interface Props {
-  menu: Header['navItems']
+  brandDescription?: string | null
+  brandName?: string | null
+  menu: NormalizedHeaderNavItem[]
 }
 
-export function MobileMenu({ menu }: Props) {
+const getLinkProps = (isExternal: boolean, newTab: boolean) =>
+  isExternal || newTab ? { rel: 'noopener noreferrer', target: '_blank' as const } : {}
+
+export function MobileMenu({ brandDescription, brandName, menu }: Props) {
   const { user } = useAuth()
 
   const pathname = usePathname()
   const searchParams = useSearchParams()
   const [isOpen, setIsOpen] = useState(false)
-
-  const closeMobileMenu = () => setIsOpen(false)
 
   useEffect(() => {
     const handleResize = () => {
@@ -53,9 +54,8 @@ export function MobileMenu({ menu }: Props) {
 
       <SheetContent side="left" className="px-4">
         <SheetHeader className="px-0 pt-4 pb-0">
-          <SheetTitle>My Store</SheetTitle>
-
-          <SheetDescription />
+          <SheetTitle>{brandName || 'Menu'}</SheetTitle>
+          <SheetDescription>{brandDescription || 'Navigasi utama'}</SheetDescription>
         </SheetHeader>
 
         <div className="py-4">
@@ -63,7 +63,13 @@ export function MobileMenu({ menu }: Props) {
             <ul className="flex w-full flex-col">
               {menu.map((item) => (
                 <li className="py-2" key={item.id}>
-                  <CMSLink {...item.link} appearance="link" />
+                  <Link
+                    className="inline-flex w-full rounded-md px-2 py-2 text-sm font-medium text-foreground/82 transition-colors hover:text-foreground"
+                    href={item.href}
+                    {...getLinkProps(item.isExternal, item.newTab)}
+                  >
+                    {item.label}
+                  </Link>
                 </li>
               ))}
             </ul>

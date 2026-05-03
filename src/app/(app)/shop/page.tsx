@@ -5,7 +5,7 @@ import { getPayload } from 'payload'
 import React from 'react'
 
 export const metadata = {
-  description: 'Search for products in the store.',
+  description: 'Jelajahi tanaman proyek, semak, ground cover, rambat, dan palem dari PT Bumi Mekarsari Jaya.',
   title: 'Shop',
 }
 
@@ -16,7 +16,7 @@ type Props = {
 }
 
 export default async function ShopPage({ searchParams }: Props) {
-  const { q: searchValue, sort, category } = await searchParams
+  const { q: searchValue, sort, category, attribute, usecase } = await searchParams
   const payload = await getPayload({ config: configPromise })
 
   const products = await payload.find({
@@ -28,10 +28,26 @@ export default async function ShopPage({ searchParams }: Props) {
       slug: true,
       gallery: true,
       categories: true,
+      attributes: true,
+      useCases: true,
+      meta: true,
       priceInUSD: true,
+      availabilityStatus: true,
+      orderType: true,
+    },
+    populate: {
+      categories: {
+        title: true,
+      },
+      productAttributes: {
+        title: true,
+      },
+      productUseCases: {
+        title: true,
+      },
     },
     ...(sort ? { sort } : { sort: 'title' }),
-    ...(searchValue || category
+    ...(searchValue || category || attribute || usecase
       ? {
           where: {
             and: [
@@ -67,6 +83,24 @@ export default async function ShopPage({ searchParams }: Props) {
                     },
                   ]
                 : []),
+              ...(attribute
+                ? [
+                    {
+                      attributes: {
+                        contains: attribute,
+                      },
+                    },
+                  ]
+                : []),
+              ...(usecase
+                ? [
+                    {
+                      useCases: {
+                        contains: usecase,
+                      },
+                    },
+                  ]
+                : []),
             ],
           },
         }
@@ -78,16 +112,18 @@ export default async function ShopPage({ searchParams }: Props) {
   return (
     <div>
       {searchValue ? (
-        <p className="mb-4">
+        <p className="mb-4 text-sm text-primary/70">
           {products.docs?.length === 0
-            ? 'There are no products that match '
-            : `Showing ${products.docs.length} ${resultsText} for `}
+            ? 'Tidak ada produk yang cocok untuk '
+            : `Menampilkan ${products.docs.length} ${resultsText} untuk `}
           <span className="font-bold">&quot;{searchValue}&quot;</span>
         </p>
       ) : null}
 
       {!searchValue && products.docs?.length === 0 && (
-        <p className="mb-4">No products found. Please try different filters.</p>
+        <p className="mb-4 text-sm text-primary/70">
+          Tidak ada produk yang ditemukan. Coba filter yang berbeda.
+        </p>
       )}
 
       {products?.docs.length > 0 ? (

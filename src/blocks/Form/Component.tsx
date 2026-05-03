@@ -27,7 +27,8 @@ export type FormBlockType = {
   blockName?: string
   blockType?: 'formBlock'
   enableIntro: boolean
-  form: FormType
+  footerNote?: string | null
+  form?: FormType | number | null
   introContent?: SerializedEditorState
 }
 
@@ -38,13 +39,19 @@ export const FormBlock: React.FC<
 > = (props) => {
   const {
     enableIntro,
+    footerNote,
     form: formFromProps,
-    form: { id: formID, confirmationMessage, confirmationType, redirect, submitButtonLabel } = {},
     introContent,
   } = props
+  const resolvedForm = typeof formFromProps === 'object' && formFromProps ? formFromProps : null
+  const formID = resolvedForm?.id
+  const confirmationMessage = resolvedForm?.confirmationMessage
+  const confirmationType = resolvedForm?.confirmationType
+  const redirect = resolvedForm?.redirect
+  const submitButtonLabel = resolvedForm?.submitButtonLabel || 'Submit'
 
   const formMethods = useForm({
-    defaultValues: buildInitialFormState(formFromProps.fields),
+    defaultValues: buildInitialFormState(resolvedForm?.fields || []),
   })
   const {
     control,
@@ -112,7 +119,6 @@ export const FormBlock: React.FC<
             if (redirectUrl) router.push(redirectUrl)
           }
         } catch (err) {
-          console.warn(err)
           setIsLoading(false)
           setError({
             message: 'Something went wrong.',
@@ -138,36 +144,49 @@ export const FormBlock: React.FC<
           {isLoading && !hasSubmitted && <p>Loading, please wait...</p>}
           {error && <div>{`${error.status || '500'}: ${error.message || ''}`}</div>}
           {!hasSubmitted && (
-            <form id={formID} onSubmit={handleSubmit(onSubmit)}>
-              <div className="mb-4 last:mb-0">
-                {formFromProps &&
-                  formFromProps.fields &&
-                  formFromProps.fields?.map((field, index) => {
-                    const Field: React.FC<any> | undefined =
-                      fields?.[field.blockType as keyof typeof fields]
+            <>
+              <form id={formID} onSubmit={handleSubmit(onSubmit)}>
+                <div className="mb-4 last:mb-0">
+                  {resolvedForm &&
+                    resolvedForm.fields &&
+                    resolvedForm.fields?.map((field, index) => {
+                      const Field: React.FC<any> | undefined =
+                        fields?.[field.blockType as keyof typeof fields]
 
-                    if (Field) {
-                      return (
-                        <div className="mb-6 last:mb-0" key={index}>
-                          <Field
-                            form={formFromProps}
-                            {...field}
-                            {...formMethods}
-                            control={control}
-                            errors={errors}
-                            register={register}
-                          />
-                        </div>
-                      )
-                    }
-                    return null
-                  })}
-              </div>
+                      if (Field) {
+                        return (
+                          <div className="mb-6 last:mb-0" key={index}>
+                            <Field
+                              form={resolvedForm}
+                              {...field}
+                              {...formMethods}
+                              control={control}
+                              errors={errors}
+                              register={register}
+                            />
+                          </div>
+                        )
+                      }
+                      return null
+                    })}
+                  {!resolvedForm && (
+                    <p className="text-sm leading-6 text-muted-foreground">
+                      Form configuration is unavailable.
+                    </p>
+                  )}
+                </div>
 
-              <Button form={formID} type="submit" variant="default">
-                {submitButtonLabel}
-              </Button>
-            </form>
+                <Button form={formID} type="submit" variant="default">
+                  {submitButtonLabel}
+                </Button>
+              </form>
+
+              {footerNote ? (
+                <p className="mt-4 whitespace-pre-line text-sm leading-6 text-muted-foreground">
+                  {footerNote}
+                </p>
+              ) : null}
+            </>
           )}
         </FormProvider>
       </div>

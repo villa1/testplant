@@ -45,7 +45,7 @@ export function AddToCart({ product }: Props) {
         product: product.id,
         variant: selectedVariant?.id ?? undefined,
       }).then(() => {
-        toast.success('Item added to cart.')
+        toast.success('Produk ditambahkan ke keranjang.')
       })
     },
     [addItem, product, selectedVariant],
@@ -105,7 +105,7 @@ export function AddToCart({ product }: Props) {
       onClick={addToCart}
       type="submit"
     >
-      Add To Cart
+      Beli Sekarang
     </Button>
   )
 }

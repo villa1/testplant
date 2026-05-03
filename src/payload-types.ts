@@ -75,6 +75,10 @@ export interface Config {
     users: User;
     pages: Page;
     categories: Category;
+    productAttributes: ProductAttribute;
+    productUseCases: ProductUseCase;
+    postCategories: PostCategory;
+    posts: Post;
     media: Media;
     forms: Form;
     'form-submissions': FormSubmission;
@@ -108,6 +112,10 @@ export interface Config {
     users: UsersSelect<false> | UsersSelect<true>;
     pages: PagesSelect<false> | PagesSelect<true>;
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
+    productAttributes: ProductAttributesSelect<false> | ProductAttributesSelect<true>;
+    productUseCases: ProductUseCasesSelect<false> | ProductUseCasesSelect<true>;
+    postCategories: PostCategoriesSelect<false> | PostCategoriesSelect<true>;
+    posts: PostsSelect<false> | PostsSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     forms: FormsSelect<false> | FormsSelect<true>;
     'form-submissions': FormSubmissionsSelect<false> | FormSubmissionsSelect<true>;
@@ -125,7 +133,7 @@ export interface Config {
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
   };
   db: {
-    defaultIDType: string;
+    defaultIDType: number;
   };
   fallbackLocale: null;
   globals: {
@@ -185,21 +193,21 @@ export interface UserAuthOperations {
  * via the `definition` "users".
  */
 export interface User {
-  id: string;
+  id: number;
   name?: string | null;
   roles?: ('admin' | 'customer')[] | null;
   orders?: {
-    docs?: (string | Order)[];
+    docs?: (number | Order)[];
     hasNextPage?: boolean;
     totalDocs?: number;
   };
   cart?: {
-    docs?: (string | Cart)[];
+    docs?: (number | Cart)[];
     hasNextPage?: boolean;
     totalDocs?: number;
   };
   addresses?: {
-    docs?: (string | Address)[];
+    docs?: (number | Address)[];
     hasNextPage?: boolean;
     totalDocs?: number;
   };
@@ -227,11 +235,11 @@ export interface User {
  * via the `definition` "orders".
  */
 export interface Order {
-  id: string;
+  id: number;
   items?:
     | {
-        product?: (string | null) | Product;
-        variant?: (string | null) | Variant;
+        product?: (number | null) | Product;
+        variant?: (number | null) | Variant;
         quantity: number;
         id?: string | null;
       }[]
@@ -249,9 +257,9 @@ export interface Order {
     country?: string | null;
     phone?: string | null;
   };
-  customer?: (string | null) | User;
+  customer?: (number | null) | User;
   customerEmail?: string | null;
-  transactions?: (string | Transaction)[] | null;
+  transactions?: (number | Transaction)[] | null;
   status?: OrderStatus;
   amount?: number | null;
   currency?: 'USD' | null;
@@ -264,8 +272,12 @@ export interface Order {
  * via the `definition` "products".
  */
 export interface Product {
-  id: string;
+  id: number;
   title: string;
+  /**
+   * Nama ilmiah tanaman. Opsional, tetapi kuat untuk sinyal expertise.
+   */
+  nameLatin?: string | null;
   description?: {
     root: {
       type: string;
@@ -283,32 +295,71 @@ export interface Product {
   } | null;
   gallery?:
     | {
-        image: string | Media;
-        variantOption?: (string | null) | VariantOption;
+        image: number | Media;
+        variantOption?: (number | null) | VariantOption;
         id?: string | null;
       }[]
     | null;
   layout?: (CallToActionBlock | ContentBlock | MediaBlock)[] | null;
   inventory?: number | null;
   enableVariants?: boolean | null;
-  variantTypes?: (string | VariantType)[] | null;
+  variantTypes?: (number | VariantType)[] | null;
   variants?: {
-    docs?: (string | Variant)[];
+    docs?: (number | Variant)[];
     hasNextPage?: boolean;
     totalDocs?: number;
   };
   priceInUSDEnabled?: boolean | null;
   priceInUSD?: number | null;
-  relatedProducts?: (string | Product)[] | null;
+  relatedProducts?: (number | Product)[] | null;
+  /**
+   * Hubungkan artikel yang relevan untuk memperkuat topical authority.
+   */
+  relatedArticles?: (number | Post)[] | null;
+  sunRequirement?: ('full-sun' | 'partial-shade' | 'full-shade') | null;
+  waterRequirement?: ('rendah' | 'sedang' | 'tinggi') | null;
+  growthRate?: ('lambat' | 'sedang' | 'cepat') | null;
+  plantCondition?: ('bibit' | 'remaja' | 'siap-tanam') | null;
+  family?: string | null;
+  nativeRegion?: string | null;
+  plantHeight?: string | null;
+  plantSpread?: string | null;
+  idealSoil?: string | null;
+  specialFeature?: string | null;
+  originLocation?: string | null;
+  supplyNote?: string | null;
+  qualityNote?: string | null;
+  /**
+   * Catatan penting yang perlu diketahui buyer sebelum membeli.
+   */
+  productNote?: string | null;
+  productGallery?:
+    | {
+        image: number | Media;
+        id?: string | null;
+      }[]
+    | null;
+  videoUrl?: string | null;
   meta?: {
     title?: string | null;
     /**
      * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
      */
-    image?: (string | null) | Media;
+    image?: (number | null) | Media;
     description?: string | null;
+    /**
+     * Opsional. Isi hanya jika perlu canonical khusus untuk produk ini.
+     */
+    canonicalUrl?: string | null;
   };
-  categories?: (string | Category)[] | null;
+  /**
+   * BMJ products should use one primary category only.
+   */
+  categories: (number | Category)[];
+  attributes?: (number | ProductAttribute)[] | null;
+  useCases?: (number | ProductUseCase)[] | null;
+  availabilityStatus: 'tersedia' | 'habis' | 'konsultasikan';
+  orderType: 'langsung' | 'rfq' | 'keduanya';
   /**
    * When enabled, the slug will auto-generate from the title field on save and autosave.
    */
@@ -324,7 +375,7 @@ export interface Product {
  * via the `definition` "media".
  */
 export interface Media {
-  id: string;
+  id: number;
   alt: string;
   caption?: {
     root: {
@@ -358,9 +409,9 @@ export interface Media {
  * via the `definition` "variantOptions".
  */
 export interface VariantOption {
-  id: string;
+  id: number;
   _variantOptions_options_order?: string | null;
-  variantType: string | VariantType;
+  variantType: number | VariantType;
   label: string;
   /**
    * should be defaulted or dynamic based on label
@@ -375,11 +426,11 @@ export interface VariantOption {
  * via the `definition` "variantTypes".
  */
 export interface VariantType {
-  id: string;
+  id: number;
   label: string;
   name: string;
   options?: {
-    docs?: (string | VariantOption)[];
+    docs?: (number | VariantOption)[];
     hasNextPage?: boolean;
     totalDocs?: number;
   };
@@ -412,10 +463,15 @@ export interface CallToActionBlock {
         link: {
           type?: ('reference' | 'custom') | null;
           newTab?: boolean | null;
-          reference?: {
-            relationTo: 'pages';
-            value: string | Page;
-          } | null;
+          reference?:
+            | ({
+                relationTo: 'pages';
+                value: number | Page;
+              } | null)
+            | ({
+                relationTo: 'posts';
+                value: number | Post;
+              } | null);
           url?: string | null;
           label: string;
           /**
@@ -435,7 +491,7 @@ export interface CallToActionBlock {
  * via the `definition` "pages".
  */
 export interface Page {
-  id: string;
+  id: number;
   title: string;
   publishedOn?: string | null;
   hero: {
@@ -460,10 +516,15 @@ export interface Page {
           link: {
             type?: ('reference' | 'custom') | null;
             newTab?: boolean | null;
-            reference?: {
-              relationTo: 'pages';
-              value: string | Page;
-            } | null;
+            reference?:
+              | ({
+                  relationTo: 'pages';
+                  value: number | Page;
+                } | null)
+              | ({
+                  relationTo: 'posts';
+                  value: number | Post;
+                } | null);
             url?: string | null;
             label: string;
             /**
@@ -474,12 +535,31 @@ export interface Page {
           id?: string | null;
         }[]
       | null;
-    media?: (string | null) | Media;
+    media?: (number | null) | Media;
   };
   layout: (
+    | ArticleArchiveBlock
+    | AboutStatementBlock
     | CallToActionBlock
+    | BusinessAdvantagesBlock
+    | ClosingCtaBlock
     | ContentBlock
+    | ContactDetailsBlock
+    | DeliveryCoverageBlock
+    | HomeHeroBlock
+    | HomeIdentityBlock
+    | LegalFactsBlock
+    | LegalIndexBlock
+    | MapEmbedBlock
     | MediaBlock
+    | PreparationChecklistBlock
+    | ProcessStepsBlock
+    | ProofGalleryBlock
+    | SupplyCapacityBlock
+    | SupplyCategoriesBlock
+    | TrustSignalsBlock
+    | ValueStatementBlock
+    | VisitNoteBlock
     | ArchiveBlock
     | CarouselBlock
     | ThreeItemGridBlock
@@ -491,9 +571,10 @@ export interface Page {
     /**
      * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
      */
-    image?: (string | null) | Media;
+    image?: (number | null) | Media;
     description?: string | null;
   };
+  pageType?: ('default' | 'legal') | null;
   /**
    * When enabled, the slug will auto-generate from the title field on save and autosave.
    */
@@ -502,6 +583,164 @@ export interface Page {
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "posts".
+ */
+export interface Post {
+  id: number;
+  title: string;
+  heroImage?: (number | null) | Media;
+  content: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  relatedPosts?: (number | Post)[] | null;
+  categories?: (number | PostCategory)[] | null;
+  meta?: {
+    title?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
+    image?: (number | null) | Media;
+    description?: string | null;
+  };
+  publishedAt?: string | null;
+  authors?: (number | User)[] | null;
+  populatedAuthors?:
+    | {
+        id?: string | null;
+        name?: string | null;
+      }[]
+    | null;
+  /**
+   * When enabled, the slug will auto-generate from the title field on save and autosave.
+   */
+  generateSlug?: boolean | null;
+  slug: string;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "postCategories".
+ */
+export interface PostCategory {
+  id: number;
+  title: string;
+  description?: string | null;
+  /**
+   * When enabled, the slug will auto-generate from the title field on save and autosave.
+   */
+  generateSlug?: boolean | null;
+  slug: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ArticleArchiveBlock".
+ */
+export interface ArticleArchiveBlock {
+  introContent?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  populateBy?: ('collection' | 'selection') | null;
+  categories?: (number | PostCategory)[] | null;
+  limit?: number | null;
+  selectedDocs?: (number | Post)[] | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'articleArchive';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "AboutStatementBlock".
+ */
+export interface AboutStatementBlock {
+  title: string;
+  /**
+   * Pernyataan identitas utama untuk halaman Tentang.
+   */
+  body: string;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'aboutStatement';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "BusinessAdvantagesBlock".
+ */
+export interface BusinessAdvantagesBlock {
+  title: string;
+  intro?: string | null;
+  items: {
+    title: string;
+    description: string;
+    id?: string | null;
+  }[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'businessAdvantages';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ClosingCtaBlock".
+ */
+export interface ClosingCtaBlock {
+  title: string;
+  body: string;
+  phoneNumber: string;
+  /**
+   * CTA penutup. Secara bisnis tetap diarahkan ke WhatsApp.
+   */
+  primaryCTA: {
+    type?: ('reference' | 'custom') | null;
+    newTab?: boolean | null;
+    reference?:
+      | ({
+          relationTo: 'pages';
+          value: number | Page;
+        } | null)
+      | ({
+          relationTo: 'posts';
+          value: number | Post;
+        } | null);
+    url?: string | null;
+    label: string;
+    /**
+     * Choose how the link should be rendered.
+     */
+    appearance?: 'default' | null;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'closingCTA';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -530,10 +769,15 @@ export interface ContentBlock {
         link?: {
           type?: ('reference' | 'custom') | null;
           newTab?: boolean | null;
-          reference?: {
-            relationTo: 'pages';
-            value: string | Page;
-          } | null;
+          reference?:
+            | ({
+                relationTo: 'pages';
+                value: number | Page;
+              } | null)
+            | ({
+                relationTo: 'posts';
+                value: number | Post;
+              } | null);
           url?: string | null;
           label: string;
           /**
@@ -550,13 +794,279 @@ export interface ContentBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ContactDetailsBlock".
+ */
+export interface ContactDetailsBlock {
+  title: string;
+  intro?: string | null;
+  phoneNumber: string;
+  email: string;
+  address: string;
+  businessHours: string;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'contactDetails';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "DeliveryCoverageBlock".
+ */
+export interface DeliveryCoverageBlock {
+  title: string;
+  /**
+   * Penjelasan realistis mengenai area layanan dan negosiasi pengiriman jarak jauh.
+   */
+  body: string;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'deliveryCoverage';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "HomeHeroBlock".
+ */
+export interface HomeHeroBlock {
+  /**
+   * Eyebrow kecil di atas title. Opsional.
+   */
+  badgeText?: string | null;
+  title: string;
+  /**
+   * Subheadline / supporting copy hero.
+   */
+  supportingText: string;
+  backgroundImage: number | Media;
+  /**
+   * CTA utama. Harus mengarah ke WhatsApp.
+   */
+  primaryCTA: {
+    type?: ('reference' | 'custom') | null;
+    newTab?: boolean | null;
+    reference?:
+      | ({
+          relationTo: 'pages';
+          value: number | Page;
+        } | null)
+      | ({
+          relationTo: 'posts';
+          value: number | Post;
+        } | null);
+    url?: string | null;
+    label: string;
+  };
+  /**
+   * CTA sekunder informasional, misalnya ke /layanan atau /tentang.
+   */
+  secondaryCTA: {
+    type?: ('reference' | 'custom') | null;
+    newTab?: boolean | null;
+    reference?:
+      | ({
+          relationTo: 'pages';
+          value: number | Page;
+        } | null)
+      | ({
+          relationTo: 'posts';
+          value: number | Post;
+        } | null);
+    url?: string | null;
+    label: string;
+  };
+  trustItems: {
+    icon: 'shipping' | 'quality' | 'consultation' | 'supply';
+    title: string;
+    description: string;
+    id?: string | null;
+  }[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'homeHero';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "HomeIdentityBlock".
+ */
+export interface HomeIdentityBlock {
+  title: string;
+  /**
+   * 2-3 kalimat yang menjelaskan PT BMJ sebagai koordinator jaringan petani di Cipanas.
+   */
+  body: string;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'homeIdentity';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "LegalFactsBlock".
+ */
+export interface LegalFactsBlock {
+  title: string;
+  intro?: string | null;
+  items: {
+    label: string;
+    value: string;
+    id?: string | null;
+  }[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'legalFacts';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "LegalIndexBlock".
+ */
+export interface LegalIndexBlock {
+  title: string;
+  emptyMessage?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'legalIndex';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "MapEmbedBlock".
+ */
+export interface MapEmbedBlock {
+  title: string;
+  intro?: string | null;
+  /**
+   * Gunakan Google Maps embed URL, bukan link share biasa.
+   */
+  embedUrl: string;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'mapEmbed';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "MediaBlock".
  */
 export interface MediaBlock {
-  media: string | Media;
+  media: number | Media;
   id?: string | null;
   blockName?: string | null;
   blockType: 'mediaBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "PreparationChecklistBlock".
+ */
+export interface PreparationChecklistBlock {
+  title: string;
+  intro?: string | null;
+  items: {
+    text: string;
+    id?: string | null;
+  }[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'preparationChecklist';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ProcessStepsBlock".
+ */
+export interface ProcessStepsBlock {
+  title: string;
+  intro?: string | null;
+  steps: {
+    title: string;
+    description: string;
+    id?: string | null;
+  }[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'processSteps';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ProofGalleryBlock".
+ */
+export interface ProofGalleryBlock {
+  title: string;
+  intro?: string | null;
+  items: {
+    image: number | Media;
+    caption?: string | null;
+    id?: string | null;
+  }[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'proofGallery';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "SupplyCapacityBlock".
+ */
+export interface SupplyCapacityBlock {
+  title: string;
+  /**
+   * Pernyataan kapasitas supply tanpa mengklaim angka stok tetap.
+   */
+  body: string;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'supplyCapacity';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "SupplyCategoriesBlock".
+ */
+export interface SupplyCategoriesBlock {
+  title: string;
+  intro?: string | null;
+  categories: {
+    supplyType: 'highVolume' | 'consultation';
+    title: string;
+    description: string;
+    image?: (number | null) | Media;
+    id?: string | null;
+  }[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'supplyCategories';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TrustSignalsBlock".
+ */
+export interface TrustSignalsBlock {
+  title: string;
+  intro?: string | null;
+  items: {
+    title: string;
+    description: string;
+    id?: string | null;
+  }[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'trustSignals';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ValueStatementBlock".
+ */
+export interface ValueStatementBlock {
+  title: string;
+  /**
+   * Pernyataan visi atau nilai bisnis yang jujur dan spesifik.
+   */
+  body: string;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'valueStatement';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "VisitNoteBlock".
+ */
+export interface VisitNoteBlock {
+  title: string;
+  body: string;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'visitNote';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -580,12 +1090,12 @@ export interface ArchiveBlock {
   } | null;
   populateBy?: ('collection' | 'selection') | null;
   relationTo?: 'products' | null;
-  categories?: (string | Category)[] | null;
+  categories?: (number | Category)[] | null;
   limit?: number | null;
   selectedDocs?:
     | {
         relationTo: 'products';
-        value: string | Product;
+        value: number | Product;
       }[]
     | null;
   id?: string | null;
@@ -597,7 +1107,7 @@ export interface ArchiveBlock {
  * via the `definition` "categories".
  */
 export interface Category {
-  id: string;
+  id: number;
   title: string;
   /**
    * When enabled, the slug will auto-generate from the title field on save and autosave.
@@ -614,12 +1124,12 @@ export interface Category {
 export interface CarouselBlock {
   populateBy?: ('collection' | 'selection') | null;
   relationTo?: 'products' | null;
-  categories?: (string | Category)[] | null;
+  categories?: (number | Category)[] | null;
   limit?: number | null;
   selectedDocs?:
     | {
         relationTo: 'products';
-        value: string | Product;
+        value: number | Product;
       }[]
     | null;
   /**
@@ -628,7 +1138,7 @@ export interface CarouselBlock {
   populatedDocs?:
     | {
         relationTo: 'products';
-        value: string | Product;
+        value: number | Product;
       }[]
     | null;
   /**
@@ -644,7 +1154,7 @@ export interface CarouselBlock {
  * via the `definition` "ThreeItemGridBlock".
  */
 export interface ThreeItemGridBlock {
-  products?: (string | Product)[] | null;
+  products?: (number | Product)[] | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'threeItemGrid';
@@ -679,7 +1189,7 @@ export interface BannerBlock {
  * via the `definition` "FormBlock".
  */
 export interface FormBlock {
-  form: string | Form;
+  form: number | Form;
   enableIntro?: boolean | null;
   introContent?: {
     root: {
@@ -696,6 +1206,10 @@ export interface FormBlock {
     };
     [k: string]: unknown;
   } | null;
+  /**
+   * Displayed below the form. Useful for privacy or guidance notes.
+   */
+  footerNote?: string | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'formBlock';
@@ -705,7 +1219,7 @@ export interface FormBlock {
  * via the `definition` "forms".
  */
 export interface Form {
-  id: string;
+  id: number;
   title: string;
   fields?:
     | (
@@ -879,13 +1393,13 @@ export interface Form {
  * via the `definition` "variants".
  */
 export interface Variant {
-  id: string;
+  id: number;
   /**
    * Used for administrative purposes, not shown to customers. This is populated by default.
    */
   title?: string | null;
-  product: string | Product;
-  options: (string | VariantOption)[];
+  product: number | Product;
+  options: (number | VariantOption)[];
   inventory?: number | null;
   priceInUSDEnabled?: boolean | null;
   priceInUSD?: number | null;
@@ -896,14 +1410,46 @@ export interface Variant {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "productAttributes".
+ */
+export interface ProductAttribute {
+  id: number;
+  title: string;
+  description?: string | null;
+  /**
+   * When enabled, the slug will auto-generate from the title field on save and autosave.
+   */
+  generateSlug?: boolean | null;
+  slug: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "productUseCases".
+ */
+export interface ProductUseCase {
+  id: number;
+  title: string;
+  description?: string | null;
+  /**
+   * When enabled, the slug will auto-generate from the title field on save and autosave.
+   */
+  generateSlug?: boolean | null;
+  slug: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "transactions".
  */
 export interface Transaction {
-  id: string;
+  id: number;
   items?:
     | {
-        product?: (string | null) | Product;
-        variant?: (string | null) | Variant;
+        product?: (number | null) | Product;
+        variant?: (number | null) | Variant;
         quantity: number;
         id?: string | null;
       }[]
@@ -927,10 +1473,10 @@ export interface Transaction {
     phone?: string | null;
   };
   status: 'pending' | 'succeeded' | 'failed' | 'cancelled' | 'expired' | 'refunded';
-  customer?: (string | null) | User;
+  customer?: (number | null) | User;
   customerEmail?: string | null;
-  order?: (string | null) | Order;
-  cart?: (string | null) | Cart;
+  order?: (number | null) | Order;
+  cart?: (number | null) | Cart;
   amount?: number | null;
   currency?: 'USD' | null;
   updatedAt: string;
@@ -941,17 +1487,17 @@ export interface Transaction {
  * via the `definition` "carts".
  */
 export interface Cart {
-  id: string;
+  id: number;
   items?:
     | {
-        product?: (string | null) | Product;
-        variant?: (string | null) | Variant;
+        product?: (number | null) | Product;
+        variant?: (number | null) | Variant;
         quantity: number;
         id?: string | null;
       }[]
     | null;
   secret?: string | null;
-  customer?: (string | null) | User;
+  customer?: (number | null) | User;
   purchasedAt?: string | null;
   status?: ('active' | 'purchased' | 'abandoned') | null;
   subtotal?: number | null;
@@ -964,8 +1510,8 @@ export interface Cart {
  * via the `definition` "addresses".
  */
 export interface Address {
-  id: string;
-  customer?: (string | null) | User;
+  id: number;
+  customer?: (number | null) | User;
   title?: string | null;
   firstName?: string | null;
   lastName?: string | null;
@@ -1025,8 +1571,8 @@ export interface Address {
  * via the `definition` "form-submissions".
  */
 export interface FormSubmission {
-  id: string;
-  form: string | Form;
+  id: number;
+  form: number | Form;
   submissionData?:
     | {
         field: string;
@@ -1042,7 +1588,7 @@ export interface FormSubmission {
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
-  id: string;
+  id: number;
   key: string;
   data:
     | {
@@ -1059,68 +1605,84 @@ export interface PayloadKv {
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
-  id: string;
+  id: number;
   document?:
     | ({
         relationTo: 'users';
-        value: string | User;
+        value: number | User;
       } | null)
     | ({
         relationTo: 'pages';
-        value: string | Page;
+        value: number | Page;
       } | null)
     | ({
         relationTo: 'categories';
-        value: string | Category;
+        value: number | Category;
+      } | null)
+    | ({
+        relationTo: 'productAttributes';
+        value: number | ProductAttribute;
+      } | null)
+    | ({
+        relationTo: 'productUseCases';
+        value: number | ProductUseCase;
+      } | null)
+    | ({
+        relationTo: 'postCategories';
+        value: number | PostCategory;
+      } | null)
+    | ({
+        relationTo: 'posts';
+        value: number | Post;
       } | null)
     | ({
         relationTo: 'media';
-        value: string | Media;
+        value: number | Media;
       } | null)
     | ({
         relationTo: 'forms';
-        value: string | Form;
+        value: number | Form;
       } | null)
     | ({
         relationTo: 'form-submissions';
-        value: string | FormSubmission;
+        value: number | FormSubmission;
       } | null)
     | ({
         relationTo: 'addresses';
-        value: string | Address;
+        value: number | Address;
       } | null)
     | ({
         relationTo: 'variants';
-        value: string | Variant;
+        value: number | Variant;
       } | null)
     | ({
         relationTo: 'variantTypes';
-        value: string | VariantType;
+        value: number | VariantType;
       } | null)
     | ({
         relationTo: 'variantOptions';
-        value: string | VariantOption;
+        value: number | VariantOption;
       } | null)
     | ({
         relationTo: 'products';
-        value: string | Product;
+        value: number | Product;
       } | null)
     | ({
         relationTo: 'carts';
-        value: string | Cart;
+        value: number | Cart;
       } | null)
     | ({
         relationTo: 'orders';
-        value: string | Order;
+        value: number | Order;
       } | null)
     | ({
         relationTo: 'transactions';
-        value: string | Transaction;
+        value: number | Transaction;
       } | null);
   globalSlug?: string | null;
   user: {
     relationTo: 'users';
-    value: string | User;
+    value: number | User;
   };
   updatedAt: string;
   createdAt: string;
@@ -1130,10 +1692,10 @@ export interface PayloadLockedDocument {
  * via the `definition` "payload-preferences".
  */
 export interface PayloadPreference {
-  id: string;
+  id: number;
   user: {
     relationTo: 'users';
-    value: string | User;
+    value: number | User;
   };
   key?: string | null;
   value?:
@@ -1153,7 +1715,7 @@ export interface PayloadPreference {
  * via the `definition` "payload-migrations".
  */
 export interface PayloadMigration {
-  id: string;
+  id: number;
   name?: string | null;
   batch?: number | null;
   updatedAt: string;
@@ -1218,9 +1780,28 @@ export interface PagesSelect<T extends boolean = true> {
   layout?:
     | T
     | {
+        articleArchive?: T | ArticleArchiveBlockSelect<T>;
+        aboutStatement?: T | AboutStatementBlockSelect<T>;
         cta?: T | CallToActionBlockSelect<T>;
+        businessAdvantages?: T | BusinessAdvantagesBlockSelect<T>;
+        closingCTA?: T | ClosingCtaBlockSelect<T>;
         content?: T | ContentBlockSelect<T>;
+        contactDetails?: T | ContactDetailsBlockSelect<T>;
+        deliveryCoverage?: T | DeliveryCoverageBlockSelect<T>;
+        homeHero?: T | HomeHeroBlockSelect<T>;
+        homeIdentity?: T | HomeIdentityBlockSelect<T>;
+        legalFacts?: T | LegalFactsBlockSelect<T>;
+        legalIndex?: T | LegalIndexBlockSelect<T>;
+        mapEmbed?: T | MapEmbedBlockSelect<T>;
         mediaBlock?: T | MediaBlockSelect<T>;
+        preparationChecklist?: T | PreparationChecklistBlockSelect<T>;
+        processSteps?: T | ProcessStepsBlockSelect<T>;
+        proofGallery?: T | ProofGalleryBlockSelect<T>;
+        supplyCapacity?: T | SupplyCapacityBlockSelect<T>;
+        supplyCategories?: T | SupplyCategoriesBlockSelect<T>;
+        trustSignals?: T | TrustSignalsBlockSelect<T>;
+        valueStatement?: T | ValueStatementBlockSelect<T>;
+        visitNote?: T | VisitNoteBlockSelect<T>;
         archive?: T | ArchiveBlockSelect<T>;
         carousel?: T | CarouselBlockSelect<T>;
         threeItemGrid?: T | ThreeItemGridBlockSelect<T>;
@@ -1234,11 +1815,35 @@ export interface PagesSelect<T extends boolean = true> {
         image?: T;
         description?: T;
       };
+  pageType?: T;
   generateSlug?: T;
   slug?: T;
   updatedAt?: T;
   createdAt?: T;
   _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ArticleArchiveBlock_select".
+ */
+export interface ArticleArchiveBlockSelect<T extends boolean = true> {
+  introContent?: T;
+  populateBy?: T;
+  categories?: T;
+  limit?: T;
+  selectedDocs?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "AboutStatementBlock_select".
+ */
+export interface AboutStatementBlockSelect<T extends boolean = true> {
+  title?: T;
+  body?: T;
+  id?: T;
+  blockName?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1260,6 +1865,44 @@ export interface CallToActionBlockSelect<T extends boolean = true> {
               appearance?: T;
             };
         id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "BusinessAdvantagesBlock_select".
+ */
+export interface BusinessAdvantagesBlockSelect<T extends boolean = true> {
+  title?: T;
+  intro?: T;
+  items?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ClosingCtaBlock_select".
+ */
+export interface ClosingCtaBlockSelect<T extends boolean = true> {
+  title?: T;
+  body?: T;
+  phoneNumber?: T;
+  primaryCTA?:
+    | T
+    | {
+        type?: T;
+        newTab?: T;
+        reference?: T;
+        url?: T;
+        label?: T;
+        appearance?: T;
       };
   id?: T;
   blockName?: T;
@@ -1292,10 +1935,236 @@ export interface ContentBlockSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ContactDetailsBlock_select".
+ */
+export interface ContactDetailsBlockSelect<T extends boolean = true> {
+  title?: T;
+  intro?: T;
+  phoneNumber?: T;
+  email?: T;
+  address?: T;
+  businessHours?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "DeliveryCoverageBlock_select".
+ */
+export interface DeliveryCoverageBlockSelect<T extends boolean = true> {
+  title?: T;
+  body?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "HomeHeroBlock_select".
+ */
+export interface HomeHeroBlockSelect<T extends boolean = true> {
+  badgeText?: T;
+  title?: T;
+  supportingText?: T;
+  backgroundImage?: T;
+  primaryCTA?:
+    | T
+    | {
+        type?: T;
+        newTab?: T;
+        reference?: T;
+        url?: T;
+        label?: T;
+      };
+  secondaryCTA?:
+    | T
+    | {
+        type?: T;
+        newTab?: T;
+        reference?: T;
+        url?: T;
+        label?: T;
+      };
+  trustItems?:
+    | T
+    | {
+        icon?: T;
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "HomeIdentityBlock_select".
+ */
+export interface HomeIdentityBlockSelect<T extends boolean = true> {
+  title?: T;
+  body?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "LegalFactsBlock_select".
+ */
+export interface LegalFactsBlockSelect<T extends boolean = true> {
+  title?: T;
+  intro?: T;
+  items?:
+    | T
+    | {
+        label?: T;
+        value?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "LegalIndexBlock_select".
+ */
+export interface LegalIndexBlockSelect<T extends boolean = true> {
+  title?: T;
+  emptyMessage?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "MapEmbedBlock_select".
+ */
+export interface MapEmbedBlockSelect<T extends boolean = true> {
+  title?: T;
+  intro?: T;
+  embedUrl?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "MediaBlock_select".
  */
 export interface MediaBlockSelect<T extends boolean = true> {
   media?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "PreparationChecklistBlock_select".
+ */
+export interface PreparationChecklistBlockSelect<T extends boolean = true> {
+  title?: T;
+  intro?: T;
+  items?:
+    | T
+    | {
+        text?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ProcessStepsBlock_select".
+ */
+export interface ProcessStepsBlockSelect<T extends boolean = true> {
+  title?: T;
+  intro?: T;
+  steps?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ProofGalleryBlock_select".
+ */
+export interface ProofGalleryBlockSelect<T extends boolean = true> {
+  title?: T;
+  intro?: T;
+  items?:
+    | T
+    | {
+        image?: T;
+        caption?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "SupplyCapacityBlock_select".
+ */
+export interface SupplyCapacityBlockSelect<T extends boolean = true> {
+  title?: T;
+  body?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "SupplyCategoriesBlock_select".
+ */
+export interface SupplyCategoriesBlockSelect<T extends boolean = true> {
+  title?: T;
+  intro?: T;
+  categories?:
+    | T
+    | {
+        supplyType?: T;
+        title?: T;
+        description?: T;
+        image?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TrustSignalsBlock_select".
+ */
+export interface TrustSignalsBlockSelect<T extends boolean = true> {
+  title?: T;
+  intro?: T;
+  items?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ValueStatementBlock_select".
+ */
+export interface ValueStatementBlockSelect<T extends boolean = true> {
+  title?: T;
+  body?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "VisitNoteBlock_select".
+ */
+export interface VisitNoteBlockSelect<T extends boolean = true> {
+  title?: T;
+  body?: T;
   id?: T;
   blockName?: T;
 }
@@ -1355,6 +2224,7 @@ export interface FormBlockSelect<T extends boolean = true> {
   form?: T;
   enableIntro?: T;
   introContent?: T;
+  footerNote?: T;
   id?: T;
   blockName?: T;
 }
@@ -1368,6 +2238,73 @@ export interface CategoriesSelect<T extends boolean = true> {
   slug?: T;
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "productAttributes_select".
+ */
+export interface ProductAttributesSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  generateSlug?: T;
+  slug?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "productUseCases_select".
+ */
+export interface ProductUseCasesSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  generateSlug?: T;
+  slug?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "postCategories_select".
+ */
+export interface PostCategoriesSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  generateSlug?: T;
+  slug?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "posts_select".
+ */
+export interface PostsSelect<T extends boolean = true> {
+  title?: T;
+  heroImage?: T;
+  content?: T;
+  relatedPosts?: T;
+  categories?: T;
+  meta?:
+    | T
+    | {
+        title?: T;
+        image?: T;
+        description?: T;
+      };
+  publishedAt?: T;
+  authors?: T;
+  populatedAuthors?:
+    | T
+    | {
+        id?: T;
+        name?: T;
+      };
+  generateSlug?: T;
+  slug?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1604,6 +2541,7 @@ export interface VariantOptionsSelect<T extends boolean = true> {
  */
 export interface ProductsSelect<T extends boolean = true> {
   title?: T;
+  nameLatin?: T;
   description?: T;
   gallery?:
     | T
@@ -1626,14 +2564,41 @@ export interface ProductsSelect<T extends boolean = true> {
   priceInUSDEnabled?: T;
   priceInUSD?: T;
   relatedProducts?: T;
+  relatedArticles?: T;
+  sunRequirement?: T;
+  waterRequirement?: T;
+  growthRate?: T;
+  plantCondition?: T;
+  family?: T;
+  nativeRegion?: T;
+  plantHeight?: T;
+  plantSpread?: T;
+  idealSoil?: T;
+  specialFeature?: T;
+  originLocation?: T;
+  supplyNote?: T;
+  qualityNote?: T;
+  productNote?: T;
+  productGallery?:
+    | T
+    | {
+        image?: T;
+        id?: T;
+      };
+  videoUrl?: T;
   meta?:
     | T
     | {
         title?: T;
         image?: T;
         description?: T;
+        canonicalUrl?: T;
       };
   categories?: T;
+  attributes?: T;
+  useCases?: T;
+  availabilityStatus?: T;
+  orderType?: T;
   generateSlug?: T;
   slug?: T;
   updatedAt?: T;
@@ -1791,16 +2756,37 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
  * via the `definition` "header".
  */
 export interface Header {
-  id: string;
+  id: number;
+  /**
+   * Pilih metode branding yang akan ditampilkan di header.
+   */
+  brandingMode: 'text' | 'logo' | 'logoText';
+  /**
+   * Nama brand utama yang selalu tampil di header.
+   */
+  brandName: string;
+  /**
+   * Deskripsi singkat di bawah nama brand. Opsional.
+   */
+  brandDescription?: string | null;
+  /**
+   * Logo untuk mode Logo atau Logo + Text. Alt text mengikuti field Alt pada media yang dipilih.
+   */
+  logo?: (number | null) | Media;
   navItems?:
     | {
         link: {
           type?: ('reference' | 'custom') | null;
           newTab?: boolean | null;
-          reference?: {
-            relationTo: 'pages';
-            value: string | Page;
-          } | null;
+          reference?:
+            | ({
+                relationTo: 'pages';
+                value: number | Page;
+              } | null)
+            | ({
+                relationTo: 'posts';
+                value: number | Post;
+              } | null);
           url?: string | null;
           label: string;
         };
@@ -1815,30 +2801,121 @@ export interface Header {
  * via the `definition` "footer".
  */
 export interface Footer {
-  id: string;
-  navItems?:
+  id: number;
+  layout: (FooterIdentityBlock | FooterNavigationBlock | FooterContactBlock | FooterTextBlock | FooterBottomBarBlock)[];
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FooterIdentityBlock".
+ */
+export interface FooterIdentityBlock {
+  title?: string | null;
+  brandName: string;
+  tagline?: string | null;
+  /**
+   * Alt text logo mengikuti field Alt pada media yang dipilih.
+   */
+  logo?: (number | null) | Media;
+  nib?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'identity';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FooterNavigationBlock".
+ */
+export interface FooterNavigationBlock {
+  title?: string | null;
+  links?:
     | {
         link: {
-          type?: ('reference' | 'custom') | null;
+          /**
+           * Gunakan `reference` untuk halaman internal atau `custom` untuk URL langsung.
+           */
+          type: string;
           newTab?: boolean | null;
-          reference?: {
-            relationTo: 'pages';
-            value: string | Page;
-          } | null;
+          reference?: (number | null) | Page;
           url?: string | null;
           label: string;
         };
         id?: string | null;
       }[]
     | null;
-  updatedAt?: string | null;
-  createdAt?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'navigation';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FooterContactBlock".
+ */
+export interface FooterContactBlock {
+  title?: string | null;
+  whatsappNumber?: string | null;
+  phoneNumber?: string | null;
+  email?: string | null;
+  address?: string | null;
+  mapsLabel?: string | null;
+  mapsUrl?: string | null;
+  operatingHours?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'contact';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FooterTextBlock".
+ */
+export interface FooterTextBlock {
+  title?: string | null;
+  content: string;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'text';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FooterBottomBarBlock".
+ */
+export interface FooterBottomBarBlock {
+  copyrightText: string;
+  items?:
+    | {
+        text: string;
+        id?: string | null;
+      }[]
+    | null;
+  links?:
+    | {
+        link: {
+          /**
+           * Gunakan `reference` untuk halaman internal atau `custom` untuk URL langsung.
+           */
+          type: string;
+          newTab?: boolean | null;
+          reference?: (number | null) | Page;
+          url?: string | null;
+          label: string;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'bottomBar';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "header_select".
  */
 export interface HeaderSelect<T extends boolean = true> {
+  brandingMode?: T;
+  brandName?: T;
+  brandDescription?: T;
+  logo?: T;
   navItems?:
     | T
     | {
@@ -1862,7 +2939,39 @@ export interface HeaderSelect<T extends boolean = true> {
  * via the `definition` "footer_select".
  */
 export interface FooterSelect<T extends boolean = true> {
-  navItems?:
+  layout?:
+    | T
+    | {
+        identity?: T | FooterIdentityBlockSelect<T>;
+        navigation?: T | FooterNavigationBlockSelect<T>;
+        contact?: T | FooterContactBlockSelect<T>;
+        text?: T | FooterTextBlockSelect<T>;
+        bottomBar?: T | FooterBottomBarBlockSelect<T>;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FooterIdentityBlock_select".
+ */
+export interface FooterIdentityBlockSelect<T extends boolean = true> {
+  title?: T;
+  brandName?: T;
+  tagline?: T;
+  logo?: T;
+  nib?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FooterNavigationBlock_select".
+ */
+export interface FooterNavigationBlockSelect<T extends boolean = true> {
+  title?: T;
+  links?:
     | T
     | {
         link?:
@@ -1876,9 +2985,63 @@ export interface FooterSelect<T extends boolean = true> {
             };
         id?: T;
       };
-  updatedAt?: T;
-  createdAt?: T;
-  globalType?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FooterContactBlock_select".
+ */
+export interface FooterContactBlockSelect<T extends boolean = true> {
+  title?: T;
+  whatsappNumber?: T;
+  phoneNumber?: T;
+  email?: T;
+  address?: T;
+  mapsLabel?: T;
+  mapsUrl?: T;
+  operatingHours?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FooterTextBlock_select".
+ */
+export interface FooterTextBlockSelect<T extends boolean = true> {
+  title?: T;
+  content?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FooterBottomBarBlock_select".
+ */
+export interface FooterBottomBarBlockSelect<T extends boolean = true> {
+  copyrightText?: T;
+  items?:
+    | T
+    | {
+        text?: T;
+        id?: T;
+      };
+  links?:
+    | T
+    | {
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+              label?: T;
+            };
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1889,6 +3052,17 @@ export interface CollectionsWidget {
     [k: string]: unknown;
   };
   width: 'full';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CodeBlock".
+ */
+export interface CodeBlock {
+  language?: ('typescript' | 'javascript' | 'css') | null;
+  code: string;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'code';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

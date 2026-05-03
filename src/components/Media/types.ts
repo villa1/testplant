@@ -3,6 +3,10 @@ import type { ElementType, Ref } from 'react'
 
 import type { Media as MediaType } from '@/payload-types'
 
+export type MediaLikeResource = Pick<MediaType, 'alt' | 'height' | 'url' | 'width'> & {
+  mimeType?: string | null
+}
+
 export interface Props {
   alt?: string
   className?: string
@@ -14,9 +18,9 @@ export interface Props {
   onLoad?: () => void
   priority?: boolean // for NextImage only
   ref?: Ref<HTMLImageElement | HTMLVideoElement | null>
-  resource?: MediaType | string | number // for Payload media
+  resource?: MediaType | MediaLikeResource | string | number // for Payload media
   size?: string // for NextImage only
-  src?: StaticImageData // for static media
+  src?: StaticImageData | string // for static media
   videoClassName?: string
   width?: number
 }

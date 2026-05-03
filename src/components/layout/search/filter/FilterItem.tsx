@@ -41,14 +41,15 @@ function SortFilterItem({ item }: { item: SortFilterItemType }) {
   const pathname = usePathname()
   const searchParams = useSearchParams()
   const active = searchParams.get('sort') === item.slug
-  const q = searchParams.get('q')
-  const href = createUrl(
-    pathname,
-    new URLSearchParams({
-      ...(q && { q }),
-      ...(item.slug && item.slug.length && { sort: item.slug }),
-    }),
-  )
+  const params = new URLSearchParams(searchParams.toString())
+
+  if (item.slug && item.slug.length) {
+    params.set('sort', item.slug)
+  } else {
+    params.delete('sort')
+  }
+
+  const href = createUrl(pathname, params)
   const DynamicTag = active ? 'p' : Link
 
   return (

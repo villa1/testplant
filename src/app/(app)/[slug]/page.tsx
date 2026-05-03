@@ -2,11 +2,11 @@ import type { Metadata } from 'next'
 
 import { RenderBlocks } from '@/blocks/RenderBlocks'
 import { RenderHero } from '@/heros/RenderHero'
+import { fallbackHomePage } from '@/utilities/fallbackHomePage'
 import { generateMeta } from '@/utilities/generateMeta'
 import configPromise from '@payload-config'
 import { getPayload } from 'payload'
 import { draftMode } from 'next/headers'
-import { homeStaticData } from '@/endpoints/seed/home-static'
 import React from 'react'
 
 import type { Page } from '@/payload-types'
@@ -50,9 +50,8 @@ export default async function Page({ params }: Args) {
     slug,
   })
 
-  // Remove this code once your website is seeded
   if (!page && slug === 'home') {
-    page = homeStaticData() as Page
+    page = fallbackHomePage() as Page
   }
 
   if (!page) {

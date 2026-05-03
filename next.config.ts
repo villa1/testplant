@@ -8,6 +8,31 @@ const dirname = path.dirname(__filename)
 import { redirects } from './redirects'
 
 const NEXT_PUBLIC_SERVER_URL = process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000'
+const PAYLOAD_PUBLIC_SERVER_URL = process.env.PAYLOAD_PUBLIC_SERVER_URL || ''
+
+const imageRemoteOrigins = Array.from(
+  new Set(
+    [
+      NEXT_PUBLIC_SERVER_URL,
+      PAYLOAD_PUBLIC_SERVER_URL,
+      'http://localhost:3000',
+      'http://127.0.0.1:3000',
+      'http://localhost:3001',
+      'http://127.0.0.1:3001',
+    ].filter(Boolean),
+  ),
+)
+
+const imageRemotePatterns = imageRemoteOrigins.map((item) => {
+  const url = new URL(item)
+
+  return {
+    hostname: url.hostname,
+    pathname: '/**',
+    port: url.port || undefined,
+    protocol: url.protocol.replace(':', '') as 'http' | 'https',
+  }
+})
 
 const nextConfig: NextConfig = {
   // Temporarily required on Windows until Next.js fixes Turbopack Sass resolution.
@@ -16,22 +41,22 @@ const nextConfig: NextConfig = {
     loadPaths: ['./node_modules/@payloadcms/ui/dist/scss/'],
   },
   images: {
+    // Temporary dev-only allowance so Payload media served from localhost is not blocked
+    // by Next.js private-IP protection during local development.
+    dangerouslyAllowLocalIP: true,
     localPatterns: [
       {
         pathname: '/api/media/file/**',
       },
+      {
+        pathname: '/api/media/**',
+      },
+      {
+        pathname: '/media/**',
+      },
     ],
     qualities: [90, 100],
-    remotePatterns: [
-      ...[NEXT_PUBLIC_SERVER_URL /* 'https://example.com' */].map((item) => {
-        const url = new URL(item)
-
-        return {
-          hostname: url.hostname,
-          protocol: url.protocol.replace(':', '') as 'http' | 'https',
-        }
-      }),
-    ],
+    remotePatterns: imageRemotePatterns,
   },
   reactStrictMode: true,
   redirects,

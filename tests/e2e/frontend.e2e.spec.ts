@@ -29,11 +29,11 @@ test.describe('Frontend', () => {
   test('can go on homepage', async ({ page }) => {
     await page.goto(baseURL)
 
-    await expect(page).toHaveTitle(/Payload Ecommerce Template/)
+    await expect(page).toHaveTitle(/PT Bumi Mekarsari Jaya/)
 
     const heading = page.locator('h1').first()
 
-    await expect(heading).toHaveText('Payload Ecommerce Template')
+    await expect(heading).toBeVisible()
   })
 
   test('can sign up and subsequently login', async ({ page }) => {
@@ -110,7 +110,7 @@ test.describe('Frontend', () => {
   })
 
   test('can view and sort via search page', async ({ page }) => {
-    await page.goto(`${baseURL}/search`)
+    await page.goto(`${baseURL}/shop`)
 
     const productCard = page.locator(`a[href="/products/test-product"]`)
     await productCard.waitFor({ state: 'visible' })
@@ -122,7 +122,7 @@ test.describe('Frontend', () => {
 
     const priceSort = page.getByText('Price: Low to high')
     await priceSort.click()
-    await expect(page).toHaveURL(/\/search\?sort=priceInUSD/)
+    await expect(page).toHaveURL(/\/shop\?sort=priceInUSD/)
 
     await expect(title).toHaveText('Hoodie')
   })
@@ -214,7 +214,7 @@ test.describe('Frontend', () => {
     await orderNumberInput.fill(orderNumber || '')
     await emailInput.fill(guestEmail)
 
-    const findOrderButton = page.getByRole('button', { name: 'Find my order' })
+    const findOrderButton = page.getByRole('button', { name: 'Find order' })
     await findOrderButton.click()
 
     await expect(orderHeader).not.toBeNull()

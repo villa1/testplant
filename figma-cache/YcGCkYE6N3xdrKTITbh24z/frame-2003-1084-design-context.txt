@@ -1,0 +1,1 @@
+[{"type":"text","text":"You currently have nothing selected. You need to select a layer first before using this tool."},{"type":"text","text":"Figma Debug UUID: 8c9dbcad-e081-4f75-8ebb-a29cbcaf2e2b"}]

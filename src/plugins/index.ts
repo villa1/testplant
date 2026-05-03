@@ -15,9 +15,10 @@ import { adminOnlyFieldAccess } from '@/access/adminOnlyFieldAccess'
 import { customerOnlyFieldAccess } from '@/access/customerOnlyFieldAccess'
 import { isAdmin } from '@/access/isAdmin'
 import { isDocumentOwner } from '@/access/isDocumentOwner'
+import { siteMetadata } from '@/utilities/siteMetadata'
 
 const generateTitle: GenerateTitle<Product | Page> = ({ doc }) => {
-  return doc?.title ? `${doc.title} | Payload Ecommerce Template` : 'Payload Ecommerce Template'
+  return doc?.title ? `${doc.title} | ${siteMetadata.siteName}` : siteMetadata.siteName
 }
 
 const generateURL: GenerateURL<Product | Page> = ({ doc }) => {
@@ -48,7 +49,6 @@ export const plugins: Plugin[] = [
     formOverrides: {
       access: {
         delete: isAdmin,
-        read: isAdmin,
         update: isAdmin,
         create: isAdmin,
       },

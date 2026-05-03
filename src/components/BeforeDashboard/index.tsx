@@ -1,7 +1,6 @@
 import { Banner } from '@payloadcms/ui'
 import React from 'react'
 
-import { SeedButton } from './SeedButton'
 import './index.scss'
 
 const baseClass = 'before-dashboard'
@@ -10,19 +9,27 @@ export const BeforeDashboard: React.FC = () => {
   return (
     <div className={baseClass}>
       <Banner className={`${baseClass}__banner`} type="success">
-        <h4>Welcome to your dashboard!</h4>
+        <h4>BMJ dashboard is ready.</h4>
       </Banner>
-      Here&apos;s what to do next:
+      <Banner className={`${baseClass}__banner`} type="info">
+        <strong>Note:</strong> the old Payload template seed has been removed from the admin UI to avoid
+        mixing template demo data into BMJ content.
+      </Banner>
+      Recommended next steps:
       <ul className={`${baseClass}__instructions`}>
         <li>
-          <SeedButton />
-          {' with a few products and pages to jump-start your new project, then '}
-          {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
-          <a href="/">visit your website</a>
-          {' to see the results.'}
+          {'Use '}
+          <code>pnpm run restore:legacy-bmj</code>.
+          {' to re-import legacy BMJ pages, globals, and articles from the curated fixture set in '}
+          <code>scripts/data/legacy-bmj</code>.
         </li>
         <li>
-          {'Head over to '}
+          {'Use '}
+          <code>pnpm run seed:bmj-ecommerce-samples</code>
+          {' when you need lightweight BMJ sample categories, attributes, use cases, and products for shop testing.'}
+        </li>
+        <li>
+          {'Head to '}
           <a
             href="https://dashboard.stripe.com/test/apikeys"
             rel="noopener noreferrer"
@@ -38,12 +45,17 @@ export const BeforeDashboard: React.FC = () => {
             rel="noopener noreferrer"
             target="_blank"
           >
-            README
+            Stripe setup reference
           </a>
-          {' for more details.'}
+          {' if you need test-mode payment keys for checkout flows.'}
         </li>
         <li>
-          {'Modify your '}
+          {'Keep schema changes in sync with '}
+          <code>pnpm run generate:types</code>
+          {' and use the project README for the current local setup and data import workflow.'}
+        </li>
+        <li>
+          {'Review your '}
           <a
             href="https://payloadcms.com/docs/configuration/collections"
             rel="noopener noreferrer"
@@ -65,9 +77,9 @@ export const BeforeDashboard: React.FC = () => {
             rel="noopener noreferrer"
             target="_blank"
           >
-            Getting Started
+            Payload docs
           </a>
-          {' docs.'}
+          {' if you need to extend collection or field behavior.'}
         </li>
       </ul>
       {'Pro Tip: This block is a '}
@@ -78,7 +90,7 @@ export const BeforeDashboard: React.FC = () => {
       >
         custom component
       </a>
-      , you can remove it at any time by updating your <strong>payload.config</strong>.
+      , so you can simplify or remove it any time from <strong>payload.config</strong>.
     </div>
   )
 }

@@ -1,0 +1,2055 @@
+{
+    "media":  [
+                  {
+                      "id":  24,
+                      "alt":  null,
+                      "caption":  null,
+                      "folder":  null,
+                      "updatedAt":  "2026-04-30T03:10:26.598Z",
+                      "createdAt":  "2026-04-30T03:10:26.598Z",
+                      "url":  "/api/media/file/IMG-20250703-WA0021.jpg",
+                      "thumbnailURL":  "/api/media/file/IMG-20250703-WA0021-300x400.jpg",
+                      "filename":  "IMG-20250703-WA0021.jpg",
+                      "mimeType":  "image/jpeg",
+                      "filesize":  218817,
+                      "width":  1200,
+                      "height":  1600,
+                      "focalX":  50,
+                      "focalY":  50,
+                      "sizes":  {
+                                    "thumbnail":  {
+                                                      "url":  "/api/media/file/IMG-20250703-WA0021-300x400.jpg",
+                                                      "width":  300,
+                                                      "height":  400,
+                                                      "mimeType":  "image/jpeg",
+                                                      "filesize":  24824,
+                                                      "filename":  "IMG-20250703-WA0021-300x400.jpg"
+                                                  },
+                                    "square":  {
+                                                   "url":  "/api/media/file/IMG-20250703-WA0021-500x500.jpg",
+                                                   "width":  500,
+                                                   "height":  500,
+                                                   "mimeType":  "image/jpeg",
+                                                   "filesize":  50856,
+                                                   "filename":  "IMG-20250703-WA0021-500x500.jpg"
+                                               },
+                                    "small":  {
+                                                  "url":  "/api/media/file/IMG-20250703-WA0021-600x800.jpg",
+                                                  "width":  600,
+                                                  "height":  800,
+                                                  "mimeType":  "image/jpeg",
+                                                  "filesize":  83751,
+                                                  "filename":  "IMG-20250703-WA0021-600x800.jpg"
+                                              },
+                                    "medium":  {
+                                                   "url":  "/api/media/file/IMG-20250703-WA0021-900x1200.jpg",
+                                                   "width":  900,
+                                                   "height":  1200,
+                                                   "mimeType":  "image/jpeg",
+                                                   "filesize":  162833,
+                                                   "filename":  "IMG-20250703-WA0021-900x1200.jpg"
+                                               },
+                                    "large":  {
+                                                  "url":  null,
+                                                  "width":  null,
+                                                  "height":  null,
+                                                  "mimeType":  null,
+                                                  "filesize":  null,
+                                                  "filename":  null
+                                              },
+                                    "xlarge":  {
+                                                   "url":  null,
+                                                   "width":  null,
+                                                   "height":  null,
+                                                   "mimeType":  null,
+                                                   "filesize":  null,
+                                                   "filename":  null
+                                               },
+                                    "og":  {
+                                               "url":  "/api/media/file/IMG-20250703-WA0021-1200x630.jpg",
+                                               "width":  1200,
+                                               "height":  630,
+                                               "mimeType":  "image/jpeg",
+                                               "filesize":  119259,
+                                               "filename":  "IMG-20250703-WA0021-1200x630.jpg"
+                                           }
+                                }
+                  },
+                  {
+                      "id":  23,
+                      "alt":  "Logo PT Bumi Mekarsari Jaya",
+                      "caption":  null,
+                      "folder":  null,
+                      "updatedAt":  "2026-04-29T05:02:49.117Z",
+                      "createdAt":  "2026-04-29T05:02:49.117Z",
+                      "url":  "/api/media/file/IMG-20250703-WA0030.jpg",
+                      "thumbnailURL":  "/api/media/file/IMG-20250703-WA0030-300x632.jpg",
+                      "filename":  "IMG-20250703-WA0030.jpg",
+                      "mimeType":  "image/jpeg",
+                      "filesize":  1132378,
+                      "width":  1968,
+                      "height":  4144,
+                      "focalX":  50,
+                      "focalY":  50,
+                      "sizes":  {
+                                    "thumbnail":  {
+                                                      "url":  "/api/media/file/IMG-20250703-WA0030-300x632.jpg",
+                                                      "width":  300,
+                                                      "height":  632,
+                                                      "mimeType":  "image/jpeg",
+                                                      "filesize":  60243,
+                                                      "filename":  "IMG-20250703-WA0030-300x632.jpg"
+                                                  },
+                                    "square":  {
+                                                   "url":  "/api/media/file/IMG-20250703-WA0030-500x500.jpg",
+                                                   "width":  500,
+                                                   "height":  500,
+                                                   "mimeType":  "image/jpeg",
+                                                   "filesize":  87015,
+                                                   "filename":  "IMG-20250703-WA0030-500x500.jpg"
+                                               },
+                                    "small":  {
+                                                  "url":  "/api/media/file/IMG-20250703-WA0030-600x1263.jpg",
+                                                  "width":  600,
+                                                  "height":  1263,
+                                                  "mimeType":  "image/jpeg",
+                                                  "filesize":  227189,
+                                                  "filename":  "IMG-20250703-WA0030-600x1263.jpg"
+                                              },
+                                    "medium":  {
+                                                   "url":  "/api/media/file/IMG-20250703-WA0030-900x1895.jpg",
+                                                   "width":  900,
+                                                   "height":  1895,
+                                                   "mimeType":  "image/jpeg",
+                                                   "filesize":  470274,
+                                                   "filename":  "IMG-20250703-WA0030-900x1895.jpg"
+                                               },
+                                    "large":  {
+                                                  "url":  "/api/media/file/IMG-20250703-WA0030-1400x2948.jpg",
+                                                  "width":  1400,
+                                                  "height":  2948,
+                                                  "mimeType":  "image/jpeg",
+                                                  "filesize":  937729,
+                                                  "filename":  "IMG-20250703-WA0030-1400x2948.jpg"
+                                              },
+                                    "xlarge":  {
+                                                   "url":  "/api/media/file/IMG-20250703-WA0030-1920x4043.jpg",
+                                                   "width":  1920,
+                                                   "height":  4043,
+                                                   "mimeType":  "image/jpeg",
+                                                   "filesize":  1476104,
+                                                   "filename":  "IMG-20250703-WA0030-1920x4043.jpg"
+                                               },
+                                    "og":  {
+                                               "url":  "/api/media/file/IMG-20250703-WA0030-1200x630.jpg",
+                                               "width":  1200,
+                                               "height":  630,
+                                               "mimeType":  "image/jpeg",
+                                               "filesize":  230266,
+                                               "filename":  "IMG-20250703-WA0030-1200x630.jpg"
+                                           }
+                                }
+                  },
+                  {
+                      "id":  22,
+                      "alt":  null,
+                      "caption":  null,
+                      "folder":  null,
+                      "updatedAt":  "2026-04-28T07:23:19.830Z",
+                      "createdAt":  "2026-04-28T07:23:19.830Z",
+                      "url":  "/api/media/file/IMG-20250703-WA0056.jpg",
+                      "thumbnailURL":  "/api/media/file/IMG-20250703-WA0056-300x632.jpg",
+                      "filename":  "IMG-20250703-WA0056.jpg",
+                      "mimeType":  "image/jpeg",
+                      "filesize":  1363465,
+                      "width":  1968,
+                      "height":  4144,
+                      "focalX":  50,
+                      "focalY":  50,
+                      "sizes":  {
+                                    "thumbnail":  {
+                                                      "url":  "/api/media/file/IMG-20250703-WA0056-300x632.jpg",
+                                                      "width":  300,
+                                                      "height":  632,
+                                                      "mimeType":  "image/jpeg",
+                                                      "filesize":  69689,
+                                                      "filename":  "IMG-20250703-WA0056-300x632.jpg"
+                                                  },
+                                    "square":  {
+                                                   "url":  "/api/media/file/IMG-20250703-WA0056-500x500.jpg",
+                                                   "width":  500,
+                                                   "height":  500,
+                                                   "mimeType":  "image/jpeg",
+                                                   "filesize":  89325,
+                                                   "filename":  "IMG-20250703-WA0056-500x500.jpg"
+                                               },
+                                    "small":  {
+                                                  "url":  "/api/media/file/IMG-20250703-WA0056-600x1263.jpg",
+                                                  "width":  600,
+                                                  "height":  1263,
+                                                  "mimeType":  "image/jpeg",
+                                                  "filesize":  267223,
+                                                  "filename":  "IMG-20250703-WA0056-600x1263.jpg"
+                                              },
+                                    "medium":  {
+                                                   "url":  "/api/media/file/IMG-20250703-WA0056-900x1895.jpg",
+                                                   "width":  900,
+                                                   "height":  1895,
+                                                   "mimeType":  "image/jpeg",
+                                                   "filesize":  559568,
+                                                   "filename":  "IMG-20250703-WA0056-900x1895.jpg"
+                                               },
+                                    "large":  {
+                                                  "url":  "/api/media/file/IMG-20250703-WA0056-1400x2948.jpg",
+                                                  "width":  1400,
+                                                  "height":  2948,
+                                                  "mimeType":  "image/jpeg",
+                                                  "filesize":  1121859,
+                                                  "filename":  "IMG-20250703-WA0056-1400x2948.jpg"
+                                              },
+                                    "xlarge":  {
+                                                   "url":  "/api/media/file/IMG-20250703-WA0056-1920x4043.jpg",
+                                                   "width":  1920,
+                                                   "height":  4043,
+                                                   "mimeType":  "image/jpeg",
+                                                   "filesize":  1765315,
+                                                   "filename":  "IMG-20250703-WA0056-1920x4043.jpg"
+                                               },
+                                    "og":  {
+                                               "url":  "/api/media/file/IMG-20250703-WA0056-1200x630.jpg",
+                                               "width":  1200,
+                                               "height":  630,
+                                               "mimeType":  "image/jpeg",
+                                               "filesize":  225217,
+                                               "filename":  "IMG-20250703-WA0056-1200x630.jpg"
+                                           }
+                                }
+                  },
+                  {
+                      "id":  21,
+                      "alt":  null,
+                      "caption":  null,
+                      "folder":  null,
+                      "updatedAt":  "2026-04-28T07:23:02.220Z",
+                      "createdAt":  "2026-04-28T07:23:02.220Z",
+                      "url":  "/api/media/file/IMG-20250703-WA0042-1.jpg",
+                      "thumbnailURL":  "/api/media/file/IMG-20250703-WA0042-1-300x632.jpg",
+                      "filename":  "IMG-20250703-WA0042-1.jpg",
+                      "mimeType":  "image/jpeg",
+                      "filesize":  1293012,
+                      "width":  1968,
+                      "height":  4144,
+                      "focalX":  50,
+                      "focalY":  50,
+                      "sizes":  {
+                                    "thumbnail":  {
+                                                      "url":  "/api/media/file/IMG-20250703-WA0042-1-300x632.jpg",
+                                                      "width":  300,
+                                                      "height":  632,
+                                                      "mimeType":  "image/jpeg",
+                                                      "filesize":  75365,
+                                                      "filename":  "IMG-20250703-WA0042-1-300x632.jpg"
+                                                  },
+                                    "square":  {
+                                                   "url":  "/api/media/file/IMG-20250703-WA0042-1-500x500.jpg",
+                                                   "width":  500,
+                                                   "height":  500,
+                                                   "mimeType":  "image/jpeg",
+                                                   "filesize":  98958,
+                                                   "filename":  "IMG-20250703-WA0042-1-500x500.jpg"
+                                               },
+                                    "small":  {
+                                                  "url":  "/api/media/file/IMG-20250703-WA0042-1-600x1263.jpg",
+                                                  "width":  600,
+                                                  "height":  1263,
+                                                  "mimeType":  "image/jpeg",
+                                                  "filesize":  269148,
+                                                  "filename":  "IMG-20250703-WA0042-1-600x1263.jpg"
+                                              },
+                                    "medium":  {
+                                                   "url":  "/api/media/file/IMG-20250703-WA0042-1-900x1895.jpg",
+                                                   "width":  900,
+                                                   "height":  1895,
+                                                   "mimeType":  "image/jpeg",
+                                                   "filesize":  540664,
+                                                   "filename":  "IMG-20250703-WA0042-1-900x1895.jpg"
+                                               },
+                                    "large":  {
+                                                  "url":  "/api/media/file/IMG-20250703-WA0042-1-1400x2948.jpg",
+                                                  "width":  1400,
+                                                  "height":  2948,
+                                                  "mimeType":  "image/jpeg",
+                                                  "filesize":  1063051,
+                                                  "filename":  "IMG-20250703-WA0042-1-1400x2948.jpg"
+                                              },
+                                    "xlarge":  {
+                                                   "url":  "/api/media/file/IMG-20250703-WA0042-1-1920x4043.jpg",
+                                                   "width":  1920,
+                                                   "height":  4043,
+                                                   "mimeType":  "image/jpeg",
+                                                   "filesize":  1668427,
+                                                   "filename":  "IMG-20250703-WA0042-1-1920x4043.jpg"
+                                               },
+                                    "og":  {
+                                               "url":  "/api/media/file/IMG-20250703-WA0042-1-1200x630.jpg",
+                                               "width":  1200,
+                                               "height":  630,
+                                               "mimeType":  "image/jpeg",
+                                               "filesize":  229621,
+                                               "filename":  "IMG-20250703-WA0042-1-1200x630.jpg"
+                                           }
+                                }
+                  },
+                  {
+                      "id":  20,
+                      "alt":  null,
+                      "caption":  null,
+                      "folder":  null,
+                      "updatedAt":  "2026-04-28T07:22:41.763Z",
+                      "createdAt":  "2026-04-28T07:22:41.763Z",
+                      "url":  "/api/media/file/IMG-20250703-WA0036.jpg",
+                      "thumbnailURL":  "/api/media/file/IMG-20250703-WA0036-300x632.jpg",
+                      "filename":  "IMG-20250703-WA0036.jpg",
+                      "mimeType":  "image/jpeg",
+                      "filesize":  1263085,
+                      "width":  1968,
+                      "height":  4144,
+                      "focalX":  50,
+                      "focalY":  50,
+                      "sizes":  {
+                                    "thumbnail":  {
+                                                      "url":  "/api/media/file/IMG-20250703-WA0036-300x632.jpg",
+                                                      "width":  300,
+                                                      "height":  632,
+                                                      "mimeType":  "image/jpeg",
+                                                      "filesize":  70168,
+                                                      "filename":  "IMG-20250703-WA0036-300x632.jpg"
+                                                  },
+                                    "square":  {
+                                                   "url":  "/api/media/file/IMG-20250703-WA0036-500x500.jpg",
+                                                   "width":  500,
+                                                   "height":  500,
+                                                   "mimeType":  "image/jpeg",
+                                                   "filesize":  96568,
+                                                   "filename":  "IMG-20250703-WA0036-500x500.jpg"
+                                               },
+                                    "small":  {
+                                                  "url":  "/api/media/file/IMG-20250703-WA0036-600x1263.jpg",
+                                                  "width":  600,
+                                                  "height":  1263,
+                                                  "mimeType":  "image/jpeg",
+                                                  "filesize":  259177,
+                                                  "filename":  "IMG-20250703-WA0036-600x1263.jpg"
+                                              },
+                                    "medium":  {
+                                                   "url":  "/api/media/file/IMG-20250703-WA0036-900x1895.jpg",
+                                                   "width":  900,
+                                                   "height":  1895,
+                                                   "mimeType":  "image/jpeg",
+                                                   "filesize":  526638,
+                                                   "filename":  "IMG-20250703-WA0036-900x1895.jpg"
+                                               },
+                                    "large":  {
+                                                  "url":  "/api/media/file/IMG-20250703-WA0036-1400x2948.jpg",
+                                                  "width":  1400,
+                                                  "height":  2948,
+                                                  "mimeType":  "image/jpeg",
+                                                  "filesize":  1038812,
+                                                  "filename":  "IMG-20250703-WA0036-1400x2948.jpg"
+                                              },
+                                    "xlarge":  {
+                                                   "url":  "/api/media/file/IMG-20250703-WA0036-1920x4043.jpg",
+                                                   "width":  1920,
+                                                   "height":  4043,
+                                                   "mimeType":  "image/jpeg",
+                                                   "filesize":  1631031,
+                                                   "filename":  "IMG-20250703-WA0036-1920x4043.jpg"
+                                               },
+                                    "og":  {
+                                               "url":  "/api/media/file/IMG-20250703-WA0036-1200x630.jpg",
+                                               "width":  1200,
+                                               "height":  630,
+                                               "mimeType":  "image/jpeg",
+                                               "filesize":  218563,
+                                               "filename":  "IMG-20250703-WA0036-1200x630.jpg"
+                                           }
+                                }
+                  },
+                  {
+                      "id":  19,
+                      "alt":  null,
+                      "caption":  null,
+                      "folder":  null,
+                      "updatedAt":  "2026-04-28T07:22:25.530Z",
+                      "createdAt":  "2026-04-28T07:22:25.530Z",
+                      "url":  "/api/media/file/IMG-20250703-WA0024.jpg",
+                      "thumbnailURL":  "/api/media/file/IMG-20250703-WA0024-300x632.jpg",
+                      "filename":  "IMG-20250703-WA0024.jpg",
+                      "mimeType":  "image/jpeg",
+                      "filesize":  1288587,
+                      "width":  1968,
+                      "height":  4144,
+                      "focalX":  50,
+                      "focalY":  50,
+                      "sizes":  {
+                                    "thumbnail":  {
+                                                      "url":  "/api/media/file/IMG-20250703-WA0024-300x632.jpg",
+                                                      "width":  300,
+                                                      "height":  632,
+                                                      "mimeType":  "image/jpeg",
+                                                      "filesize":  66469,
+                                                      "filename":  "IMG-20250703-WA0024-300x632.jpg"
+                                                  },
+                                    "square":  {
+                                                   "url":  "/api/media/file/IMG-20250703-WA0024-500x500.jpg",
+                                                   "width":  500,
+                                                   "height":  500,
+                                                   "mimeType":  "image/jpeg",
+                                                   "filesize":  91422,
+                                                   "filename":  "IMG-20250703-WA0024-500x500.jpg"
+                                               },
+                                    "small":  {
+                                                  "url":  "/api/media/file/IMG-20250703-WA0024-600x1263.jpg",
+                                                  "width":  600,
+                                                  "height":  1263,
+                                                  "mimeType":  "image/jpeg",
+                                                  "filesize":  254403,
+                                                  "filename":  "IMG-20250703-WA0024-600x1263.jpg"
+                                              },
+                                    "medium":  {
+                                                   "url":  "/api/media/file/IMG-20250703-WA0024-900x1895.jpg",
+                                                   "width":  900,
+                                                   "height":  1895,
+                                                   "mimeType":  "image/jpeg",
+                                                   "filesize":  529041,
+                                                   "filename":  "IMG-20250703-WA0024-900x1895.jpg"
+                                               },
+                                    "large":  {
+                                                  "url":  "/api/media/file/IMG-20250703-WA0024-1400x2948.jpg",
+                                                  "width":  1400,
+                                                  "height":  2948,
+                                                  "mimeType":  "image/jpeg",
+                                                  "filesize":  1059217,
+                                                  "filename":  "IMG-20250703-WA0024-1400x2948.jpg"
+                                              },
+                                    "xlarge":  {
+                                                   "url":  "/api/media/file/IMG-20250703-WA0024-1920x4043.jpg",
+                                                   "width":  1920,
+                                                   "height":  4043,
+                                                   "mimeType":  "image/jpeg",
+                                                   "filesize":  1670476,
+                                                   "filename":  "IMG-20250703-WA0024-1920x4043.jpg"
+                                               },
+                                    "og":  {
+                                               "url":  "/api/media/file/IMG-20250703-WA0024-1200x630.jpg",
+                                               "width":  1200,
+                                               "height":  630,
+                                               "mimeType":  "image/jpeg",
+                                               "filesize":  229237,
+                                               "filename":  "IMG-20250703-WA0024-1200x630.jpg"
+                                           }
+                                }
+                  },
+                  {
+                      "id":  18,
+                      "alt":  null,
+                      "caption":  null,
+                      "folder":  null,
+                      "updatedAt":  "2026-04-28T07:22:08.850Z",
+                      "createdAt":  "2026-04-28T07:22:08.850Z",
+                      "url":  "/api/media/file/IMG-20250703-WA0019.jpg",
+                      "thumbnailURL":  "/api/media/file/IMG-20250703-WA0019-300x400.jpg",
+                      "filename":  "IMG-20250703-WA0019.jpg",
+                      "mimeType":  "image/jpeg",
+                      "filesize":  197653,
+                      "width":  1200,
+                      "height":  1600,
+                      "focalX":  50,
+                      "focalY":  50,
+                      "sizes":  {
+                                    "thumbnail":  {
+                                                      "url":  "/api/media/file/IMG-20250703-WA0019-300x400.jpg",
+                                                      "width":  300,
+                                                      "height":  400,
+                                                      "mimeType":  "image/jpeg",
+                                                      "filesize":  25259,
+                                                      "filename":  "IMG-20250703-WA0019-300x400.jpg"
+                                                  },
+                                    "square":  {
+                                                   "url":  "/api/media/file/IMG-20250703-WA0019-500x500.jpg",
+                                                   "width":  500,
+                                                   "height":  500,
+                                                   "mimeType":  "image/jpeg",
+                                                   "filesize":  49793,
+                                                   "filename":  "IMG-20250703-WA0019-500x500.jpg"
+                                               },
+                                    "small":  {
+                                                  "url":  "/api/media/file/IMG-20250703-WA0019-600x800.jpg",
+                                                  "width":  600,
+                                                  "height":  800,
+                                                  "mimeType":  "image/jpeg",
+                                                  "filesize":  80515,
+                                                  "filename":  "IMG-20250703-WA0019-600x800.jpg"
+                                              },
+                                    "medium":  {
+                                                   "url":  "/api/media/file/IMG-20250703-WA0019-900x1200.jpg",
+                                                   "width":  900,
+                                                   "height":  1200,
+                                                   "mimeType":  "image/jpeg",
+                                                   "filesize":  151871,
+                                                   "filename":  "IMG-20250703-WA0019-900x1200.jpg"
+                                               },
+                                    "large":  {
+                                                  "url":  null,
+                                                  "width":  null,
+                                                  "height":  null,
+                                                  "mimeType":  null,
+                                                  "filesize":  null,
+                                                  "filename":  null
+                                              },
+                                    "xlarge":  {
+                                                   "url":  null,
+                                                   "width":  null,
+                                                   "height":  null,
+                                                   "mimeType":  null,
+                                                   "filesize":  null,
+                                                   "filename":  null
+                                               },
+                                    "og":  {
+                                               "url":  "/api/media/file/IMG-20250703-WA0019-1200x630.jpg",
+                                               "width":  1200,
+                                               "height":  630,
+                                               "mimeType":  "image/jpeg",
+                                               "filesize":  120982,
+                                               "filename":  "IMG-20250703-WA0019-1200x630.jpg"
+                                           }
+                                }
+                  },
+                  {
+                      "id":  17,
+                      "alt":  "Contoh kebun anggota",
+                      "caption":  null,
+                      "folder":  null,
+                      "updatedAt":  "2026-04-28T07:10:07.301Z",
+                      "createdAt":  "2026-04-28T07:10:07.300Z",
+                      "url":  "/api/media/file/IMG-20250703-WA0058.jpg",
+                      "thumbnailURL":  "/api/media/file/IMG-20250703-WA0058-300x632.jpg",
+                      "filename":  "IMG-20250703-WA0058.jpg",
+                      "mimeType":  "image/jpeg",
+                      "filesize":  1171650,
+                      "width":  1968,
+                      "height":  4144,
+                      "focalX":  50,
+                      "focalY":  50,
+                      "sizes":  {
+                                    "thumbnail":  {
+                                                      "url":  "/api/media/file/IMG-20250703-WA0058-300x632.jpg",
+                                                      "width":  300,
+                                                      "height":  632,
+                                                      "mimeType":  "image/jpeg",
+                                                      "filesize":  67479,
+                                                      "filename":  "IMG-20250703-WA0058-300x632.jpg"
+                                                  },
+                                    "square":  {
+                                                   "url":  "/api/media/file/IMG-20250703-WA0058-500x500.jpg",
+                                                   "width":  500,
+                                                   "height":  500,
+                                                   "mimeType":  "image/jpeg",
+                                                   "filesize":  91549,
+                                                   "filename":  "IMG-20250703-WA0058-500x500.jpg"
+                                               },
+                                    "small":  {
+                                                  "url":  "/api/media/file/IMG-20250703-WA0058-600x1263.jpg",
+                                                  "width":  600,
+                                                  "height":  1263,
+                                                  "mimeType":  "image/jpeg",
+                                                  "filesize":  244360,
+                                                  "filename":  "IMG-20250703-WA0058-600x1263.jpg"
+                                              },
+                                    "medium":  {
+                                                   "url":  "/api/media/file/IMG-20250703-WA0058-900x1895.jpg",
+                                                   "width":  900,
+                                                   "height":  1895,
+                                                   "mimeType":  "image/jpeg",
+                                                   "filesize":  494583,
+                                                   "filename":  "IMG-20250703-WA0058-900x1895.jpg"
+                                               },
+                                    "large":  {
+                                                  "url":  "/api/media/file/IMG-20250703-WA0058-1400x2948.jpg",
+                                                  "width":  1400,
+                                                  "height":  2948,
+                                                  "mimeType":  "image/jpeg",
+                                                  "filesize":  974831,
+                                                  "filename":  "IMG-20250703-WA0058-1400x2948.jpg"
+                                              },
+                                    "xlarge":  {
+                                                   "url":  "/api/media/file/IMG-20250703-WA0058-1920x4043.jpg",
+                                                   "width":  1920,
+                                                   "height":  4043,
+                                                   "mimeType":  "image/jpeg",
+                                                   "filesize":  1530583,
+                                                   "filename":  "IMG-20250703-WA0058-1920x4043.jpg"
+                                               },
+                                    "og":  {
+                                               "url":  "/api/media/file/IMG-20250703-WA0058-1200x630.jpg",
+                                               "width":  1200,
+                                               "height":  630,
+                                               "mimeType":  "image/jpeg",
+                                               "filesize":  197506,
+                                               "filename":  "IMG-20250703-WA0058-1200x630.jpg"
+                                           }
+                                }
+                  },
+                  {
+                      "id":  16,
+                      "alt":  "Area operasional dan stok",
+                      "caption":  null,
+                      "folder":  null,
+                      "updatedAt":  "2026-04-28T07:09:44.076Z",
+                      "createdAt":  "2026-04-28T07:09:44.076Z",
+                      "url":  "/api/media/file/IMG-20250703-WA0041.jpg",
+                      "thumbnailURL":  "/api/media/file/IMG-20250703-WA0041-300x632.jpg",
+                      "filename":  "IMG-20250703-WA0041.jpg",
+                      "mimeType":  "image/jpeg",
+                      "filesize":  1153547,
+                      "width":  1968,
+                      "height":  4144,
+                      "focalX":  50,
+                      "focalY":  50,
+                      "sizes":  {
+                                    "thumbnail":  {
+                                                      "url":  "/api/media/file/IMG-20250703-WA0041-300x632.jpg",
+                                                      "width":  300,
+                                                      "height":  632,
+                                                      "mimeType":  "image/jpeg",
+                                                      "filesize":  63664,
+                                                      "filename":  "IMG-20250703-WA0041-300x632.jpg"
+                                                  },
+                                    "square":  {
+                                                   "url":  "/api/media/file/IMG-20250703-WA0041-500x500.jpg",
+                                                   "width":  500,
+                                                   "height":  500,
+                                                   "mimeType":  "image/jpeg",
+                                                   "filesize":  86548,
+                                                   "filename":  "IMG-20250703-WA0041-500x500.jpg"
+                                               },
+                                    "small":  {
+                                                  "url":  "/api/media/file/IMG-20250703-WA0041-600x1263.jpg",
+                                                  "width":  600,
+                                                  "height":  1263,
+                                                  "mimeType":  "image/jpeg",
+                                                  "filesize":  234434,
+                                                  "filename":  "IMG-20250703-WA0041-600x1263.jpg"
+                                              },
+                                    "medium":  {
+                                                   "url":  "/api/media/file/IMG-20250703-WA0041-900x1895.jpg",
+                                                   "width":  900,
+                                                   "height":  1895,
+                                                   "mimeType":  "image/jpeg",
+                                                   "filesize":  480611,
+                                                   "filename":  "IMG-20250703-WA0041-900x1895.jpg"
+                                               },
+                                    "large":  {
+                                                  "url":  "/api/media/file/IMG-20250703-WA0041-1400x2948.jpg",
+                                                  "width":  1400,
+                                                  "height":  2948,
+                                                  "mimeType":  "image/jpeg",
+                                                  "filesize":  958190,
+                                                  "filename":  "IMG-20250703-WA0041-1400x2948.jpg"
+                                              },
+                                    "xlarge":  {
+                                                   "url":  "/api/media/file/IMG-20250703-WA0041-1920x4043.jpg",
+                                                   "width":  1920,
+                                                   "height":  4043,
+                                                   "mimeType":  "image/jpeg",
+                                                   "filesize":  1506422,
+                                                   "filename":  "IMG-20250703-WA0041-1920x4043.jpg"
+                                               },
+                                    "og":  {
+                                               "url":  "/api/media/file/IMG-20250703-WA0041-1200x630.jpg",
+                                               "width":  1200,
+                                               "height":  630,
+                                               "mimeType":  "image/jpeg",
+                                               "filesize":  181875,
+                                               "filename":  "IMG-20250703-WA0041-1200x630.jpg"
+                                           }
+                                }
+                  },
+                  {
+                      "id":  15,
+                      "alt":  "Kondisi tanaman di lapangan",
+                      "caption":  null,
+                      "folder":  null,
+                      "updatedAt":  "2026-04-28T07:09:21.644Z",
+                      "createdAt":  "2026-04-28T07:09:21.643Z",
+                      "url":  "/api/media/file/IMG-20250703-WA0018.jpg",
+                      "thumbnailURL":  "/api/media/file/IMG-20250703-WA0018-300x400.jpg",
+                      "filename":  "IMG-20250703-WA0018.jpg",
+                      "mimeType":  "image/jpeg",
+                      "filesize":  320033,
+                      "width":  1200,
+                      "height":  1600,
+                      "focalX":  50,
+                      "focalY":  50,
+                      "sizes":  {
+                                    "thumbnail":  {
+                                                      "url":  "/api/media/file/IMG-20250703-WA0018-300x400.jpg",
+                                                      "width":  300,
+                                                      "height":  400,
+                                                      "mimeType":  "image/jpeg",
+                                                      "filesize":  30119,
+                                                      "filename":  "IMG-20250703-WA0018-300x400.jpg"
+                                                  },
+                                    "square":  {
+                                                   "url":  "/api/media/file/IMG-20250703-WA0018-500x500.jpg",
+                                                   "width":  500,
+                                                   "height":  500,
+                                                   "mimeType":  "image/jpeg",
+                                                   "filesize":  68129,
+                                                   "filename":  "IMG-20250703-WA0018-500x500.jpg"
+                                               },
+                                    "small":  {
+                                                  "url":  "/api/media/file/IMG-20250703-WA0018-600x800.jpg",
+                                                  "width":  600,
+                                                  "height":  800,
+                                                  "mimeType":  "image/jpeg",
+                                                  "filesize":  113372,
+                                                  "filename":  "IMG-20250703-WA0018-600x800.jpg"
+                                              },
+                                    "medium":  {
+                                                   "url":  "/api/media/file/IMG-20250703-WA0018-900x1200.jpg",
+                                                   "width":  900,
+                                                   "height":  1200,
+                                                   "mimeType":  "image/jpeg",
+                                                   "filesize":  232808,
+                                                   "filename":  "IMG-20250703-WA0018-900x1200.jpg"
+                                               },
+                                    "large":  {
+                                                  "url":  null,
+                                                  "width":  null,
+                                                  "height":  null,
+                                                  "mimeType":  null,
+                                                  "filesize":  null,
+                                                  "filename":  null
+                                              },
+                                    "xlarge":  {
+                                                   "url":  null,
+                                                   "width":  null,
+                                                   "height":  null,
+                                                   "mimeType":  null,
+                                                   "filesize":  null,
+                                                   "filename":  null
+                                               },
+                                    "og":  {
+                                               "url":  "/api/media/file/IMG-20250703-WA0018-1200x630.jpg",
+                                               "width":  1200,
+                                               "height":  630,
+                                               "mimeType":  "image/jpeg",
+                                               "filesize":  193865,
+                                               "filename":  "IMG-20250703-WA0018-1200x630.jpg"
+                                           }
+                                }
+                  },
+                  {
+                      "id":  14,
+                      "alt":  "Kebun anggota di kawasan Cipanas",
+                      "caption":  null,
+                      "folder":  null,
+                      "updatedAt":  "2026-04-28T07:09:03.005Z",
+                      "createdAt":  "2026-04-28T07:09:03.005Z",
+                      "url":  "/api/media/file/IMG-20250703-WA0023.jpg",
+                      "thumbnailURL":  "/api/media/file/IMG-20250703-WA0023-300x632.jpg",
+                      "filename":  "IMG-20250703-WA0023.jpg",
+                      "mimeType":  "image/jpeg",
+                      "filesize":  1282687,
+                      "width":  1968,
+                      "height":  4144,
+                      "focalX":  50,
+                      "focalY":  50,
+                      "sizes":  {
+                                    "thumbnail":  {
+                                                      "url":  "/api/media/file/IMG-20250703-WA0023-300x632.jpg",
+                                                      "width":  300,
+                                                      "height":  632,
+                                                      "mimeType":  "image/jpeg",
+                                                      "filesize":  66093,
+                                                      "filename":  "IMG-20250703-WA0023-300x632.jpg"
+                                                  },
+                                    "square":  {
+                                                   "url":  "/api/media/file/IMG-20250703-WA0023-500x500.jpg",
+                                                   "width":  500,
+                                                   "height":  500,
+                                                   "mimeType":  "image/jpeg",
+                                                   "filesize":  87494,
+                                                   "filename":  "IMG-20250703-WA0023-500x500.jpg"
+                                               },
+                                    "small":  {
+                                                  "url":  "/api/media/file/IMG-20250703-WA0023-600x1263.jpg",
+                                                  "width":  600,
+                                                  "height":  1263,
+                                                  "mimeType":  "image/jpeg",
+                                                  "filesize":  253986,
+                                                  "filename":  "IMG-20250703-WA0023-600x1263.jpg"
+                                              },
+                                    "medium":  {
+                                                   "url":  "/api/media/file/IMG-20250703-WA0023-900x1895.jpg",
+                                                   "width":  900,
+                                                   "height":  1895,
+                                                   "mimeType":  "image/jpeg",
+                                                   "filesize":  527892,
+                                                   "filename":  "IMG-20250703-WA0023-900x1895.jpg"
+                                               },
+                                    "large":  {
+                                                  "url":  "/api/media/file/IMG-20250703-WA0023-1400x2948.jpg",
+                                                  "width":  1400,
+                                                  "height":  2948,
+                                                  "mimeType":  "image/jpeg",
+                                                  "filesize":  1054072,
+                                                  "filename":  "IMG-20250703-WA0023-1400x2948.jpg"
+                                              },
+                                    "xlarge":  {
+                                                   "url":  "/api/media/file/IMG-20250703-WA0023-1920x4043.jpg",
+                                                   "width":  1920,
+                                                   "height":  4043,
+                                                   "mimeType":  "image/jpeg",
+                                                   "filesize":  1661396,
+                                                   "filename":  "IMG-20250703-WA0023-1920x4043.jpg"
+                                               },
+                                    "og":  {
+                                               "url":  "/api/media/file/IMG-20250703-WA0023-1200x630.jpg",
+                                               "width":  1200,
+                                               "height":  630,
+                                               "mimeType":  "image/jpeg",
+                                               "filesize":  198481,
+                                               "filename":  "IMG-20250703-WA0023-1200x630.jpg"
+                                           }
+                                }
+                  },
+                  {
+                      "id":  13,
+                      "alt":  null,
+                      "caption":  null,
+                      "folder":  null,
+                      "updatedAt":  "2026-04-28T06:44:54.034Z",
+                      "createdAt":  "2026-04-28T06:44:54.034Z",
+                      "url":  "/api/media/file/IMG-20250703-WA0042.jpg",
+                      "thumbnailURL":  "/api/media/file/IMG-20250703-WA0042-300x632.jpg",
+                      "filename":  "IMG-20250703-WA0042.jpg",
+                      "mimeType":  "image/jpeg",
+                      "filesize":  1293012,
+                      "width":  1968,
+                      "height":  4144,
+                      "focalX":  50,
+                      "focalY":  50,
+                      "sizes":  {
+                                    "thumbnail":  {
+                                                      "url":  "/api/media/file/IMG-20250703-WA0042-300x632.jpg",
+                                                      "width":  300,
+                                                      "height":  632,
+                                                      "mimeType":  "image/jpeg",
+                                                      "filesize":  75365,
+                                                      "filename":  "IMG-20250703-WA0042-300x632.jpg"
+                                                  },
+                                    "square":  {
+                                                   "url":  "/api/media/file/IMG-20250703-WA0042-500x500.jpg",
+                                                   "width":  500,
+                                                   "height":  500,
+                                                   "mimeType":  "image/jpeg",
+                                                   "filesize":  98958,
+                                                   "filename":  "IMG-20250703-WA0042-500x500.jpg"
+                                               },
+                                    "small":  {
+                                                  "url":  "/api/media/file/IMG-20250703-WA0042-600x1263.jpg",
+                                                  "width":  600,
+                                                  "height":  1263,
+                                                  "mimeType":  "image/jpeg",
+                                                  "filesize":  269148,
+                                                  "filename":  "IMG-20250703-WA0042-600x1263.jpg"
+                                              },
+                                    "medium":  {
+                                                   "url":  "/api/media/file/IMG-20250703-WA0042-900x1895.jpg",
+                                                   "width":  900,
+                                                   "height":  1895,
+                                                   "mimeType":  "image/jpeg",
+                                                   "filesize":  540664,
+                                                   "filename":  "IMG-20250703-WA0042-900x1895.jpg"
+                                               },
+                                    "large":  {
+                                                  "url":  "/api/media/file/IMG-20250703-WA0042-1400x2948.jpg",
+                                                  "width":  1400,
+                                                  "height":  2948,
+                                                  "mimeType":  "image/jpeg",
+                                                  "filesize":  1063051,
+                                                  "filename":  "IMG-20250703-WA0042-1400x2948.jpg"
+                                              },
+                                    "xlarge":  {
+                                                   "url":  "/api/media/file/IMG-20250703-WA0042-1920x4043.jpg",
+                                                   "width":  1920,
+                                                   "height":  4043,
+                                                   "mimeType":  "image/jpeg",
+                                                   "filesize":  1668427,
+                                                   "filename":  "IMG-20250703-WA0042-1920x4043.jpg"
+                                               },
+                                    "og":  {
+                                               "url":  "/api/media/file/IMG-20250703-WA0042-1200x630.jpg",
+                                               "width":  1200,
+                                               "height":  630,
+                                               "mimeType":  "image/jpeg",
+                                               "filesize":  229621,
+                                               "filename":  "IMG-20250703-WA0042-1200x630.jpg"
+                                           }
+                                }
+                  },
+                  {
+                      "id":  12,
+                      "alt":  null,
+                      "caption":  null,
+                      "folder":  null,
+                      "updatedAt":  "2026-04-28T06:44:28.587Z",
+                      "createdAt":  "2026-04-28T06:44:28.587Z",
+                      "url":  "/api/media/file/IMG-20250703-WA0054.jpg",
+                      "thumbnailURL":  "/api/media/file/IMG-20250703-WA0054-300x632.jpg",
+                      "filename":  "IMG-20250703-WA0054.jpg",
+                      "mimeType":  "image/jpeg",
+                      "filesize":  1149708,
+                      "width":  1968,
+                      "height":  4144,
+                      "focalX":  50,
+                      "focalY":  50,
+                      "sizes":  {
+                                    "thumbnail":  {
+                                                      "url":  "/api/media/file/IMG-20250703-WA0054-300x632.jpg",
+                                                      "width":  300,
+                                                      "height":  632,
+                                                      "mimeType":  "image/jpeg",
+                                                      "filesize":  61101,
+                                                      "filename":  "IMG-20250703-WA0054-300x632.jpg"
+                                                  },
+                                    "square":  {
+                                                   "url":  "/api/media/file/IMG-20250703-WA0054-500x500.jpg",
+                                                   "width":  500,
+                                                   "height":  500,
+                                                   "mimeType":  "image/jpeg",
+                                                   "filesize":  95513,
+                                                   "filename":  "IMG-20250703-WA0054-500x500.jpg"
+                                               },
+                                    "small":  {
+                                                  "url":  "/api/media/file/IMG-20250703-WA0054-600x1263.jpg",
+                                                  "width":  600,
+                                                  "height":  1263,
+                                                  "mimeType":  "image/jpeg",
+                                                  "filesize":  229651,
+                                                  "filename":  "IMG-20250703-WA0054-600x1263.jpg"
+                                              },
+                                    "medium":  {
+                                                   "url":  "/api/media/file/IMG-20250703-WA0054-900x1895.jpg",
+                                                   "width":  900,
+                                                   "height":  1895,
+                                                   "mimeType":  "image/jpeg",
+                                                   "filesize":  474183,
+                                                   "filename":  "IMG-20250703-WA0054-900x1895.jpg"
+                                               },
+                                    "large":  {
+                                                  "url":  "/api/media/file/IMG-20250703-WA0054-1400x2948.jpg",
+                                                  "width":  1400,
+                                                  "height":  2948,
+                                                  "mimeType":  "image/jpeg",
+                                                  "filesize":  943169,
+                                                  "filename":  "IMG-20250703-WA0054-1400x2948.jpg"
+                                              },
+                                    "xlarge":  {
+                                                   "url":  "/api/media/file/IMG-20250703-WA0054-1920x4043.jpg",
+                                                   "width":  1920,
+                                                   "height":  4043,
+                                                   "mimeType":  "image/jpeg",
+                                                   "filesize":  1481356,
+                                                   "filename":  "IMG-20250703-WA0054-1920x4043.jpg"
+                                               },
+                                    "og":  {
+                                               "url":  "/api/media/file/IMG-20250703-WA0054-1200x630.jpg",
+                                               "width":  1200,
+                                               "height":  630,
+                                               "mimeType":  "image/jpeg",
+                                               "filesize":  239664,
+                                               "filename":  "IMG-20250703-WA0054-1200x630.jpg"
+                                           }
+                                }
+                  },
+                  {
+                      "id":  11,
+                      "alt":  null,
+                      "caption":  null,
+                      "folder":  null,
+                      "updatedAt":  "2026-04-28T06:43:36.248Z",
+                      "createdAt":  "2026-04-28T06:43:36.248Z",
+                      "url":  "/api/media/file/IMG-20250703-WA0067.jpg",
+                      "thumbnailURL":  "/api/media/file/IMG-20250703-WA0067-300x632.jpg",
+                      "filename":  "IMG-20250703-WA0067.jpg",
+                      "mimeType":  "image/jpeg",
+                      "filesize":  1335601,
+                      "width":  1968,
+                      "height":  4144,
+                      "focalX":  50,
+                      "focalY":  50,
+                      "sizes":  {
+                                    "thumbnail":  {
+                                                      "url":  "/api/media/file/IMG-20250703-WA0067-300x632.jpg",
+                                                      "width":  300,
+                                                      "height":  632,
+                                                      "mimeType":  "image/jpeg",
+                                                      "filesize":  68797,
+                                                      "filename":  "IMG-20250703-WA0067-300x632.jpg"
+                                                  },
+                                    "square":  {
+                                                   "url":  "/api/media/file/IMG-20250703-WA0067-500x500.jpg",
+                                                   "width":  500,
+                                                   "height":  500,
+                                                   "mimeType":  "image/jpeg",
+                                                   "filesize":  91819,
+                                                   "filename":  "IMG-20250703-WA0067-500x500.jpg"
+                                               },
+                                    "small":  {
+                                                  "url":  "/api/media/file/IMG-20250703-WA0067-600x1263.jpg",
+                                                  "width":  600,
+                                                  "height":  1263,
+                                                  "mimeType":  "image/jpeg",
+                                                  "filesize":  261700,
+                                                  "filename":  "IMG-20250703-WA0067-600x1263.jpg"
+                                              },
+                                    "medium":  {
+                                                   "url":  "/api/media/file/IMG-20250703-WA0067-900x1895.jpg",
+                                                   "width":  900,
+                                                   "height":  1895,
+                                                   "mimeType":  "image/jpeg",
+                                                   "filesize":  544222,
+                                                   "filename":  "IMG-20250703-WA0067-900x1895.jpg"
+                                               },
+                                    "large":  {
+                                                  "url":  "/api/media/file/IMG-20250703-WA0067-1400x2948.jpg",
+                                                  "width":  1400,
+                                                  "height":  2948,
+                                                  "mimeType":  "image/jpeg",
+                                                  "filesize":  1090907,
+                                                  "filename":  "IMG-20250703-WA0067-1400x2948.jpg"
+                                              },
+                                    "xlarge":  {
+                                                   "url":  "/api/media/file/IMG-20250703-WA0067-1920x4043.jpg",
+                                                   "width":  1920,
+                                                   "height":  4043,
+                                                   "mimeType":  "image/jpeg",
+                                                   "filesize":  1715205,
+                                                   "filename":  "IMG-20250703-WA0067-1920x4043.jpg"
+                                               },
+                                    "og":  {
+                                               "url":  "/api/media/file/IMG-20250703-WA0067-1200x630.jpg",
+                                               "width":  1200,
+                                               "height":  630,
+                                               "mimeType":  "image/jpeg",
+                                               "filesize":  208753,
+                                               "filename":  "IMG-20250703-WA0067-1200x630.jpg"
+                                           }
+                                }
+                  },
+                  {
+                      "id":  10,
+                      "alt":  null,
+                      "caption":  null,
+                      "folder":  null,
+                      "updatedAt":  "2026-04-28T06:43:02.666Z",
+                      "createdAt":  "2026-04-28T06:43:02.666Z",
+                      "url":  "/api/media/file/IMG-20250626-WA0012.jpg",
+                      "thumbnailURL":  "/api/media/file/IMG-20250626-WA0012-300x225.jpg",
+                      "filename":  "IMG-20250626-WA0012.jpg",
+                      "mimeType":  "image/jpeg",
+                      "filesize":  193882,
+                      "width":  1280,
+                      "height":  960,
+                      "focalX":  50,
+                      "focalY":  50,
+                      "sizes":  {
+                                    "thumbnail":  {
+                                                      "url":  "/api/media/file/IMG-20250626-WA0012-300x225.jpg",
+                                                      "width":  300,
+                                                      "height":  225,
+                                                      "mimeType":  "image/jpeg",
+                                                      "filesize":  20903,
+                                                      "filename":  "IMG-20250626-WA0012-300x225.jpg"
+                                                  },
+                                    "square":  {
+                                                   "url":  "/api/media/file/IMG-20250626-WA0012-500x500.jpg",
+                                                   "width":  500,
+                                                   "height":  500,
+                                                   "mimeType":  "image/jpeg",
+                                                   "filesize":  60743,
+                                                   "filename":  "IMG-20250626-WA0012-500x500.jpg"
+                                               },
+                                    "small":  {
+                                                  "url":  "/api/media/file/IMG-20250626-WA0012-600x450.jpg",
+                                                  "width":  600,
+                                                  "height":  450,
+                                                  "mimeType":  "image/jpeg",
+                                                  "filesize":  68104,
+                                                  "filename":  "IMG-20250626-WA0012-600x450.jpg"
+                                              },
+                                    "medium":  {
+                                                   "url":  "/api/media/file/IMG-20250626-WA0012-900x675.jpg",
+                                                   "width":  900,
+                                                   "height":  675,
+                                                   "mimeType":  "image/jpeg",
+                                                   "filesize":  131115,
+                                                   "filename":  "IMG-20250626-WA0012-900x675.jpg"
+                                               },
+                                    "large":  {
+                                                  "url":  null,
+                                                  "width":  null,
+                                                  "height":  null,
+                                                  "mimeType":  null,
+                                                  "filesize":  null,
+                                                  "filename":  null
+                                              },
+                                    "xlarge":  {
+                                                   "url":  null,
+                                                   "width":  null,
+                                                   "height":  null,
+                                                   "mimeType":  null,
+                                                   "filesize":  null,
+                                                   "filename":  null
+                                               },
+                                    "og":  {
+                                               "url":  "/api/media/file/IMG-20250626-WA0012-1200x630.jpg",
+                                               "width":  1200,
+                                               "height":  630,
+                                               "mimeType":  "image/jpeg",
+                                               "filesize":  152305,
+                                               "filename":  "IMG-20250626-WA0012-1200x630.jpg"
+                                           }
+                                }
+                  },
+                  {
+                      "id":  9,
+                      "alt":  null,
+                      "caption":  null,
+                      "folder":  null,
+                      "updatedAt":  "2026-04-28T06:42:29.946Z",
+                      "createdAt":  "2026-04-28T06:42:29.946Z",
+                      "url":  "/api/media/file/IMG-20250702-WA0005.jpg",
+                      "thumbnailURL":  "/api/media/file/IMG-20250702-WA0005-300x632.jpg",
+                      "filename":  "IMG-20250702-WA0005.jpg",
+                      "mimeType":  "image/jpeg",
+                      "filesize":  122807,
+                      "width":  492,
+                      "height":  1036,
+                      "focalX":  50,
+                      "focalY":  50,
+                      "sizes":  {
+                                    "thumbnail":  {
+                                                      "url":  "/api/media/file/IMG-20250702-WA0005-300x632.jpg",
+                                                      "width":  300,
+                                                      "height":  632,
+                                                      "mimeType":  "image/jpeg",
+                                                      "filesize":  65516,
+                                                      "filename":  "IMG-20250702-WA0005-300x632.jpg"
+                                                  },
+                                    "square":  {
+                                                   "url":  "/api/media/file/IMG-20250702-WA0005-500x500.jpg",
+                                                   "width":  500,
+                                                   "height":  500,
+                                                   "mimeType":  "image/jpeg",
+                                                   "filesize":  68689,
+                                                   "filename":  "IMG-20250702-WA0005-500x500.jpg"
+                                               },
+                                    "small":  {
+                                                  "url":  null,
+                                                  "width":  null,
+                                                  "height":  null,
+                                                  "mimeType":  null,
+                                                  "filesize":  null,
+                                                  "filename":  null
+                                              },
+                                    "medium":  {
+                                                   "url":  null,
+                                                   "width":  null,
+                                                   "height":  null,
+                                                   "mimeType":  null,
+                                                   "filesize":  null,
+                                                   "filename":  null
+                                               },
+                                    "large":  {
+                                                  "url":  null,
+                                                  "width":  null,
+                                                  "height":  null,
+                                                  "mimeType":  null,
+                                                  "filesize":  null,
+                                                  "filename":  null
+                                              },
+                                    "xlarge":  {
+                                                   "url":  null,
+                                                   "width":  null,
+                                                   "height":  null,
+                                                   "mimeType":  null,
+                                                   "filesize":  null,
+                                                   "filename":  null
+                                               },
+                                    "og":  {
+                                               "url":  "/api/media/file/IMG-20250702-WA0005-1200x630.jpg",
+                                               "width":  1200,
+                                               "height":  630,
+                                               "mimeType":  "image/jpeg",
+                                               "filesize":  119640,
+                                               "filename":  "IMG-20250702-WA0005-1200x630.jpg"
+                                           }
+                                }
+                  },
+                  {
+                      "id":  8,
+                      "alt":  "Hamparan tanaman siap supply",
+                      "caption":  null,
+                      "folder":  null,
+                      "updatedAt":  "2026-04-28T06:42:03.550Z",
+                      "createdAt":  "2026-04-28T06:42:03.550Z",
+                      "url":  "/api/media/file/IMG-20250703-WA0013.jpg",
+                      "thumbnailURL":  "/api/media/file/IMG-20250703-WA0013-300x400.jpg",
+                      "filename":  "IMG-20250703-WA0013.jpg",
+                      "mimeType":  "image/jpeg",
+                      "filesize":  502869,
+                      "width":  1200,
+                      "height":  1600,
+                      "focalX":  50,
+                      "focalY":  50,
+                      "sizes":  {
+                                    "thumbnail":  {
+                                                      "url":  "/api/media/file/IMG-20250703-WA0013-300x400.jpg",
+                                                      "width":  300,
+                                                      "height":  400,
+                                                      "mimeType":  "image/jpeg",
+                                                      "filesize":  46295,
+                                                      "filename":  "IMG-20250703-WA0013-300x400.jpg"
+                                                  },
+                                    "square":  {
+                                                   "url":  "/api/media/file/IMG-20250703-WA0013-500x500.jpg",
+                                                   "width":  500,
+                                                   "height":  500,
+                                                   "mimeType":  "image/jpeg",
+                                                   "filesize":  99682,
+                                                   "filename":  "IMG-20250703-WA0013-500x500.jpg"
+                                               },
+                                    "small":  {
+                                                  "url":  "/api/media/file/IMG-20250703-WA0013-600x800.jpg",
+                                                  "width":  600,
+                                                  "height":  800,
+                                                  "mimeType":  "image/jpeg",
+                                                  "filesize":  177741,
+                                                  "filename":  "IMG-20250703-WA0013-600x800.jpg"
+                                              },
+                                    "medium":  {
+                                                   "url":  "/api/media/file/IMG-20250703-WA0013-900x1200.jpg",
+                                                   "width":  900,
+                                                   "height":  1200,
+                                                   "mimeType":  "image/jpeg",
+                                                   "filesize":  368670,
+                                                   "filename":  "IMG-20250703-WA0013-900x1200.jpg"
+                                               },
+                                    "large":  {
+                                                  "url":  null,
+                                                  "width":  null,
+                                                  "height":  null,
+                                                  "mimeType":  null,
+                                                  "filesize":  null,
+                                                  "filename":  null
+                                              },
+                                    "xlarge":  {
+                                                   "url":  null,
+                                                   "width":  null,
+                                                   "height":  null,
+                                                   "mimeType":  null,
+                                                   "filesize":  null,
+                                                   "filename":  null
+                                               },
+                                    "og":  {
+                                               "url":  "/api/media/file/IMG-20250703-WA0013-1200x630.jpg",
+                                               "width":  1200,
+                                               "height":  630,
+                                               "mimeType":  "image/jpeg",
+                                               "filesize":  247162,
+                                               "filename":  "IMG-20250703-WA0013-1200x630.jpg"
+                                           }
+                                }
+                  },
+                  {
+                      "id":  7,
+                      "alt":  null,
+                      "caption":  null,
+                      "folder":  null,
+                      "updatedAt":  "2026-04-28T06:36:37.076Z",
+                      "createdAt":  "2026-04-28T06:36:37.076Z",
+                      "url":  "/api/media/file/vlcsnap-2025-08-06-12h13m03s644.png",
+                      "thumbnailURL":  "/api/media/file/vlcsnap-2025-08-06-12h13m03s644-300x169.png",
+                      "filename":  "vlcsnap-2025-08-06-12h13m03s644.png",
+                      "mimeType":  "image/png",
+                      "filesize":  603392,
+                      "width":  848,
+                      "height":  478,
+                      "focalX":  50,
+                      "focalY":  50,
+                      "sizes":  {
+                                    "thumbnail":  {
+                                                      "url":  "/api/media/file/vlcsnap-2025-08-06-12h13m03s644-300x169.png",
+                                                      "width":  300,
+                                                      "height":  169,
+                                                      "mimeType":  "image/png",
+                                                      "filesize":  125799,
+                                                      "filename":  "vlcsnap-2025-08-06-12h13m03s644-300x169.png"
+                                                  },
+                                    "square":  {
+                                                   "url":  "/api/media/file/vlcsnap-2025-08-06-12h13m03s644-500x500.png",
+                                                   "width":  500,
+                                                   "height":  500,
+                                                   "mimeType":  "image/png",
+                                                   "filesize":  577123,
+                                                   "filename":  "vlcsnap-2025-08-06-12h13m03s644-500x500.png"
+                                               },
+                                    "small":  {
+                                                  "url":  "/api/media/file/vlcsnap-2025-08-06-12h13m03s644-600x338.png",
+                                                  "width":  600,
+                                                  "height":  338,
+                                                  "mimeType":  "image/png",
+                                                  "filesize":  477717,
+                                                  "filename":  "vlcsnap-2025-08-06-12h13m03s644-600x338.png"
+                                              },
+                                    "medium":  {
+                                                   "url":  null,
+                                                   "width":  null,
+                                                   "height":  null,
+                                                   "mimeType":  null,
+                                                   "filesize":  null,
+                                                   "filename":  null
+                                               },
+                                    "large":  {
+                                                  "url":  null,
+                                                  "width":  null,
+                                                  "height":  null,
+                                                  "mimeType":  null,
+                                                  "filesize":  null,
+                                                  "filename":  null
+                                              },
+                                    "xlarge":  {
+                                                   "url":  null,
+                                                   "width":  null,
+                                                   "height":  null,
+                                                   "mimeType":  null,
+                                                   "filesize":  null,
+                                                   "filename":  null
+                                               },
+                                    "og":  {
+                                               "url":  null,
+                                               "width":  null,
+                                               "height":  null,
+                                               "mimeType":  null,
+                                               "filesize":  null,
+                                               "filename":  null
+                                           }
+                                }
+                  },
+                  {
+                      "id":  6,
+                      "alt":  "HANJUANG",
+                      "caption":  null,
+                      "folder":  null,
+                      "updatedAt":  "2026-04-28T06:35:47.792Z",
+                      "createdAt":  "2026-04-28T06:35:47.792Z",
+                      "url":  "/api/media/file/HANJUANG%20MERAH.jpg",
+                      "thumbnailURL":  "/api/media/file/HANJUANG%20MERAH-300x244.jpg",
+                      "filename":  "HANJUANG MERAH.jpg",
+                      "mimeType":  "image/jpeg",
+                      "filesize":  38603,
+                      "width":  475,
+                      "height":  387,
+                      "focalX":  50,
+                      "focalY":  50,
+                      "sizes":  {
+                                    "thumbnail":  {
+                                                      "url":  "/api/media/file/HANJUANG%20MERAH-300x244.jpg",
+                                                      "width":  300,
+                                                      "height":  244,
+                                                      "mimeType":  "image/jpeg",
+                                                      "filesize":  16572,
+                                                      "filename":  "HANJUANG MERAH-300x244.jpg"
+                                                  },
+                                    "square":  {
+                                                   "url":  null,
+                                                   "width":  null,
+                                                   "height":  null,
+                                                   "mimeType":  null,
+                                                   "filesize":  null,
+                                                   "filename":  null
+                                               },
+                                    "small":  {
+                                                  "url":  null,
+                                                  "width":  null,
+                                                  "height":  null,
+                                                  "mimeType":  null,
+                                                  "filesize":  null,
+                                                  "filename":  null
+                                              },
+                                    "medium":  {
+                                                   "url":  null,
+                                                   "width":  null,
+                                                   "height":  null,
+                                                   "mimeType":  null,
+                                                   "filesize":  null,
+                                                   "filename":  null
+                                               },
+                                    "large":  {
+                                                  "url":  null,
+                                                  "width":  null,
+                                                  "height":  null,
+                                                  "mimeType":  null,
+                                                  "filesize":  null,
+                                                  "filename":  null
+                                              },
+                                    "xlarge":  {
+                                                   "url":  null,
+                                                   "width":  null,
+                                                   "height":  null,
+                                                   "mimeType":  null,
+                                                   "filesize":  null,
+                                                   "filename":  null
+                                               },
+                                    "og":  {
+                                               "url":  null,
+                                               "width":  null,
+                                               "height":  null,
+                                               "mimeType":  null,
+                                               "filesize":  null,
+                                               "filename":  null
+                                           }
+                                }
+                  },
+                  {
+                      "id":  5,
+                      "alt":  null,
+                      "caption":  null,
+                      "folder":  null,
+                      "updatedAt":  "2026-04-28T06:35:11.488Z",
+                      "createdAt":  "2026-04-28T06:35:11.487Z",
+                      "url":  "/api/media/file/Crosandra%20T.jpg",
+                      "thumbnailURL":  "/api/media/file/Crosandra%20T-300x244.jpg",
+                      "filename":  "Crosandra T.jpg",
+                      "mimeType":  "image/jpeg",
+                      "filesize":  58242,
+                      "width":  475,
+                      "height":  387,
+                      "focalX":  50,
+                      "focalY":  50,
+                      "sizes":  {
+                                    "thumbnail":  {
+                                                      "url":  "/api/media/file/Crosandra%20T-300x244.jpg",
+                                                      "width":  300,
+                                                      "height":  244,
+                                                      "mimeType":  "image/jpeg",
+                                                      "filesize":  23836,
+                                                      "filename":  "Crosandra T-300x244.jpg"
+                                                  },
+                                    "square":  {
+                                                   "url":  null,
+                                                   "width":  null,
+                                                   "height":  null,
+                                                   "mimeType":  null,
+                                                   "filesize":  null,
+                                                   "filename":  null
+                                               },
+                                    "small":  {
+                                                  "url":  null,
+                                                  "width":  null,
+                                                  "height":  null,
+                                                  "mimeType":  null,
+                                                  "filesize":  null,
+                                                  "filename":  null
+                                              },
+                                    "medium":  {
+                                                   "url":  null,
+                                                   "width":  null,
+                                                   "height":  null,
+                                                   "mimeType":  null,
+                                                   "filesize":  null,
+                                                   "filename":  null
+                                               },
+                                    "large":  {
+                                                  "url":  null,
+                                                  "width":  null,
+                                                  "height":  null,
+                                                  "mimeType":  null,
+                                                  "filesize":  null,
+                                                  "filename":  null
+                                              },
+                                    "xlarge":  {
+                                                   "url":  null,
+                                                   "width":  null,
+                                                   "height":  null,
+                                                   "mimeType":  null,
+                                                   "filesize":  null,
+                                                   "filename":  null
+                                               },
+                                    "og":  {
+                                               "url":  null,
+                                               "width":  null,
+                                               "height":  null,
+                                               "mimeType":  null,
+                                               "filesize":  null,
+                                               "filename":  null
+                                           }
+                                }
+                  },
+                  {
+                      "id":  4,
+                      "alt":  "HANJUANG",
+                      "caption":  null,
+                      "folder":  null,
+                      "updatedAt":  "2026-04-28T06:34:38.505Z",
+                      "createdAt":  "2026-04-28T06:34:38.504Z",
+                      "url":  "/api/media/file/HANJUANG%20HIJAU.jpg",
+                      "thumbnailURL":  "/api/media/file/HANJUANG%20HIJAU-300x244.jpg",
+                      "filename":  "HANJUANG HIJAU.jpg",
+                      "mimeType":  "image/jpeg",
+                      "filesize":  64650,
+                      "width":  475,
+                      "height":  387,
+                      "focalX":  50,
+                      "focalY":  50,
+                      "sizes":  {
+                                    "thumbnail":  {
+                                                      "url":  "/api/media/file/HANJUANG%20HIJAU-300x244.jpg",
+                                                      "width":  300,
+                                                      "height":  244,
+                                                      "mimeType":  "image/jpeg",
+                                                      "filesize":  25002,
+                                                      "filename":  "HANJUANG HIJAU-300x244.jpg"
+                                                  },
+                                    "square":  {
+                                                   "url":  null,
+                                                   "width":  null,
+                                                   "height":  null,
+                                                   "mimeType":  null,
+                                                   "filesize":  null,
+                                                   "filename":  null
+                                               },
+                                    "small":  {
+                                                  "url":  null,
+                                                  "width":  null,
+                                                  "height":  null,
+                                                  "mimeType":  null,
+                                                  "filesize":  null,
+                                                  "filename":  null
+                                              },
+                                    "medium":  {
+                                                   "url":  null,
+                                                   "width":  null,
+                                                   "height":  null,
+                                                   "mimeType":  null,
+                                                   "filesize":  null,
+                                                   "filename":  null
+                                               },
+                                    "large":  {
+                                                  "url":  null,
+                                                  "width":  null,
+                                                  "height":  null,
+                                                  "mimeType":  null,
+                                                  "filesize":  null,
+                                                  "filename":  null
+                                              },
+                                    "xlarge":  {
+                                                   "url":  null,
+                                                   "width":  null,
+                                                   "height":  null,
+                                                   "mimeType":  null,
+                                                   "filesize":  null,
+                                                   "filename":  null
+                                               },
+                                    "og":  {
+                                               "url":  null,
+                                               "width":  null,
+                                               "height":  null,
+                                               "mimeType":  null,
+                                               "filesize":  null,
+                                               "filename":  null
+                                           }
+                                }
+                  },
+                  {
+                      "id":  3,
+                      "alt":  "AIR MANCUR",
+                      "caption":  null,
+                      "folder":  null,
+                      "updatedAt":  "2026-04-28T06:34:03.033Z",
+                      "createdAt":  "2026-04-28T06:34:03.033Z",
+                      "url":  "/api/media/file/AIR%20MANCUR.jpg",
+                      "thumbnailURL":  "/api/media/file/AIR%20MANCUR-300x244.jpg",
+                      "filename":  "AIR MANCUR.jpg",
+                      "mimeType":  "image/jpeg",
+                      "filesize":  77099,
+                      "width":  475,
+                      "height":  387,
+                      "focalX":  50,
+                      "focalY":  50,
+                      "sizes":  {
+                                    "thumbnail":  {
+                                                      "url":  "/api/media/file/AIR%20MANCUR-300x244.jpg",
+                                                      "width":  300,
+                                                      "height":  244,
+                                                      "mimeType":  "image/jpeg",
+                                                      "filesize":  29551,
+                                                      "filename":  "AIR MANCUR-300x244.jpg"
+                                                  },
+                                    "square":  {
+                                                   "url":  null,
+                                                   "width":  null,
+                                                   "height":  null,
+                                                   "mimeType":  null,
+                                                   "filesize":  null,
+                                                   "filename":  null
+                                               },
+                                    "small":  {
+                                                  "url":  null,
+                                                  "width":  null,
+                                                  "height":  null,
+                                                  "mimeType":  null,
+                                                  "filesize":  null,
+                                                  "filename":  null
+                                              },
+                                    "medium":  {
+                                                   "url":  null,
+                                                   "width":  null,
+                                                   "height":  null,
+                                                   "mimeType":  null,
+                                                   "filesize":  null,
+                                                   "filename":  null
+                                               },
+                                    "large":  {
+                                                  "url":  null,
+                                                  "width":  null,
+                                                  "height":  null,
+                                                  "mimeType":  null,
+                                                  "filesize":  null,
+                                                  "filename":  null
+                                              },
+                                    "xlarge":  {
+                                                   "url":  null,
+                                                   "width":  null,
+                                                   "height":  null,
+                                                   "mimeType":  null,
+                                                   "filesize":  null,
+                                                   "filename":  null
+                                               },
+                                    "og":  {
+                                               "url":  null,
+                                               "width":  null,
+                                               "height":  null,
+                                               "mimeType":  null,
+                                               "filesize":  null,
+                                               "filename":  null
+                                           }
+                                }
+                  },
+                  {
+                      "id":  2,
+                      "alt":  "AGAVE KUNING.jpg",
+                      "caption":  null,
+                      "folder":  null,
+                      "updatedAt":  "2026-04-28T06:33:17.206Z",
+                      "createdAt":  "2026-04-28T06:33:17.206Z",
+                      "url":  "/api/media/file/AGAVE%20KUNING.jpg",
+                      "thumbnailURL":  "/api/media/file/AGAVE%20KUNING-300x244.jpg",
+                      "filename":  "AGAVE KUNING.jpg",
+                      "mimeType":  "image/jpeg",
+                      "filesize":  73828,
+                      "width":  475,
+                      "height":  387,
+                      "focalX":  50,
+                      "focalY":  50,
+                      "sizes":  {
+                                    "thumbnail":  {
+                                                      "url":  "/api/media/file/AGAVE%20KUNING-300x244.jpg",
+                                                      "width":  300,
+                                                      "height":  244,
+                                                      "mimeType":  "image/jpeg",
+                                                      "filesize":  26056,
+                                                      "filename":  "AGAVE KUNING-300x244.jpg"
+                                                  },
+                                    "square":  {
+                                                   "url":  null,
+                                                   "width":  null,
+                                                   "height":  null,
+                                                   "mimeType":  null,
+                                                   "filesize":  null,
+                                                   "filename":  null
+                                               },
+                                    "small":  {
+                                                  "url":  null,
+                                                  "width":  null,
+                                                  "height":  null,
+                                                  "mimeType":  null,
+                                                  "filesize":  null,
+                                                  "filename":  null
+                                              },
+                                    "medium":  {
+                                                   "url":  null,
+                                                   "width":  null,
+                                                   "height":  null,
+                                                   "mimeType":  null,
+                                                   "filesize":  null,
+                                                   "filename":  null
+                                               },
+                                    "large":  {
+                                                  "url":  null,
+                                                  "width":  null,
+                                                  "height":  null,
+                                                  "mimeType":  null,
+                                                  "filesize":  null,
+                                                  "filename":  null
+                                              },
+                                    "xlarge":  {
+                                                   "url":  null,
+                                                   "width":  null,
+                                                   "height":  null,
+                                                   "mimeType":  null,
+                                                   "filesize":  null,
+                                                   "filename":  null
+                                               },
+                                    "og":  {
+                                               "url":  null,
+                                               "width":  null,
+                                               "height":  null,
+                                               "mimeType":  null,
+                                               "filesize":  null,
+                                               "filename":  null
+                                           }
+                                }
+                  },
+                  {
+                      "id":  1,
+                      "alt":  "hoempage",
+                      "caption":  null,
+                      "folder":  null,
+                      "updatedAt":  "2026-04-28T06:06:19.110Z",
+                      "createdAt":  "2026-04-28T06:06:19.109Z",
+                      "url":  "/api/media/file/ChatGPT%20Image%20Feb%2024%2C%202026%2C%2007_49_00%20PM.png",
+                      "thumbnailURL":  "/api/media/file/ChatGPT%20Image%20Feb%2024%2C%202026%2C%2007_49_00%20PM-300x200.png",
+                      "filename":  "ChatGPT Image Feb 24, 2026, 07_49_00 PM.png",
+                      "mimeType":  "image/png",
+                      "filesize":  2393014,
+                      "width":  1536,
+                      "height":  1024,
+                      "focalX":  50,
+                      "focalY":  50,
+                      "sizes":  {
+                                    "thumbnail":  {
+                                                      "url":  "/api/media/file/ChatGPT%20Image%20Feb%2024%2C%202026%2C%2007_49_00%20PM-300x200.png",
+                                                      "width":  300,
+                                                      "height":  200,
+                                                      "mimeType":  "image/png",
+                                                      "filesize":  164502,
+                                                      "filename":  "ChatGPT Image Feb 24, 2026, 07_49_00 PM-300x200.png"
+                                                  },
+                                    "square":  {
+                                                   "url":  "/api/media/file/ChatGPT%20Image%20Feb%2024%2C%202026%2C%2007_49_00%20PM-500x500.png",
+                                                   "width":  500,
+                                                   "height":  500,
+                                                   "mimeType":  "image/png",
+                                                   "filesize":  657839,
+                                                   "filename":  "ChatGPT Image Feb 24, 2026, 07_49_00 PM-500x500.png"
+                                               },
+                                    "small":  {
+                                                  "url":  "/api/media/file/ChatGPT%20Image%20Feb%2024%2C%202026%2C%2007_49_00%20PM-600x400.png",
+                                                  "width":  600,
+                                                  "height":  400,
+                                                  "mimeType":  "image/png",
+                                                  "filesize":  639447,
+                                                  "filename":  "ChatGPT Image Feb 24, 2026, 07_49_00 PM-600x400.png"
+                                              },
+                                    "medium":  {
+                                                   "url":  "/api/media/file/ChatGPT%20Image%20Feb%2024%2C%202026%2C%2007_49_00%20PM-900x600.png",
+                                                   "width":  900,
+                                                   "height":  600,
+                                                   "mimeType":  "image/png",
+                                                   "filesize":  1412168,
+                                                   "filename":  "ChatGPT Image Feb 24, 2026, 07_49_00 PM-900x600.png"
+                                               },
+                                    "large":  {
+                                                  "url":  "/api/media/file/ChatGPT%20Image%20Feb%2024%2C%202026%2C%2007_49_00%20PM-1400x933.png",
+                                                  "width":  1400,
+                                                  "height":  933,
+                                                  "mimeType":  "image/png",
+                                                  "filesize":  3317870,
+                                                  "filename":  "ChatGPT Image Feb 24, 2026, 07_49_00 PM-1400x933.png"
+                                              },
+                                    "xlarge":  {
+                                                   "url":  null,
+                                                   "width":  null,
+                                                   "height":  null,
+                                                   "mimeType":  null,
+                                                   "filesize":  null,
+                                                   "filename":  null
+                                               },
+                                    "og":  {
+                                               "url":  "/api/media/file/ChatGPT%20Image%20Feb%2024%2C%202026%2C%2007_49_00%20PM-1200x630.png",
+                                               "width":  1200,
+                                               "height":  630,
+                                               "mimeType":  "image/png",
+                                               "filesize":  1949096,
+                                               "filename":  "ChatGPT Image Feb 24, 2026, 07_49_00 PM-1200x630.png"
+                                           }
+                                }
+                  }
+              ],
+    "footer":  {
+                   "id":  1,
+                   "layout":  [
+                                  {
+                                      "id":  "69f1b2093f31284ee4162fa9",
+                                      "title":  "Identitas",
+                                      "brandName":  "Bumi Mekarsari Jaya",
+                                      "tagline":  "Jaringan Petani tanaman hias Cipanas",
+                                      "logo":  null,
+                                      "nib":  "0712240010385",
+                                      "blockName":  null,
+                                      "blockType":  "identity"
+                                  },
+                                  {
+                                      "id":  "69f1b2093f31284ee4162faf",
+                                      "title":  "Navigasi",
+                                      "blockName":  null,
+                                      "links":  [
+                                                    {
+                                                        "id":  "69f1b2093f31284ee4162faa",
+                                                        "link":  {
+                                                                     "type":  "custom",
+                                                                     "newTab":  null,
+                                                                     "url":  "/",
+                                                                     "label":  "Home"
+                                                                 }
+                                                    },
+                                                    {
+                                                        "id":  "69f1b2093f31284ee4162fab",
+                                                        "link":  {
+                                                                     "type":  "custom",
+                                                                     "newTab":  null,
+                                                                     "url":  "/tentang",
+                                                                     "label":  "Tentang"
+                                                                 }
+                                                    },
+                                                    {
+                                                        "id":  "69f1b2093f31284ee4162fac",
+                                                        "link":  {
+                                                                     "type":  "custom",
+                                                                     "newTab":  null,
+                                                                     "url":  "/layanan",
+                                                                     "label":  "Layanan"
+                                                                 }
+                                                    },
+                                                    {
+                                                        "id":  "69f1b2093f31284ee4162fad",
+                                                        "link":  {
+                                                                     "type":  "custom",
+                                                                     "newTab":  null,
+                                                                     "url":  "/artikel",
+                                                                     "label":  "Artikel"
+                                                                 }
+                                                    },
+                                                    {
+                                                        "id":  "69f1b2093f31284ee4162fae",
+                                                        "link":  {
+                                                                     "type":  "custom",
+                                                                     "newTab":  null,
+                                                                     "url":  "/kontak",
+                                                                     "label":  "Kontak"
+                                                                 }
+                                                    }
+                                                ],
+                                      "blockType":  "navigation"
+                                  },
+                                  {
+                                      "id":  "69f1b2093f31284ee4162fb0",
+                                      "title":  "Kontak Cepat",
+                                      "whatsappNumber":  "081586664516",
+                                      "phoneNumber":  "081586664516",
+                                      "email":  "bumimekarsarijaya@gmail.com",
+                                      "address":  "KP Lebak Pasar, Desa Cimacan, Cipanas, Cianjur 43253",
+                                      "mapsLabel":  "Buka Lokasi",
+                                      "mapsUrl":  "https://www.google.com/maps/search/?api=1\u0026query=KP+Lebak+Pasar%2C+Desa+Cimacan%2C+Cipanas%2C+Cianjur+43253",
+                                      "operatingHours":  "18-01 pm",
+                                      "blockName":  null,
+                                      "blockType":  "contact"
+                                  },
+                                  {
+                                      "id":  "69f1b2093f31284ee4162fb3",
+                                      "copyrightText":  "(c) 2026 PT Bumi Mekarsari Jaya",
+                                      "blockName":  null,
+                                      "items":  [
+                                                    {
+                                                        "id":  "69f1b2093f31284ee4162fb1",
+                                                        "text":  "NIB 0712240010385"
+                                                    },
+                                                    {
+                                                        "id":  "69f1b2093f31284ee4162fb2",
+                                                        "text":  "Cipanas, Cianjur"
+                                                    }
+                                                ],
+                                      "links":  [
+                                                    {
+                                                        "id":  "69f1c079e422eef9bdd7d660",
+                                                        "link":  {
+                                                                     "type":  "custom",
+                                                                     "newTab":  null,
+                                                                     "url":  "http://localhost:3000/artikel",
+                                                                     "label":  "artikel"
+                                                                 }
+                                                    }
+                                                ],
+                                      "blockType":  "bottomBar"
+                                  }
+                              ],
+                   "bottomBar":  {
+                                     "copyrightText":  "(c) 2026 PT Bumi Mekarsari Jaya",
+                                     "showBrandName":  true,
+                                     "showNib":  true,
+                                     "showLocationShort":  true
+                                 },
+                   "navItems":  [
+                                    {
+                                        "id":  "69f1a4454558134984f17ea7",
+                                        "link":  {
+                                                     "type":  "custom",
+                                                     "newTab":  null,
+                                                     "url":  "/",
+                                                     "label":  "Home"
+                                                 }
+                                    },
+                                    {
+                                        "id":  "69f1a4454558134984f17ea8",
+                                        "link":  {
+                                                     "type":  "custom",
+                                                     "newTab":  null,
+                                                     "url":  "/tentang",
+                                                     "label":  "Tentang"
+                                                 }
+                                    },
+                                    {
+                                        "id":  "69f1a4454558134984f17ea9",
+                                        "link":  {
+                                                     "type":  "custom",
+                                                     "newTab":  null,
+                                                     "url":  "/layanan",
+                                                     "label":  "Layanan"
+                                                 }
+                                    },
+                                    {
+                                        "id":  "69f1a4454558134984f17eaa",
+                                        "link":  {
+                                                     "type":  "custom",
+                                                     "newTab":  null,
+                                                     "url":  "/artikel",
+                                                     "label":  "Artikel"
+                                                 }
+                                    },
+                                    {
+                                        "id":  "69f1a4454558134984f17eab",
+                                        "link":  {
+                                                     "type":  "custom",
+                                                     "newTab":  null,
+                                                     "url":  "/kontak",
+                                                     "label":  "Kontak"
+                                                 }
+                                    }
+                                ],
+                   "updatedAt":  "2026-04-29T08:25:54.509Z",
+                   "createdAt":  "2026-04-29T03:58:30.700Z",
+                   "globalType":  "footer"
+               },
+    "header":  {
+                   "id":  2,
+                   "brandingMode":  "logo",
+                   "brandName":  "PT Bumi Mekarsari Jaya",
+                   "brandDescription":  "Jaringan Petani Cipanas",
+                   "logo":  23,
+                   "navItems":  [
+                                    {
+                                        "id":  "69f181e6a24d1c4eb4f917a8",
+                                        "link":  {
+                                                     "type":  "custom",
+                                                     "newTab":  null,
+                                                     "url":  "/tentang",
+                                                     "label":  "Tentang"
+                                                 }
+                                    },
+                                    {
+                                        "id":  "69f181e6a24d1c4eb4f917a9",
+                                        "link":  {
+                                                     "type":  "custom",
+                                                     "newTab":  null,
+                                                     "url":  "/layanan",
+                                                     "label":  "Layanan"
+                                                 }
+                                    },
+                                    {
+                                        "id":  "69f181e6a24d1c4eb4f917aa",
+                                        "link":  {
+                                                     "type":  "custom",
+                                                     "newTab":  null,
+                                                     "url":  "/artikel",
+                                                     "label":  "Artikel"
+                                                 }
+                                    },
+                                    {
+                                        "id":  "69f181e6a24d1c4eb4f917ab",
+                                        "link":  {
+                                                     "type":  "custom",
+                                                     "newTab":  null,
+                                                     "url":  "/kontak",
+                                                     "label":  "Kontak"
+                                                 }
+                                    },
+                                    {
+                                        "id":  "69f181e6a24d1c4eb4f917ac",
+                                        "link":  {
+                                                     "type":  "custom",
+                                                     "newTab":  true,
+                                                     "url":  "https://wa.me/6281586664516?text=Halo%20PT%20Bumi%20Mekarsari%20Jaya%2C%20saya%20ingin%20konsultasi%20mengenai%20kebutuhan%20tanaman%20saya.",
+                                                     "label":  "WhatsApp"
+                                                 }
+                                    }
+                                ],
+                   "updatedAt":  "2026-04-29T05:28:10.215Z",
+                   "createdAt":  "2026-04-29T03:58:30.666Z",
+                   "globalType":  "header"
+               },
+    "pages":  [
+                  {
+                      "id":  12,
+                      "slug":  "cookies-policy"
+                  },
+                  {
+                      "id":  10,
+                      "slug":  "legal"
+                  },
+                  {
+                      "id":  7,
+                      "slug":  "artikel"
+                  },
+                  {
+                      "id":  6,
+                      "slug":  "kontak"
+                  },
+                  {
+                      "id":  4,
+                      "slug":  "layanan"
+                  },
+                  {
+                      "id":  3,
+                      "slug":  "tentang"
+                  },
+                  {
+                      "id":  1,
+                      "slug":  "home"
+                  }
+              ]
+}

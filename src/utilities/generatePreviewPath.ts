@@ -1,13 +1,16 @@
-import { PreviewSearchParams } from '@/app/(frontend)/next/preview/route'
-import { PayloadRequest, CollectionSlug } from 'payload'
+import type { PreviewSearchParams } from '@/app/(app)/next/preview/route'
+import { PayloadRequest } from 'payload'
 
-const collectionPrefixMap: Partial<Record<CollectionSlug, string>> = {
-  posts: '/posts',
+const collectionPrefixMap = {
   pages: '',
-}
+  posts: '/artikel',
+  products: '/products',
+} as const
+
+type PreviewableCollection = keyof typeof collectionPrefixMap
 
 type Props = {
-  collection: keyof typeof collectionPrefixMap
+  collection: PreviewableCollection
   slug: string
   req: PayloadRequest
 }
