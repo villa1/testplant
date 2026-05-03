@@ -30,6 +30,7 @@ yarn-error.log*
 .tmp-*.log
 .tmp-*.html
 figma-frame-*.txt
+Plantify - Plant E Commerce Website.svg
 
 # local env files
 .env*
