@@ -48,8 +48,8 @@ export function MobileMenu({ brandDescription, brandName, menu }: Props) {
 
   return (
     <Sheet onOpenChange={setIsOpen} open={isOpen}>
-      <SheetTrigger className="relative flex h-11 w-11 items-center justify-center rounded-md border border-neutral-200 text-black transition-colors dark:border-neutral-700 dark:bg-black dark:text-white">
-        <MenuIcon className="h-4" />
+      <SheetTrigger className="relative flex h-10 w-10 items-center justify-center rounded-full border border-black/8 bg-white text-foreground/72 shadow-[0_8px_18px_rgba(15,23,42,0.06)] transition-colors hover:border-[#1ca336]/30 hover:text-[#11942b]">
+        <MenuIcon className="h-[18px] w-[18px]" />
       </SheetTrigger>
 
       <SheetContent side="left" className="px-4">
@@ -58,13 +58,13 @@ export function MobileMenu({ brandDescription, brandName, menu }: Props) {
           <SheetDescription>{brandDescription || 'Navigasi utama'}</SheetDescription>
         </SheetHeader>
 
-        <div className="py-4">
+        <div className="py-5">
           {menu?.length ? (
             <ul className="flex w-full flex-col">
               {menu.map((item) => (
                 <li className="py-2" key={item.id}>
                   <Link
-                    className="inline-flex w-full rounded-md px-2 py-2 text-sm font-medium text-foreground/82 transition-colors hover:text-foreground"
+                    className="inline-flex w-full rounded-full px-3 py-2.5 text-sm font-medium text-foreground/82 transition-colors hover:bg-[#f3f8f1] hover:text-foreground"
                     href={item.href}
                     {...getLinkProps(item.isExternal, item.newTab)}
                   >

@@ -3,7 +3,9 @@
 import { Cart } from '@/components/Cart'
 import { OpenCartButton } from '@/components/Cart/OpenCart'
 import { Logo } from '@/components/Logo/Logo'
+import { useAuth } from '@/providers/Auth'
 import { cn } from '@/utilities/cn'
+import { UserRound } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import React, { Suspense } from 'react'
@@ -18,14 +20,22 @@ type Props = {
 const getLinkProps = (isExternal: boolean, newTab: boolean) =>
   isExternal || newTab ? { rel: 'noopener noreferrer', target: '_blank' as const } : {}
 
+const utilityButtonClass =
+  'flex h-10 w-10 items-center justify-center rounded-full border border-black/8 bg-white text-foreground/72 shadow-[0_8px_18px_rgba(15,23,42,0.06)] transition-colors hover:border-[#1ca336]/30 hover:text-[#11942b]'
+
 export function HeaderClient({ header }: Props) {
   const pathname = usePathname()
+  const { user } = useAuth()
   const { identity, navItems } = header
+  const accountHref = user ? '/account' : '/login'
+  const accountLabel = user ? 'Akun' : 'Masuk'
+  const prefersLogoWordmark = identity.effectiveMode === 'logo' || identity.effectiveMode === 'logoText'
+  const displayBrandName = identity.brandName.replace(/^PT\s+/i, '')
 
   return (
-    <header className="sticky top-0 z-30 border-b border-border/70 bg-background/92 backdrop-blur">
-      <nav className="container flex items-center justify-between gap-4 py-4">
-        <div className="block flex-none md:hidden">
+    <header className="sticky top-0 z-30 border-b border-black/6 bg-white/96 shadow-[0_8px_28px_rgba(15,23,42,0.05)] backdrop-blur">
+      <nav className="container flex items-center justify-between gap-3 py-3 md:gap-6 md:py-5">
+        <div className="block flex-none lg:hidden">
           <Suspense fallback={null}>
             <MobileMenu
               brandDescription={identity.brandDescription}
@@ -35,33 +45,45 @@ export function HeaderClient({ header }: Props) {
           </Suspense>
         </div>
 
-        <div className="flex min-w-0 flex-1 items-center justify-between gap-6">
-          <Link className="min-w-0" href="/">
-            <Logo
-              brandDescription={identity.brandDescription}
-              brandName={identity.brandName}
-              brandingMode={identity.effectiveMode}
-              className="text-foreground"
-              logo={identity.logo}
-              priority
-            />
+        <div className="flex min-w-0 flex-1 items-center justify-between gap-3 md:gap-6">
+          <Link className="min-w-0 flex-shrink-0" href="/">
+            <div className="flex items-center gap-3">
+              <Logo
+                brandDescription={identity.brandDescription}
+                brandName={identity.brandName}
+                brandingMode={prefersLogoWordmark ? 'logo' : identity.effectiveMode}
+                className="text-foreground"
+                logo={identity.logo}
+                priority
+              />
+
+              {prefersLogoWordmark ? (
+                <div className="hidden xl:flex xl:min-w-0 xl:flex-col">
+                  <span className="max-w-[11ch] whitespace-normal font-serif text-[1.22rem] font-semibold leading-[0.96] tracking-tight text-[#169a2f]">
+                    {displayBrandName}
+                  </span>
+                </div>
+              ) : null}
+            </div>
           </Link>
 
           {navItems.length ? (
-            <ul className="hidden flex-1 justify-center gap-2 md:flex md:items-center">
+            <ul className="hidden flex-1 justify-center gap-1 lg:flex lg:items-center xl:gap-2">
               {navItems.map((item) => {
                 const isActive =
                   !item.isExternal &&
                   (item.href === '/'
-                    ? pathname === '/'
+                  ? pathname === '/'
                     : pathname === item.href || pathname.startsWith(`${item.href}/`))
 
                 return (
                   <li key={item.id}>
                     <Link
                       className={cn(
-                        'rounded-full px-3 py-2 text-sm font-medium text-foreground/78 transition-colors hover:text-foreground',
-                        isActive ? 'bg-foreground/6 text-foreground' : null,
+                        'rounded-full px-4 py-2.5 text-sm font-medium transition-colors',
+                        isActive
+                          ? 'bg-[#12992d] text-white shadow-[0_10px_18px_rgba(18,153,45,0.22)]'
+                          : 'text-foreground/72 hover:bg-[#f3f8f1] hover:text-foreground',
                       )}
                       href={item.href}
                       {...getLinkProps(item.isExternal, item.newTab)}
@@ -73,10 +95,19 @@ export function HeaderClient({ header }: Props) {
               })}
             </ul>
           ) : (
-            <div className="hidden flex-1 md:block" />
+            <div className="hidden flex-1 lg:block" />
           )}
 
-          <div className="flex justify-end gap-4">
+          <div className="flex items-center justify-end gap-2 md:gap-3">
+            <Link
+              aria-label={accountLabel}
+              className={utilityButtonClass}
+              href={accountHref}
+              title={accountLabel}
+            >
+              <UserRound className="h-[18px] w-[18px]" />
+            </Link>
+
             <Suspense fallback={<OpenCartButton />}>
               <Cart />
             </Suspense>
