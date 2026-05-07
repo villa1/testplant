@@ -1,19 +1,34 @@
 import React from 'react'
 
+import { SectionShell } from '@/components/layout/SectionShell'
+import { Surface } from '@/components/layout/Surface'
 import type { ClosingCtaBlock as ClosingCtaBlockProps } from '@/payload-types'
 
 import { CMSLink } from '@/components/Link'
 import { SectionHeader } from '@/components/SectionHeader'
 
-export const ClosingCTABlock: React.FC<ClosingCtaBlockProps> = ({
+type Props = ClosingCtaBlockProps & {
+  id?: string
+}
+
+export const ClosingCTABlock: React.FC<Props> = ({
   body,
+  id,
   phoneNumber,
   primaryCTA,
   title,
 }) => {
   return (
-    <section className="container">
-      <div className="rounded-xl border border-border bg-card p-8 md:p-10">
+    <SectionShell
+      className="overflow-hidden"
+      id={id}
+      spacing="compact"
+      variant="plain"
+    >
+      <Surface
+        className="rounded-[1.5rem] border-[#d8e1d5] bg-white/96 shadow-[0_24px_52px_rgba(15,23,42,0.08)] backdrop-blur-sm"
+        variant="elevated"
+      >
         <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-3xl">
             <SectionHeader intro={body} title={title} />
@@ -24,10 +39,17 @@ export const ClosingCTABlock: React.FC<ClosingCtaBlockProps> = ({
           </div>
 
           <div>
-            {primaryCTA ? <CMSLink {...primaryCTA} appearance="default" size="lg" /> : null}
+            {primaryCTA ? (
+              <CMSLink
+                {...primaryCTA}
+                appearance="default"
+                className="polish-action polish-action--dark"
+                size="lg"
+              />
+            ) : null}
           </div>
         </div>
-      </div>
-    </section>
+      </Surface>
+    </SectionShell>
   )
 }

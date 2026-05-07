@@ -4,10 +4,11 @@ import { AccountPanel } from '@/components/Header/AccountPanel'
 import { Cart } from '@/components/Cart'
 import { OpenCartButton } from '@/components/Cart/OpenCart'
 import { Logo } from '@/components/Logo/Logo'
+import { Skeleton } from '@/components/ui/skeleton'
 import { cn } from '@/utilities/cn'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import React, { Suspense } from 'react'
+import React, { Suspense, useEffect, useState } from 'react'
 
 import { MobileMenu } from './MobileMenu'
 import type { NormalizedStorefrontHeader } from './normalize'
@@ -19,20 +20,36 @@ type Props = {
 const getLinkProps = (isExternal: boolean, newTab: boolean) =>
   isExternal || newTab ? { rel: 'noopener noreferrer', target: '_blank' as const } : {}
 
-const utilityButtonClass =
-  'flex h-10 w-10 items-center justify-center rounded-full border border-black/8 bg-white text-foreground/72 shadow-[0_8px_18px_rgba(15,23,42,0.06)] transition-colors hover:border-[#1ca336]/30 hover:text-[#11942b]'
+const utilityButtonClass = 'site-header__utility-button flex h-10 w-10 items-center justify-center'
 
 export function HeaderClient({ header }: Props) {
   const pathname = usePathname()
   const { identity, navItems } = header
   const prefersLogoWordmark = identity.effectiveMode === 'logo' || identity.effectiveMode === 'logoText'
   const displayBrandName = identity.brandName.replace(/^PT\s+/i, '')
+  const [isScrolled, setIsScrolled] = useState(false)
+  const isHome = pathname === '/'
+
+  useEffect(() => {
+    const syncScrollState = () => {
+      setIsScrolled(window.scrollY > 10)
+    }
+
+    syncScrollState()
+    window.addEventListener('scroll', syncScrollState, { passive: true })
+
+    return () => {
+      window.removeEventListener('scroll', syncScrollState)
+    }
+  }, [])
 
   return (
-    <header className="sticky top-0 z-30 border-b border-black/6 bg-white/96 shadow-[0_8px_28px_rgba(15,23,42,0.05)] backdrop-blur">
-      <nav className="container flex items-center justify-between gap-3 py-3 md:gap-6 md:py-5">
+    <header
+      className={cn('site-header', isHome && !isScrolled ? 'site-header--overlay' : 'site-header--solid')}
+    >
+      <nav className="site-header__inner container flex items-center justify-between gap-3 md:gap-6">
         <div className="block flex-none lg:hidden">
-          <Suspense fallback={null}>
+          <Suspense fallback={<Skeleton className="h-10 w-10 rounded-full" />}>
             <MobileMenu
               brandDescription={identity.brandDescription}
               brandName={identity.brandName}
@@ -54,10 +71,13 @@ export function HeaderClient({ header }: Props) {
               />
 
               {prefersLogoWordmark ? (
-                <div className="hidden xl:flex xl:min-w-0 xl:flex-col">
-                  <span className="max-w-[11ch] whitespace-normal font-serif text-[1.22rem] font-semibold leading-[0.96] tracking-tight text-[#169a2f]">
+                <div className="site-header__wordmark hidden xl:flex xl:min-w-0 xl:flex-col">
+                  <span className="site-header__wordmark-name max-w-[14ch] whitespace-normal">
                     {displayBrandName}
                   </span>
+                  {identity.brandDescription ? (
+                    <span className="site-header__wordmark-tagline">{identity.brandDescription}</span>
+                  ) : null}
                 </div>
               ) : null}
             </div>
@@ -76,10 +96,8 @@ export function HeaderClient({ header }: Props) {
                   <li key={item.id}>
                     <Link
                       className={cn(
-                        'rounded-full px-4 py-2.5 text-sm font-medium transition-colors',
-                        isActive
-                          ? 'bg-[#12992d] text-white shadow-[0_10px_18px_rgba(18,153,45,0.22)]'
-                          : 'text-foreground/72 hover:bg-[#f3f8f1] hover:text-foreground',
+                        'site-header__nav-link',
+                        isActive && 'site-header__nav-link--active',
                       )}
                       href={item.href}
                       {...getLinkProps(item.isExternal, item.newTab)}

@@ -10,12 +10,12 @@ export const FooterNavigationBlockComponent: React.FC<FooterNavigationBlock> = (
   return (
     <div className="space-y-3">
       {title ? (
-        <h2 className="text-sm font-semibold uppercase tracking-[0.18em] text-white/64">{title}</h2>
+        <h2 className="text-base font-semibold tracking-tight text-[#5c574d]">{title}</h2>
       ) : null}
 
       <nav className="flex flex-col gap-2">
         {(links || []).map(({ link }, index) => (
-          <CMSLink className="text-sm text-white/78 hover:text-white" key={index} {...link} />
+          <CMSLink className="text-sm text-[#667163] hover:text-[#5c574d]" key={index} {...link} />
         ))}
       </nav>
     </div>

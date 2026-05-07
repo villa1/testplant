@@ -1,5 +1,6 @@
 import { cn } from '@/utilities/cn'
 import React from 'react'
+import { SectionShell } from '@/components/layout/SectionShell'
 import { RichText } from '@/components/RichText'
 import type { DefaultDocumentIDType } from 'payload'
 import type { ContentBlock as ContentBlockProps } from '@/payload-types'
@@ -22,8 +23,8 @@ export const ContentBlock: React.FC<
   }
 
   return (
-    <div className="container my-16">
-      <div className="grid grid-cols-4 lg:grid-cols-12 gap-y-8 gap-x-16">
+    <SectionShell id={props.id ? `block-${props.id}` : undefined} spacing="compact" variant="plain">
+      <div className="grid grid-cols-4 gap-x-16 gap-y-8 lg:grid-cols-12">
         {columns &&
           columns.length > 0 &&
           columns.map((col, index) => {
@@ -43,6 +44,6 @@ export const ContentBlock: React.FC<
             )
           })}
       </div>
-    </div>
+    </SectionShell>
   )
 }

@@ -1,8 +1,8 @@
+import React, { Suspense } from 'react'
 import configPromise from '@payload-config'
 import { getPayload } from 'payload'
-import clsx from 'clsx'
-import React, { Suspense } from 'react'
 
+import { Skeleton } from '@/components/ui/skeleton'
 import { Item } from './Item'
 
 async function List() {
@@ -28,36 +28,26 @@ async function List() {
       <nav>
         <ul className="flex gap-3">
           <Item title="All" href="/shop" />
-          <Suspense fallback={null}>
-            {categories.map((category) => {
-              return <Item {...category} key={category.href} />
-            })}
-          </Suspense>
+          {categories.map((category) => {
+            return <Item {...category} key={category.href} />
+          })}
         </ul>
       </nav>
     </React.Fragment>
   )
 }
 
-const skeleton = 'mb-3 h-4 w-5/6 animate-pulse rounded'
-const activeAndTitles = 'bg-neutral-800 dark:bg-neutral-300'
-const items = 'bg-neutral-400 dark:bg-neutral-700'
-
 export function CategoryTabs() {
   return (
     <Suspense
       fallback={
-        <div className="col-span-2 hidden h-[400px] w-full flex-none py-4 lg:block">
-          <div className={clsx(skeleton, activeAndTitles)} />
-          <div className={clsx(skeleton, activeAndTitles)} />
-          <div className={clsx(skeleton, items)} />
-          <div className={clsx(skeleton, items)} />
-          <div className={clsx(skeleton, items)} />
-          <div className={clsx(skeleton, items)} />
-          <div className={clsx(skeleton, items)} />
-          <div className={clsx(skeleton, items)} />
-          <div className={clsx(skeleton, items)} />
-          <div className={clsx(skeleton, items)} />
+        <div className="hidden py-4 lg:block">
+          <div className="flex flex-wrap gap-3">
+            <Skeleton className="h-9 w-16 rounded-full" />
+            <Skeleton className="h-9 w-28 rounded-full" />
+            <Skeleton className="h-9 w-24 rounded-full" />
+            <Skeleton className="h-9 w-20 rounded-full" />
+          </div>
         </div>
       }
     >

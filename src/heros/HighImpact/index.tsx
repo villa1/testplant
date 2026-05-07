@@ -7,24 +7,42 @@ import type { Page } from '@/payload-types'
 import { CMSLink } from '@/components/Link'
 import { Media } from '@/components/Media'
 import { RichText } from '@/components/RichText'
+import { HeroShell } from '@/heros/HeroShell'
 
 export const HighImpactHero: React.FC<Page['hero']> = ({ links, media, richText }) => {
   const { setHeaderTheme } = useHeaderTheme()
+  const hasMedia = media && typeof media === 'object'
 
   useEffect(() => {
     setHeaderTheme('dark')
-  })
+    return () => {
+      setHeaderTheme(undefined)
+    }
+  }, [setHeaderTheme])
+
+  const background = hasMedia ? (
+    <>
+      <Media fill htmlElement={null} imgClassName="object-cover" priority resource={media} size="100vw" />
+      <div className="absolute inset-0 bg-black/45" />
+    </>
+  ) : (
+    <div className="absolute inset-0 bg-[#203223]" />
+  )
 
   return (
-    <div
-      className="relative -mt-[10.4rem] flex items-center justify-center text-white"
-      data-theme="dark"
-    >
-      <div className="container mb-8 z-10 relative flex items-center justify-center">
-        <div className="max-w-146 md:text-center">
-          {richText && <RichText className="mb-6" data={richText} enableGutter={false} />}
+    <HeroShell background={background} className="hero-shell--high-impact" containment="wide">
+      <div className="hero-shell__body" data-theme="dark">
+        <div className="hero-shell__content hero-shell__content--centered">
+          {richText ? (
+            <RichText
+              className="hero-shell__prose prose-headings:text-white prose-p:text-white/90 prose-strong:text-white prose-a:text-white"
+              data={richText}
+              enableGutter={false}
+            />
+          ) : null}
+
           {Array.isArray(links) && links.length > 0 && (
-            <ul className="flex md:justify-center gap-4">
+            <ul className="hero-shell__actions justify-center">
               {links.map(({ link }, i) => {
                 return (
                   <li key={i}>
@@ -36,11 +54,6 @@ export const HighImpactHero: React.FC<Page['hero']> = ({ links, media, richText 
           )}
         </div>
       </div>
-      <div className="min-h-[80vh] select-none">
-        {media && typeof media === 'object' && (
-          <Media fill imgClassName="-z-10 object-cover" priority resource={media} />
-        )}
-      </div>
-    </div>
+    </HeroShell>
   )
 }

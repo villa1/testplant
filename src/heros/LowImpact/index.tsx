@@ -3,6 +3,7 @@ import React from 'react'
 import type { Page } from '@/payload-types'
 
 import { RichText } from '@/components/RichText'
+import { HeroShell } from '@/heros/HeroShell'
 
 type LowImpactHeroType =
   | {
@@ -16,10 +17,12 @@ type LowImpactHeroType =
 
 export const LowImpactHero: React.FC<LowImpactHeroType> = ({ children, richText }) => {
   return (
-    <div className="container mt-16">
-      <div className="max-w-3xl">
-        {children || (richText && <RichText data={richText} enableGutter={false} />)}
+    <HeroShell className="hero-shell--low-impact" containment="wide">
+      <div className="hero-shell__body">
+        <div className="hero-shell__content">
+          {children || (richText && <RichText className="hero-shell__prose" data={richText} enableGutter={false} />)}
+        </div>
       </div>
-    </div>
+    </HeroShell>
   )
 }

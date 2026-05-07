@@ -1,5 +1,6 @@
 import type { Product, CarouselBlock as CarouselBlockProps } from '@/payload-types'
 
+import { SectionShell } from '@/components/layout/SectionShell'
 import configPromise from '@payload-config'
 import { DefaultDocumentIDType, getPayload } from 'payload'
 import React from 'react'
@@ -50,8 +51,15 @@ export const CarouselBlock: React.FC<
   if (!products?.length) return null
 
   return (
-    <div className=" w-full pb-6 pt-1">
-      <CarouselClient products={products} />
-    </div>
+    <SectionShell
+      containment="full-bleed"
+      id={id ? `block-${id}` : undefined}
+      spacing="compact"
+      variant="plain"
+    >
+      <div className="w-full pb-6 pt-1">
+        <CarouselClient products={products} />
+      </div>
+    </SectionShell>
   )
 }

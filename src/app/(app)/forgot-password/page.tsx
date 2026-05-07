@@ -1,5 +1,8 @@
 import type { Metadata } from 'next'
 
+import { PageFrame } from '@/components/layout/PageFrame'
+import { SectionShell } from '@/components/layout/SectionShell'
+import { Surface } from '@/components/layout/Surface'
 import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
 import React from 'react'
 
@@ -7,9 +10,15 @@ import { ForgotPasswordForm } from '@/components/forms/ForgotPasswordForm'
 
 export default async function ForgotPasswordPage() {
   return (
-    <div className="container py-16">
-      <ForgotPasswordForm />
-    </div>
+    <PageFrame family="utility">
+      <SectionShell containment="narrow" spacing="compact" variant="plain">
+        <div>
+          <Surface variant="elevated">
+            <ForgotPasswordForm />
+          </Surface>
+        </div>
+      </SectionShell>
+    </PageFrame>
   )
 }
 

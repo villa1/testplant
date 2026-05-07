@@ -57,7 +57,7 @@ export const Gallery: React.FC<Props> = ({ gallery, productTitle }) => {
           <Media
             resource={gallery[current].image}
             className="w-full"
-            imgClassName="w-full rounded-lg"
+            imgClassName="aspect-[4/5] w-full rounded-lg object-cover"
           />
         ) : (
           <ProductImageFallback title={productTitle} />

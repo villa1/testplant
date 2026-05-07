@@ -21,17 +21,18 @@ function PathFilterItem({ item }: { item: PathFilterItemType }) {
   newParams.delete('q')
 
   return (
-    <li className="mt-2 flex text-black dark:text-white" key={item.title}>
+    <li className="flex" key={item.title}>
       <DynamicTag
         className={clsx(
-          'w-full text-sm underline-offset-4 hover:underline dark:hover:text-neutral-100',
+          'shop-filter-option',
           {
-            'underline underline-offset-4': active,
+            'shop-filter-option--active': active,
           },
         )}
         href={createUrl(item.path, newParams)}
       >
-        {item.title}
+        <span>{item.title}</span>
+        <span className="shop-filter-option__indicator">{active ? 'Aktif' : 'Pilih'}</span>
       </DynamicTag>
     </li>
   )
@@ -53,15 +54,16 @@ function SortFilterItem({ item }: { item: SortFilterItemType }) {
   const DynamicTag = active ? 'p' : Link
 
   return (
-    <li className="mt-2 flex text-sm text-black dark:text-white" key={item.title}>
+    <li className="flex text-sm" key={item.title}>
       <DynamicTag
-        className={clsx('w-full hover:underline hover:underline-offset-4', {
-          'underline underline-offset-4': active,
+        className={clsx('shop-filter-option', {
+          'shop-filter-option--active': active,
         })}
         href={href}
         prefetch={!active ? false : undefined}
       >
-        {item.title}
+        <span>{item.title}</span>
+        <span className="shop-filter-option__indicator">{active ? 'Aktif' : 'Pilih'}</span>
       </DynamicTag>
     </li>
   )

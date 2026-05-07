@@ -4,12 +4,14 @@ import React from 'react'
 import type { Post } from '@/payload-types'
 
 import { Media } from '@/components/Media'
+import { cn } from '@/utilities/cn'
 
 type Props = {
+  className?: string
   post: Post
 }
 
-export const ArticleCard: React.FC<Props> = ({ post }) => {
+export const ArticleCard: React.FC<Props> = ({ className, post }) => {
   const heroImage = post.heroImage && typeof post.heroImage === 'object' ? post.heroImage : null
   const description = post.meta?.description?.replace(/\s/g, ' ')
   const href = `/artikel/${post.slug}`
@@ -18,7 +20,12 @@ export const ArticleCard: React.FC<Props> = ({ post }) => {
   )
 
   return (
-    <article className="overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-colors hover:border-primary/40">
+    <article
+      className={cn(
+        'overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-colors hover:border-primary/40',
+        className,
+      )}
+    >
       {heroImage && (
         <div className="overflow-hidden border-b border-border bg-muted/30">
           <Media

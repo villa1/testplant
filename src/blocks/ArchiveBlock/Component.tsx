@@ -3,6 +3,7 @@ import type { Product, ArchiveBlock as ArchiveBlockProps } from '@/payload-types
 import configPromise from '@payload-config'
 import { DefaultDocumentIDType, getPayload } from 'payload'
 import React from 'react'
+import { SectionShell } from '@/components/layout/SectionShell'
 import { RichText } from '@/components/RichText'
 
 import { CollectionArchive } from '@/components/CollectionArchive'
@@ -54,13 +55,18 @@ export const ArchiveBlock: React.FC<
   }
 
   return (
-    <div className="my-16" id={`block-${id}`}>
+    <SectionShell
+      containment="wide"
+      id={id ? `block-${id}` : undefined}
+      spacing="compact"
+      variant="plain"
+    >
       {introContent && (
-        <div className="container mb-16">
+        <div className="mb-16">
           <RichText className="ml-0 max-w-3xl" data={introContent} enableGutter={false} />
         </div>
       )}
       <CollectionArchive posts={posts} />
-    </div>
+    </SectionShell>
   )
 }

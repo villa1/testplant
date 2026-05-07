@@ -3,10 +3,14 @@ import type { Media, Product } from '@/payload-types'
 import { RenderBlocks } from '@/blocks/RenderBlocks'
 import { ArticleCard } from '@/components/ArticleCard'
 import { GridTileImage } from '@/components/Grid/tile'
+import { PageFrame } from '@/components/layout/PageFrame'
+import { SectionShell } from '@/components/layout/SectionShell'
+import { Surface } from '@/components/layout/Surface'
 import { Media as MediaComponent } from '@/components/Media'
 import { Gallery } from '@/components/product/Gallery'
 import { ProductDescription } from '@/components/product/ProductDescription'
 import { ProductImageFallback } from '@/components/product/ProductImageFallback'
+import { ProductGallerySkeleton } from '@/components/product/ProductSkeletons'
 import { extractLexicalPlainText } from '@/utilities/extractLexicalPlainText'
 import { getProductPurchaseState } from '@/utilities/getProductPurchaseState'
 import {
@@ -205,101 +209,105 @@ export default async function ProductPage({ params }: Args) {
         }}
         type="application/ld+json"
       />
-      <div className="container pt-8 pb-8">
-        <Button asChild variant="ghost" className="mb-4">
-          <Link href="/shop">
-            <ChevronLeftIcon />
-            Semua produk
-          </Link>
-        </Button>
-        <div className="flex flex-col gap-12 rounded-lg border p-8 md:py-12 lg:flex-row lg:gap-8 bg-primary-foreground">
-          <div className="h-full w-full basis-full lg:basis-1/2">
-            <Suspense
-              fallback={
-                <div className="relative aspect-square h-full max-h-[550px] w-full overflow-hidden" />
-              }
-            >
-              {gallery.length > 0 ? (
-                <Gallery gallery={gallery} productTitle={product.title} />
-              ) : (
-                <ProductImageFallback
-                  className="max-h-[550px] w-full"
-                  title={product.title}
-                />
-              )}
-            </Suspense>
-          </div>
-
-          <div className="basis-full lg:basis-1/2">
-            <ProductDescription product={product} />
-          </div>
-        </div>
-
-        <div className="mt-10 space-y-10">
-          <ProductSpecificationSections product={product} />
-
-          {productGallery.length ? (
-            <div className="space-y-4">
-              <div className="space-y-2">
-                <h2 className="text-2xl font-semibold">Galeri Kebun & Konteks Supply</h2>
-                <p className="text-sm text-primary/60">
-                  Foto ini membantu menunjukkan konteks supply nyata dari jaringan kebun BMJ.
-                </p>
-              </div>
-              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                {productGallery.map((item, index) => (
-                  <div
-                    className="overflow-hidden rounded-2xl border bg-primary-foreground"
-                    key={`${item.image.id}-${index}`}
-                  >
-                    <MediaComponent
-                      resource={item.image}
-                      imgClassName="aspect-[4/3] h-auto w-full object-cover"
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
-          ) : null}
-
-          {product.videoUrl ? (
-            <div className="space-y-3 rounded-2xl border bg-primary-foreground p-6">
-              <h2 className="text-2xl font-semibold">Video Produk</h2>
-              <Link
-                className="inline-flex text-sm font-medium text-primary hover:underline"
-                href={product.videoUrl}
-                rel="noreferrer"
-                target="_blank"
-              >
-                Lihat video tanaman ini
+      <PageFrame family="commerce">
+        <SectionShell containment="wide" spacing="compact" variant="plain">
+          <div className="space-y-10">
+            <Button asChild className="mr-auto" variant="ghost">
+              <Link href="/shop">
+                <ChevronLeftIcon />
+                Semua produk
               </Link>
+            </Button>
+            <Surface
+              as="section"
+              className="flex flex-col gap-8 overflow-hidden rounded-[1.75rem] lg:grid lg:grid-cols-[minmax(0,0.9fr)_minmax(22rem,1.1fr)] lg:items-start"
+              variant="elevated"
+            >
+              <div className="h-full w-full">
+                <Suspense fallback={<ProductGallerySkeleton className="max-h-[640px]" />}>
+                  {gallery.length > 0 ? (
+                    <Gallery gallery={gallery} productTitle={product.title} />
+                  ) : (
+                    <ProductImageFallback className="max-h-[550px] w-full" title={product.title} />
+                  )}
+                </Suspense>
+              </div>
+
+              <div className="lg:self-start">
+                <ProductDescription product={product} />
+              </div>
+            </Surface>
+
+            <div className="space-y-10">
+              <ProductSpecificationSections product={product} />
+
+              {productGallery.length ? (
+                <section className="space-y-4">
+                  <div className="space-y-2">
+                    <h2 className="text-2xl font-semibold">Galeri Kebun & Konteks Supply</h2>
+                    <p className="text-sm text-primary/60">
+                      Foto ini membantu menunjukkan konteks supply nyata dari jaringan kebun BMJ.
+                    </p>
+                  </div>
+                  <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                    {productGallery.map((item, index) => (
+                      <div
+                        className="overflow-hidden rounded-2xl border bg-primary-foreground"
+                        key={`${item.image.id}-${index}`}
+                      >
+                        <MediaComponent
+                          htmlElement={null}
+                          imgClassName="aspect-[4/3] h-auto w-full object-cover"
+                          resource={item.image}
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </section>
+              ) : null}
+
+              {product.videoUrl ? (
+                <Surface className="space-y-3" variant="flat">
+                  <h2 className="text-2xl font-semibold">Video Produk</h2>
+                  <Link
+                    className="inline-flex text-sm font-medium text-primary hover:underline"
+                    href={product.videoUrl}
+                    rel="noreferrer"
+                    target="_blank"
+                  >
+                    Lihat video tanaman ini
+                  </Link>
+                </Surface>
+              ) : null}
             </div>
-          ) : null}
-        </div>
-      </div>
+          </div>
+        </SectionShell>
 
-      {product.layout?.length ? <RenderBlocks blocks={product.layout} /> : <></>}
+        {product.layout?.length ? <RenderBlocks blocks={product.layout} /> : null}
 
-      {relatedArticles.length ? (
-        <div className="container pt-8">
-          <section className="space-y-4">
-            <h2 className="text-2xl font-semibold">Artikel Terkait</h2>
-            <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-              {relatedArticles.map((post) => (
-                <ArticleCard key={post.id} post={post} />
-              ))}
+        {relatedArticles.length ? (
+          <SectionShell containment="wide" spacing="compact" variant="plain">
+            <div>
+              <section className="space-y-4">
+                <h2 className="text-2xl font-semibold">Artikel Terkait</h2>
+                <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+                  {relatedArticles.map((post) => (
+                    <ArticleCard key={post.id} post={post} />
+                  ))}
+                </div>
+              </section>
             </div>
-          </section>
-        </div>
-      ) : null}
+          </SectionShell>
+        ) : null}
 
-      {relatedProducts.length ? (
-        <div className="container">
-          <RelatedProducts products={relatedProducts as Product[]} />
-        </div>
-      ) : (
-        <></>
-      )}
+        {relatedProducts.length ? (
+          <SectionShell containment="wide" spacing="compact" variant="plain">
+            <div>
+              <RelatedProducts products={relatedProducts as Product[]} />
+            </div>
+          </SectionShell>
+        ) : null}
+      </PageFrame>
     </React.Fragment>
   )
 }
@@ -460,7 +468,7 @@ function ProductSpecificationSections({ product }: { product: Product }) {
 
 function InfoCard({ title, items }: { title: string; items: string[][] }) {
   return (
-    <section className="rounded-2xl border bg-primary-foreground p-6">
+    <Surface as="section" className="space-y-4" variant="flat">
       <h2 className="mb-4 text-xl font-semibold">{title}</h2>
       <dl className="space-y-4">
         {items.map(([label, value]) => (
@@ -470,7 +478,7 @@ function InfoCard({ title, items }: { title: string; items: string[][] }) {
           </div>
         ))}
       </dl>
-    </section>
+    </Surface>
   )
 }
 

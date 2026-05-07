@@ -18,6 +18,7 @@ import { cssVariables } from '@/cssVariables'
 import { CheckoutForm } from '@/components/forms/CheckoutForm'
 import { useAddresses, useCart, usePayments } from '@payloadcms/plugin-ecommerce/client/react'
 import { CheckoutAddresses } from '@/components/checkout/CheckoutAddresses'
+import { CheckoutPaymentSkeleton } from '@/components/checkout/CheckoutPaymentSkeleton'
 import { CreateAddressModal } from '@/components/addresses/CreateAddressModal'
 import { Address } from '@/payload-types'
 import { Checkbox } from '@/components/ui/checkbox'
@@ -25,6 +26,7 @@ import { AddressItem } from '@/components/addresses/AddressItem'
 import { FormItem } from '@/components/forms/FormItem'
 import { toast } from 'sonner'
 import { LoadingSpinner } from '@/components/LoadingSpinner'
+import { Surface } from '@/components/layout/Surface'
 
 const apiKey = `${process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY}`
 const stripe = loadStripe(apiKey)
@@ -109,21 +111,32 @@ export const CheckoutPage: React.FC = () => {
 
   if (cartIsEmpty && isProcessingPayment) {
     return (
-      <div className="py-12 w-full items-center justify-center">
+      <Surface className="mx-auto flex w-full max-w-2xl flex-col items-center justify-center gap-4 py-12 text-center" variant="elevated">
+        <h2 className="text-2xl font-semibold tracking-tight">Processing your payment</h2>
         <div className="prose dark:prose-invert text-center max-w-none self-center mb-8">
-          <p>Processing your payment...</p>
+          <p>Mohon tunggu sebentar. Kami sedang menyelesaikan konfirmasi pembayaran Anda.</p>
         </div>
         <LoadingSpinner />
-      </div>
+      </Surface>
     )
   }
 
   if (cartIsEmpty) {
     return (
-      <div className="prose dark:prose-invert py-12 w-full items-center">
-        <p>Your cart is empty.</p>
-              <Link href="/shop">Continue shopping?</Link>
-      </div>
+      <Surface className="mx-auto flex w-full max-w-2xl flex-col items-start gap-6 py-12" variant="elevated">
+        <div className="space-y-3">
+          <p className="text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-primary/50">
+            Checkout
+          </p>
+          <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">Your cart is empty</h2>
+          <p className="max-w-xl leading-7 text-primary/70">
+            Tambahkan produk ke cart terlebih dahulu sebelum melanjutkan ke proses pembayaran.
+          </p>
+        </div>
+        <Button asChild>
+          <Link href="/shop">Continue shopping</Link>
+        </Button>
+      </Surface>
     )
   }
 
@@ -298,7 +311,7 @@ export const CheckoutPage: React.FC = () => {
           </div>
         )}
 
-        <Suspense fallback={<React.Fragment />}>
+        <Suspense fallback={<CheckoutPaymentSkeleton />}>
           {/* @ts-ignore */}
           {paymentData && paymentData?.['clientSecret'] && (
             <div className="pb-16">

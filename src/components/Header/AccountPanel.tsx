@@ -36,7 +36,7 @@ export function AccountPanel({ className }: Props) {
         <button
           aria-label={user ? 'Buka menu akun' : 'Buka menu masuk'}
           className={cn(
-            'flex h-10 w-10 items-center justify-center rounded-full border border-black/8 bg-white text-foreground/72 shadow-[0_8px_18px_rgba(15,23,42,0.06)] transition-colors hover:border-[#1ca336]/30 hover:text-[#11942b]',
+            'site-header__utility-button flex h-10 w-10 items-center justify-center',
             className,
           )}
           type="button"
@@ -83,7 +83,7 @@ export function AccountPanel({ className }: Props) {
           </div>
         ) : (
           <div className="flex flex-col gap-3 px-4 pb-4">
-            <Button asChild className="w-full rounded-full bg-[#12992d] hover:bg-[#0f8126]">
+            <Button asChild className="w-full rounded-full bg-[#617553] hover:bg-[#516347]">
               <Link href="/login">Log in</Link>
             </Button>
             <Button asChild className="w-full rounded-full" variant="outline">

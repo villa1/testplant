@@ -1,14 +1,20 @@
 import React from 'react'
 
-import type { Category, Product, SupplyCategoriesBlock as SupplyCategoriesBlockProps } from '@/payload-types'
+import type {
+  Category,
+  Product,
+  SupplyCategoriesBlock as SupplyCategoriesBlockProps,
+} from '@/payload-types'
 
 import configPromise from '@payload-config'
 import Link from 'next/link'
 import { getPayload } from 'payload'
 
+import { SectionShell } from '@/components/layout/SectionShell'
 import { Media } from '@/components/Media'
 import { Price } from '@/components/Price'
 import { SectionHeader } from '@/components/SectionHeader'
+import { cn } from '@/utilities/cn'
 import {
   getPrimaryProductMedia,
   hasValidMediaURL,
@@ -33,12 +39,16 @@ type HomepageProduct = Pick<
   | 'updatedAt'
 >
 
-const isRasterMedia = (media: unknown): media is NonNullable<ReturnType<typeof getPrimaryProductMedia>> => {
+const isRasterMedia = (
+  media: unknown,
+): media is NonNullable<ReturnType<typeof getPrimaryProductMedia>> => {
   return Boolean(hasValidMediaURL(media) && media.mimeType && media.mimeType !== 'image/svg+xml')
 }
 
 const getShowcaseProductMedia = (product: HomepageProduct) => {
-  const galleryItem = normalizeProductGallery(product.gallery).find((item) => isRasterMedia(item.image))
+  const galleryItem = normalizeProductGallery(product.gallery).find((item) =>
+    isRasterMedia(item.image),
+  )
 
   if (galleryItem) return galleryItem.image
 
@@ -94,7 +104,11 @@ const getRepresentativeProduct = (products: HomepageProduct[]): HomepageProduct 
   })[0]
 }
 
-export const SupplyCategoriesBlock = async ({ intro, title }: SupplyCategoriesBlockProps) => {
+type Props = SupplyCategoriesBlockProps & {
+  id?: string
+}
+
+export const SupplyCategoriesBlock = async ({ id, intro, title }: Props) => {
   const payload = await getPayload({ config: configPromise })
 
   const [categoriesResult, productsResult] = await Promise.all([
@@ -138,7 +152,9 @@ export const SupplyCategoriesBlock = async ({ intro, title }: SupplyCategoriesBl
   const categories = categoriesResult.docs as HomepageCategory[]
   const products = productsResult.docs as HomepageProduct[]
   const entries = categories.map((category) => {
-    const categoryProducts = products.filter((product) => productBelongsToCategory(product, String(category.id)))
+    const categoryProducts = products.filter((product) =>
+      productBelongsToCategory(product, String(category.id)),
+    )
     const representativeProduct = getRepresentativeProduct(categoryProducts)
 
     return {
@@ -146,35 +162,41 @@ export const SupplyCategoriesBlock = async ({ intro, title }: SupplyCategoriesBl
       categoryHref: `/shop?category=${category.id}`,
       heroImage: representativeProduct ? getShowcaseProductMedia(representativeProduct) : null,
       representativeProduct,
-      productHref: representativeProduct?.slug ? `/products/${representativeProduct.slug}` : `/shop?category=${category.id}`,
+      productHref: representativeProduct?.slug
+        ? `/products/${representativeProduct.slug}`
+        : `/shop?category=${category.id}`,
     }
   })
+  const hasOddEntryCount = entries.length % 2 === 1
 
   return (
-    <section className="container">
-      <div className="space-y-6">
+    <SectionShell id={id} spacing="compact" variant="plain">
+      <div className="space-y-8">
         <SectionHeader intro={intro} title={title} />
 
         <div className="space-y-3 sm:space-y-4">
-          <div className="grid grid-cols-2 gap-3 lg:grid-cols-5 lg:gap-4">
-            {entries.map(({ category, categoryHref, heroImage }) => {
+          <div className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-5 lg:gap-4">
+            {entries.map(({ category, categoryHref, heroImage }, index) => {
               return (
                 <Link
-                  className="group block overflow-hidden rounded-[1.25rem] bg-neutral-950 shadow-[0_10px_26px_rgba(15,23,42,0.12)]"
+                  className={cn(
+                    'group block overflow-hidden rounded-[1.25rem] bg-neutral-950 shadow-[0_10px_26px_rgba(15,23,42,0.12)]',
+                    hasOddEntryCount && index === entries.length - 1 && 'col-span-2 md:col-span-1',
+                  )}
                   href={categoryHref}
                   key={category.id}
                 >
                   <div className="relative aspect-[4/5] overflow-hidden">
-                      {heroImage ? (
-                        <Media
-                          fill
-                          htmlElement={null}
-                          imgClassName="object-cover transition duration-500 group-hover:scale-[1.04]"
-                          resource={heroImage}
-                          size="(max-width: 1024px) 46vw, 18vw"
-                        />
-                      ) : (
-                        <div className="absolute inset-0 bg-[linear-gradient(160deg,#245a36_0%,#17361f_55%,#0f2517_100%)]" />
+                    {heroImage ? (
+                      <Media
+                        fill
+                        htmlElement={null}
+                        imgClassName="object-cover transition duration-500 group-hover:scale-[1.04]"
+                        resource={heroImage}
+                        size="(max-width: 1024px) 46vw, 18vw"
+                      />
+                    ) : (
+                      <div className="absolute inset-0 bg-[linear-gradient(160deg,#245a36_0%,#17361f_55%,#0f2517_100%)]" />
                     )}
 
                     <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(10,20,12,0.04)_0%,rgba(10,20,12,0.36)_55%,rgba(10,20,12,0.92)_100%)]" />
@@ -190,11 +212,14 @@ export const SupplyCategoriesBlock = async ({ intro, title }: SupplyCategoriesBl
             })}
           </div>
 
-          <div className="grid grid-cols-2 gap-3 lg:grid-cols-5 lg:gap-4">
-            {entries.map(({ category, heroImage, productHref, representativeProduct }) => {
+          <div className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-5 lg:gap-4">
+            {entries.map(({ category, heroImage, productHref, representativeProduct }, index) => {
               return representativeProduct ? (
                 <Link
-                  className="group block overflow-hidden rounded-[1.25rem] border border-black/6 bg-white p-2.5 shadow-[0_0_1px_rgba(0,0,0,0.22)] transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_10px_24px_rgba(15,23,42,0.10)] sm:p-3"
+                  className={cn(
+                    'group block overflow-hidden rounded-[1.25rem] border border-black/6 bg-white p-2.5 shadow-[0_0_1px_rgba(0,0,0,0.22)] transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_10px_24px_rgba(15,23,42,0.10)] sm:p-3',
+                    hasOddEntryCount && index === entries.length - 1 && 'col-span-2 md:col-span-1',
+                  )}
                   href={productHref}
                   key={category.id}
                 >
@@ -233,7 +258,9 @@ export const SupplyCategoriesBlock = async ({ intro, title }: SupplyCategoriesBl
                             className="text-sm font-bold text-foreground"
                           />
                         ) : (
-                          <span className="text-sm font-semibold text-foreground">Lihat Detail</span>
+                          <span className="text-sm font-semibold text-foreground">
+                            Lihat Detail
+                          </span>
                         )}
 
                         <span className="text-[10px] font-medium uppercase tracking-[0.16em] text-foreground/55">
@@ -244,7 +271,13 @@ export const SupplyCategoriesBlock = async ({ intro, title }: SupplyCategoriesBl
                   </div>
                 </Link>
               ) : (
-                <div className="rounded-[1.25rem] border border-dashed border-border bg-card/50 p-4" key={category.id}>
+                <div
+                  className={cn(
+                    'rounded-[1.25rem] border border-dashed border-border bg-card/50 p-4',
+                    hasOddEntryCount && index === entries.length - 1 && 'col-span-2 md:col-span-1',
+                  )}
+                  key={category.id}
+                >
                   <p className="text-sm font-semibold text-foreground">{category.title}</p>
                   <p className="mt-2 text-sm leading-6 text-muted-foreground">
                     Produk representatif untuk kategori ini sedang disiapkan.
@@ -255,6 +288,6 @@ export const SupplyCategoriesBlock = async ({ intro, title }: SupplyCategoriesBl
           </div>
         </div>
       </div>
-    </section>
+    </SectionShell>
   )
 }

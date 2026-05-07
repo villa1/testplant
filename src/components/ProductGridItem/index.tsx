@@ -1,8 +1,9 @@
-import type { Product, Variant } from '@/payload-types'
+import type { Product } from '@/payload-types'
 
 import Link from 'next/link'
 import React from 'react'
 import clsx from 'clsx'
+import { ArrowRight } from 'lucide-react'
 import { Media } from '@/components/Media'
 import { Price } from '@/components/Price'
 import { ProductImageFallback } from '@/components/product/ProductImageFallback'
@@ -10,10 +11,11 @@ import { getProductPurchaseState } from '@/utilities/getProductPurchaseState'
 import { getPrimaryProductMedia } from '@/utilities/productMedia'
 
 type Props = {
+  className?: string
   product: Partial<Product>
 }
 
-export const ProductGridItem: React.FC<Props> = ({ product }) => {
+export const ProductGridItem: React.FC<Props> = ({ className, product }) => {
   const { gallery, priceInUSD, title } = product
   const purchaseState = getProductPurchaseState(product)
 
@@ -47,7 +49,8 @@ export const ProductGridItem: React.FC<Props> = ({ product }) => {
     product.useCases?.filter((item): item is Exclude<typeof item, number | string> => typeof item === 'object') ||
     []
 
-  const secondaryTags = [...attributes.map((item) => item.title), ...useCases.map((item) => item.title)].slice(0, 2)
+  const descriptor =
+    attributes[0]?.title || useCases[0]?.title || primaryCategory?.title || 'Pilihan nursery untuk kebutuhan proyek'
 
   let statusCopy: string | null = null
 
@@ -59,21 +62,25 @@ export const ProductGridItem: React.FC<Props> = ({ product }) => {
     statusCopy = 'RFQ'
   }
 
-  const footerCopy = purchaseState.canDirectPurchase
-    ? 'Lihat & beli'
+  const priceLabel = purchaseState.shouldShowPrice ? 'Harga mulai' : 'Konsultasi'
+  const detailCopy = purchaseState.canDirectPurchase
+    ? 'Lihat detail'
     : purchaseState.canRequestQuote
-      ? 'Lihat & ajukan RFQ'
-      : 'Lihat detail'
+      ? 'Ajukan RFQ'
+      : 'Pelajari'
 
   return (
     <Link
-      className="group flex h-full w-full flex-col overflow-hidden rounded-[1.75rem] border border-border bg-primary-foreground shadow-sm transition duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-xl"
+      className={clsx(
+        'catalog-product-card group',
+        className,
+      )}
       href={`/products/${product.slug}`}
     >
-      <div className="relative">
+      <div className="catalog-product-card__media">
         {image ? (
           <Media
-            className={clsx('relative aspect-square object-cover p-8')}
+            className="relative h-full w-full object-cover"
             height={80}
             imgClassName={clsx('h-full w-full rounded-[1.5rem] object-cover', {
               'transition duration-300 ease-in-out group-hover:scale-[1.03]': true,
@@ -85,69 +92,47 @@ export const ProductGridItem: React.FC<Props> = ({ product }) => {
           <ProductImageFallback className="aspect-square rounded-none border-0" title={title} />
         )}
 
-        <div className="pointer-events-none absolute inset-x-0 top-0 flex items-start justify-between gap-3 p-4">
-          {primaryCategory ? (
-            <span className="rounded-full bg-card/95 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.12em] text-primary shadow-sm">
-              {primaryCategory.title}
-            </span>
-          ) : <span />}
-
-          {statusCopy ? (
-            <span
-              className={clsx(
-                'rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.12em] shadow-sm',
-                {
-                  'bg-amber-100 text-amber-800': purchaseState.needsConsultation,
-                  'bg-red-100 text-red-800': purchaseState.isOutOfStock,
-                  'bg-emerald-100 text-emerald-800':
-                    !purchaseState.needsConsultation && !purchaseState.isOutOfStock,
-                },
-              )}
-            >
-              {statusCopy}
-            </span>
-          ) : null}
-        </div>
+        {statusCopy ? (
+          <span
+            className={clsx('catalog-product-card__status', {
+              'bg-[#f2dfb0] text-[#7b6119]': purchaseState.needsConsultation,
+              'bg-[#f2d6d6] text-[#9b3e3e]': purchaseState.isOutOfStock,
+              'bg-[#d6ead4] text-[#46613e]':
+                !purchaseState.needsConsultation && !purchaseState.isOutOfStock,
+            })}
+          >
+            {statusCopy}
+          </span>
+        ) : null}
       </div>
 
-      <div className="flex flex-1 flex-col gap-4 p-5">
+      <div className="catalog-product-card__body">
         <div className="space-y-3">
-          <div className="space-y-1">
-            <h3 className="text-lg font-semibold leading-tight text-primary transition-colors group-hover:text-primary/80">
-              {title}
-            </h3>
+          {primaryCategory ? <p className="catalog-product-card__eyebrow">{primaryCategory.title}</p> : null}
+
+          <div className="space-y-2">
+            <h3 className="catalog-product-card__title">{title}</h3>
+            <p className="catalog-product-card__descriptor">{descriptor}</p>
           </div>
 
-          {secondaryTags.length > 0 ? (
-            <div className="flex flex-wrap gap-2">
-              {secondaryTags.map((tag) => (
-                <span
-                  className="rounded-full border border-border bg-accent px-2.5 py-1 text-[11px] text-primary/70"
-                  key={tag}
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-          ) : null}
+          {purchaseState.statusLabel ? <p className="catalog-product-card__detail">{purchaseState.statusLabel}</p> : null}
         </div>
 
-        <div className="mt-auto flex items-end justify-between gap-4 border-t border-border pt-4">
+        <div className="catalog-product-card__footer">
           <div className="space-y-1">
-            <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-primary/45">
-              {purchaseState.shouldShowPrice ? 'Harga' : 'Aksi'}
-            </p>
+            <p className="catalog-product-card__price-label">{priceLabel}</p>
             {purchaseState.shouldShowPrice && typeof price === 'number' ? (
-              <Price amount={price} className="text-base font-medium text-primary" />
+              <Price amount={price} className="text-xl font-semibold text-primary" />
             ) : (
-              <p className="text-sm font-medium text-primary/70">
-                {purchaseState.canRequestQuote ? 'Request Quotation' : 'Lihat detail'}
+              <p className="text-sm font-medium text-primary/75">
+                {purchaseState.canRequestQuote ? 'Hubungi untuk penawaran' : 'Lihat spesifikasi lengkap'}
               </p>
             )}
           </div>
 
-          <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-primary/55 transition-colors group-hover:text-primary">
-            {footerCopy}
+          <span className="catalog-product-card__cta">
+            {detailCopy}
+            <ArrowRight className="h-4 w-4" />
           </span>
         </div>
       </div>

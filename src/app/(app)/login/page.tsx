@@ -1,6 +1,9 @@
 import type { Metadata } from 'next'
 
 import { RenderParams } from '@/components/RenderParams'
+import { PageFrame } from '@/components/layout/PageFrame'
+import { SectionShell } from '@/components/layout/SectionShell'
+import { Surface } from '@/components/layout/Surface'
 import Link from 'next/link'
 import React from 'react'
 
@@ -20,18 +23,31 @@ export default async function Login() {
   }
 
   return (
-    <div className="container">
-      <div className="max-w-xl mx-auto my-12">
-        <RenderParams />
+    <PageFrame family="utility">
+      <SectionShell containment="narrow" spacing="compact" variant="plain">
+        <div>
+          <Surface className="space-y-8" variant="elevated">
+            <RenderParams />
 
-        <h1 className="mb-4 text-[1.8rem]">Log in</h1>
-        <p className="mb-8">
-          {`This is where your customers will login to manage their account, review their order history, and more. To manage all users, `}
-          <Link href="/admin/collections/users">login to the admin dashboard</Link>.
-        </p>
-        <LoginForm />
-      </div>
-    </div>
+            <div className="space-y-4">
+              <p className="text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-primary/50">
+                Akun BMJ
+              </p>
+              <h1 className="text-4xl font-semibold tracking-tight md:text-5xl">Log in</h1>
+              <p className="max-w-2xl text-base leading-7 text-primary/70">
+                {`This is where your customers will login to manage their account, review their order history, and more. To manage all users, `}
+                <Link className="font-medium text-primary hover:underline" href="/admin/collections/users">
+                  login to the admin dashboard
+                </Link>
+                .
+              </p>
+            </div>
+
+            <LoginForm />
+          </Surface>
+        </div>
+      </SectionShell>
+    </PageFrame>
   )
 }
 

@@ -31,19 +31,22 @@ export const Search: React.FC<Props> = ({ className }) => {
   }
 
   return (
-    <form className={cn('relative w-full', className)} onSubmit={onSubmit}>
+    <form className={cn('shop-search', className)} onSubmit={onSubmit}>
+      <div className="shop-search__icon">
+        <SearchIcon className="h-4 w-4" />
+      </div>
       <input
         autoComplete="off"
-        className="w-full rounded-lg border bg-white px-4 py-2 text-sm text-black placeholder:text-neutral-500 dark:border-neutral-800 dark:bg-black dark:text-white dark:placeholder:text-neutral-400"
+        className="shop-search__input text-sm"
         defaultValue={searchParams?.get('q') || ''}
         key={searchParams?.get('q')}
         name="search"
-        placeholder="Search for products..."
+        placeholder="Cari tanaman, semak, atau palem..."
         type="text"
       />
-      <div className="absolute right-0 top-0 mr-3 flex h-full items-center">
-        <SearchIcon className="h-4" />
-      </div>
+      <button className="shop-search__submit" type="submit">
+        Cari
+      </button>
     </form>
   )
 }

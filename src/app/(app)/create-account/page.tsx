@@ -1,5 +1,8 @@
 import type { Metadata } from 'next'
 
+import { PageFrame } from '@/components/layout/PageFrame'
+import { SectionShell } from '@/components/layout/SectionShell'
+import { Surface } from '@/components/layout/Surface'
 import { RenderParams } from '@/components/RenderParams'
 import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
 import React from 'react'
@@ -20,11 +23,25 @@ export default async function CreateAccount() {
   }
 
   return (
-    <div className="container py-16">
-      <h1 className="text-xl mb-4">Create Account</h1>
-      <RenderParams />
-      <CreateAccountForm />
-    </div>
+    <PageFrame family="utility">
+      <SectionShell containment="narrow" spacing="compact" variant="plain">
+        <div>
+          <Surface className="space-y-8" variant="elevated">
+            <RenderParams />
+            <div className="space-y-4">
+              <p className="text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-primary/50">
+                Akun BMJ
+              </p>
+              <h1 className="text-4xl font-semibold tracking-tight md:text-5xl">Create Account</h1>
+              <p className="max-w-2xl text-base leading-7 text-primary/70">
+                Buat akun untuk menyimpan alamat, melacak order, dan mempercepat proses checkout berikutnya.
+              </p>
+            </div>
+            <CreateAccountForm />
+          </Surface>
+        </div>
+      </SectionShell>
+    </PageFrame>
   )
 }
 

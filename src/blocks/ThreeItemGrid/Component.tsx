@@ -1,5 +1,6 @@
 import type { Media, Product, ThreeItemGridBlock as ThreeItemGridBlockProps } from '@/payload-types'
 
+import { SectionShell } from '@/components/layout/SectionShell'
 import { GridTileImage } from '@/components/Grid/tile'
 import Link from 'next/link'
 import React from 'react'
@@ -41,16 +42,18 @@ export const ThreeItemGridBlock: React.FC<
     id?: DefaultDocumentIDType
     className?: string
   }
-> = async ({ products }) => {
+> = async ({ id, products }) => {
   if (!products || !products[0] || !products[1] || !products[2]) return null
 
   const [firstProduct, secondProduct, thirdProduct] = products
 
   return (
-    <section className="container grid gap-4 pb-4 md:grid-cols-6 md:grid-rows-2">
-      <ThreeItemGridItem item={firstProduct as Product} priority size="full" />
-      <ThreeItemGridItem item={secondProduct as Product} priority size="half" />
-      <ThreeItemGridItem item={thirdProduct as Product} size="half" />
-    </section>
+    <SectionShell id={id ? String(id) : undefined} spacing="compact" variant="plain">
+      <div className="grid gap-4 pb-4 md:grid-cols-6 md:grid-rows-2">
+        <ThreeItemGridItem item={firstProduct as Product} priority size="full" />
+        <ThreeItemGridItem item={secondProduct as Product} priority size="half" />
+        <ThreeItemGridItem item={thirdProduct as Product} size="half" />
+      </div>
+    </SectionShell>
   )
 }

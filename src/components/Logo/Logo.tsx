@@ -68,7 +68,7 @@ export const Logo = (props: Props) => {
 
       {shouldRenderText ? (
         <div className="flex min-w-0 flex-col">
-          <span className="text-lg font-semibold leading-none tracking-tight md:text-xl">
+          <span className="font-[family:var(--font-brand)] text-lg leading-none tracking-tight md:text-xl">
             {brandName}
           </span>
           {brandDescription ? (

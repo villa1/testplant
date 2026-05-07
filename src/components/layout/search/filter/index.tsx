@@ -19,22 +19,22 @@ function FilterItemList({ list }: { list: ListItem[] }) {
 
 export function FilterList({ list, title }: { list: ListItem[]; title?: string }) {
   return (
-    <React.Fragment>
+    <section className="shop-filter-group">
       <nav>
         {title ? (
-          <h3 className="text-xs mb-2 text-neutral-500 dark:text-neutral-400">{title}</h3>
+          <h3 className="shop-filter-group__title">{title}</h3>
         ) : null}
-        <ul className="hidden md:block">
+        <ul className="shop-filter-group__list hidden md:flex">
           <Suspense fallback={null}>
             <FilterItemList list={list} />
           </Suspense>
         </ul>
-        <ul className="md:hidden">
+        <div className="md:hidden">
           <Suspense fallback={null}>
             <FilterItemDropdown list={list} />
           </Suspense>
-        </ul>
+        </div>
       </nav>
-    </React.Fragment>
+    </section>
   )
 }

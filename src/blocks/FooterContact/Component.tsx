@@ -43,15 +43,15 @@ export const FooterContactBlockComponent: React.FC<FooterContactBlock> = ({
   return (
     <div className="space-y-3">
       {title ? (
-        <h2 className="text-sm font-semibold uppercase tracking-[0.18em] text-white/64">{title}</h2>
+        <h2 className="text-base font-semibold tracking-tight text-[#5c574d]">{title}</h2>
       ) : null}
 
-      <div className="space-y-3 text-sm leading-7 text-white/78">
+      <div className="space-y-3 text-sm leading-7 text-[#667163]">
         {whatsappNumber ? (
           <div className="flex items-start gap-3">
             <MessageCircleMore className="mt-1 size-4 shrink-0" />
             {whatsappHref ? (
-              <a className="hover:text-white" href={whatsappHref} rel="noreferrer" target="_blank">
+              <a className="hover:text-[#5c574d]" href={whatsappHref} rel="noreferrer" target="_blank">
                 {whatsappNumber}
               </a>
             ) : (
@@ -63,7 +63,7 @@ export const FooterContactBlockComponent: React.FC<FooterContactBlock> = ({
         {phoneNumber && phoneHref ? (
           <div className="flex items-start gap-3">
             <Phone className="mt-1 size-4 shrink-0" />
-            <a className="hover:text-white" href={`tel:${phoneHref}`}>
+            <a className="hover:text-[#5c574d]" href={`tel:${phoneHref}`}>
               {phoneNumber}
             </a>
           </div>
@@ -72,7 +72,7 @@ export const FooterContactBlockComponent: React.FC<FooterContactBlock> = ({
         {email ? (
           <div className="flex items-start gap-3">
             <Mail className="mt-1 size-4 shrink-0" />
-            <a className="hover:text-white" href={`mailto:${email}`}>
+            <a className="hover:text-[#5c574d]" href={`mailto:${email}`}>
               {email}
             </a>
           </div>
@@ -85,7 +85,7 @@ export const FooterContactBlockComponent: React.FC<FooterContactBlock> = ({
               {address ? <div>{address}</div> : null}
               {mapsUrl ? (
                 <a
-                  className="inline-block text-white hover:text-white/78"
+                  className="inline-block text-[#617553] hover:text-[#5c574d]"
                   href={mapsUrl}
                   rel="noreferrer"
                   target="_blank"

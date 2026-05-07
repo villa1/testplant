@@ -14,6 +14,7 @@ import configPromise from '@payload-config'
 import { getPayload } from 'payload'
 import { OrderStatus } from '@/components/OrderStatus'
 import { AddressItem } from '@/components/addresses/AddressItem'
+import { Surface } from '@/components/layout/Surface'
 
 export const dynamic = 'force-dynamic'
 
@@ -133,7 +134,7 @@ export default async function Order({ params, searchParams }: PageProps) {
         </h1>
       </div>
 
-      <div className="bg-card border rounded-lg px-6 py-4 flex flex-col gap-12">
+      <Surface className="flex flex-col gap-12" variant="elevated">
         <div className="flex flex-col gap-6 lg:flex-row lg:justify-between">
           <div className="">
             <p className="font-mono uppercase text-primary/50 mb-1 text-sm">Order Date</p>
@@ -195,7 +196,7 @@ export default async function Order({ params, searchParams }: PageProps) {
             <AddressItem address={order.shippingAddress} hideActions />
           </div>
         )}
-      </div>
+      </Surface>
     </div>
   )
 }

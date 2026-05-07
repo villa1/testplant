@@ -4,6 +4,7 @@ import type { Metadata } from 'next'
 import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
 
 import { OrderItem } from '@/components/OrderItem'
+import { Surface } from '@/components/layout/Surface'
 import { headers as getHeaders } from 'next/headers'
 import configPromise from '@payload-config'
 import { getPayload } from 'payload'
@@ -39,7 +40,7 @@ export default async function Orders() {
 
   return (
     <>
-      <div className="border p-8 rounded-lg bg-primary-foreground w-full">
+      <Surface className="w-full space-y-8" variant="elevated">
         <h1 className="text-3xl font-medium mb-8">Orders</h1>
         {(!orders || !Array.isArray(orders) || orders?.length === 0) && (
           <p className="">You have no orders.</p>
@@ -54,7 +55,7 @@ export default async function Orders() {
             ))}
           </ul>
         )}
-      </div>
+      </Surface>
     </>
   )
 }

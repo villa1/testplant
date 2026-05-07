@@ -96,13 +96,15 @@ export async function Footer() {
   const totalColumns = Math.min(Math.max(columnBlocks.length, 1), 4)
 
   return (
-    <footer className="mt-auto border-t border-border bg-[#1b271b] text-white">
-      <div className={`container grid gap-10 py-12 ${gridClassMap[totalColumns]}`}>
+    <footer className="site-footer border-t border-[#d7e0d6] text-[#5c574d]">
+      <div
+        className={`site-footer__inner container-wide grid gap-8 py-12 md:gap-10 ${gridClassMap[totalColumns]}`}
+      >
         <RenderFooterColumnBlocks blocks={layout} />
       </div>
 
       {bottomBarBlocks.length > 0 ? (
-        <div className="border-t border-white/10">
+        <div className="border-t border-[#d7e0d6]">
           <RenderFooterBottomBarBlocks blocks={layout} />
         </div>
       ) : null}

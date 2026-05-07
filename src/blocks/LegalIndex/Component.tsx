@@ -5,6 +5,9 @@ import Link from 'next/link'
 import { getPayload } from 'payload'
 import React from 'react'
 
+import { SectionHeader } from '@/components/SectionHeader'
+import { SectionShell } from '@/components/layout/SectionShell'
+import { Surface } from '@/components/layout/Surface'
 import { Media } from '@/components/Media'
 
 type LegalPageSummary = Pick<Page, 'slug' | 'title' | 'meta'>
@@ -43,13 +46,13 @@ export const LegalIndexBlock: React.FC<
   const docs = legalPages.docs as LegalPageSummary[]
 
   return (
-    <div className="container" id={`block-${id}`}>
-      {title ? <h2 className="mb-8">{title}</h2> : null}
+    <SectionShell id={id ? `block-${id}` : undefined} spacing="compact" variant="plain">
+      {title ? <SectionHeader className="mb-8" title={title} /> : null}
 
       {docs.length === 0 ? (
-        <div className="rounded-lg border border-border bg-card p-5">
+        <Surface>
           <p>{emptyMessage}</p>
-        </div>
+        </Surface>
       ) : (
         <div className="grid grid-cols-4 gap-x-4 gap-y-4 sm:grid-cols-8 lg:grid-cols-12 lg:gap-x-8 lg:gap-y-8 xl:gap-x-8">
           {docs.map((page, index) => {
@@ -59,20 +62,16 @@ export const LegalIndexBlock: React.FC<
 
             return (
               <div className="col-span-4" key={page.slug || index}>
-                <article className="h-full overflow-hidden rounded-lg border border-border bg-card">
+                <Surface as="article" className="h-full overflow-hidden p-0">
                   <div className="relative w-full">
                     {!metaImage && <div className="p-4 text-sm text-muted-foreground">No image</div>}
                     {metaImage && typeof metaImage !== 'string' && <Media resource={metaImage} size="33vw" />}
                   </div>
                   <div className="p-4">
                     {page.title ? (
-                      <div className="prose">
-                        <h3>
-                          <Link className="not-prose" href={href}>
-                            {page.title}
-                          </Link>
-                        </h3>
-                      </div>
+                      <h3 className="type-card-title">
+                        <Link href={href}>{page.title}</Link>
+                      </h3>
                     ) : null}
                     {sanitizedDescription ? (
                       <div className="mt-2">
@@ -80,12 +79,12 @@ export const LegalIndexBlock: React.FC<
                       </div>
                     ) : null}
                   </div>
-                </article>
+                </Surface>
               </div>
             )
           })}
         </div>
       )}
-    </div>
+    </SectionShell>
   )
 }

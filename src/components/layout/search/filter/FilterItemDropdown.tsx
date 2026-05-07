@@ -27,37 +27,44 @@ export function FilterItemDropdown({ list }: { list: ListItem[] }) {
   }, [])
 
   useEffect(() => {
+    let matchedTitle = list[0]?.title ?? ''
+
     list.forEach((listItem: ListItem) => {
       if (
         ('path' in listItem && pathname === listItem.path) ||
         ('slug' in listItem && searchParams.get('sort') === listItem.slug)
       ) {
-        setActive(listItem.title)
+        matchedTitle = listItem.title
       }
     })
+
+    setActive(matchedTitle)
   }, [pathname, list, searchParams])
 
   return (
-    <div className="relative" ref={ref}>
-      <div
-        className="flex w-full items-center justify-between rounded border border-black/30 px-4 py-2 text-sm dark:border-white/30"
+    <div className="shop-filter-dropdown" ref={ref}>
+      <button
+        className="shop-filter-dropdown__trigger"
         onClick={() => {
           setOpenSelect(!openSelect)
         }}
+        type="button"
       >
         <div>{active}</div>
         <ChevronDownIcon className="h-4" />
-      </div>
+      </button>
       {openSelect && (
         <div
-          className="absolute z-40 w-full rounded-b-md bg-white p-4 shadow-md dark:bg-black"
+          className="shop-filter-dropdown__menu"
           onClick={() => {
             setOpenSelect(false)
           }}
         >
-          {list.map((item: ListItem, i) => (
-            <FilterItem item={item} key={i} />
-          ))}
+          <ul className="shop-filter-group__list">
+            {list.map((item: ListItem, i) => (
+              <FilterItem item={item} key={i} />
+            ))}
+          </ul>
         </div>
       )}
     </div>

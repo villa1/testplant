@@ -5,6 +5,11 @@ import { RichText } from '@/components/RichText'
 import { AddToCart } from '@/components/Cart/AddToCart'
 import { Price } from '@/components/Price'
 import { Button } from '@/components/ui/button'
+import {
+  ProductActionSkeleton,
+  ProductInlineStatusSkeleton,
+  ProductOptionGroupSkeleton,
+} from '@/components/product/ProductSkeletons'
 import { getProductPurchaseState } from '@/utilities/getProductPurchaseState'
 import Link from 'next/link'
 import React, { Suspense } from 'react'
@@ -65,11 +70,11 @@ export function ProductDescription({ product }: { product: Product }) {
   }
 
   return (
-    <div className="flex flex-col gap-6">
-      <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
-        <div className="space-y-3">
+    <div className="flex flex-col gap-6 lg:self-start">
+      <div className="flex flex-col gap-5 border-b border-border/70 pb-6 lg:flex-row lg:items-start lg:justify-between">
+        <div className="max-w-2xl space-y-3">
           <div className="space-y-1">
-            <h1 className="text-2xl font-medium">{product.title}</h1>
+            <h1 className="text-2xl font-medium text-balance">{product.title}</h1>
             {product.nameLatin ? (
               <p className="text-sm italic text-primary/60">{product.nameLatin}</p>
             ) : null}
@@ -104,44 +109,47 @@ export function ProductDescription({ product }: { product: Product }) {
             </div>
           )}
 
+        </div>
+
+        <div className="flex flex-col gap-3 lg:items-end lg:text-right">
+          {purchaseState.shouldShowPrice ? (
+            <div className="font-mono text-lg uppercase tracking-[0.08em]">
+              {hasVariants ? (
+                <Price highestAmount={highestAmount} lowestAmount={lowestAmount} />
+              ) : (
+                <Price amount={amount} />
+              )}
+            </div>
+          ) : null}
+
           {purchaseState.statusLabel ? (
-            <div className="inline-flex rounded-md border border-border bg-accent px-3 py-2 text-sm font-medium text-primary/80">
+            <div className="inline-flex rounded-md border border-border bg-accent px-3 py-2 text-sm font-medium text-primary/80 lg:self-end">
               {purchaseState.statusLabel}
             </div>
           ) : null}
         </div>
-
-        {purchaseState.shouldShowPrice ? (
-          <div className="uppercase font-mono">
-            {hasVariants ? (
-              <Price highestAmount={highestAmount} lowestAmount={lowestAmount} />
-            ) : (
-              <Price amount={amount} />
-            )}
-          </div>
-        ) : null}
       </div>
       {product.description ? (
-        <RichText className="" data={product.description} enableGutter={false} />
+        <RichText className="max-w-none" data={product.description} enableGutter={false} />
       ) : null}
       {product.productNote ? (
         <div className="rounded-lg border border-border bg-accent p-4 text-sm leading-6 text-primary/80">
           {product.productNote}
         </div>
       ) : null}
-      <hr />
+      <hr className="border-border/70" />
       {hasVariants && (
         <>
-          <Suspense fallback={null}>
+          <Suspense fallback={<ProductOptionGroupSkeleton />}>
             <VariantSelector product={product} />
           </Suspense>
 
-          <hr />
+          <hr className="border-border/70" />
         </>
       )}
       {purchaseState.shouldShowStock ? (
         <div className="flex items-center justify-between">
-          <Suspense fallback={null}>
+          <Suspense fallback={product.enableVariants ? null : <ProductInlineStatusSkeleton />}>
             <StockIndicator product={product} />
           </Suspense>
         </div>
@@ -149,7 +157,7 @@ export function ProductDescription({ product }: { product: Product }) {
 
       <div className="flex flex-wrap items-center gap-3">
         {purchaseState.canDirectPurchase ? (
-          <Suspense fallback={null}>
+          <Suspense fallback={<ProductActionSkeleton />}>
             <AddToCart product={product} />
           </Suspense>
         ) : null}

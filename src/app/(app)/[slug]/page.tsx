@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 
 import { RenderBlocks } from '@/blocks/RenderBlocks'
+import { PageFrame } from '@/components/layout/PageFrame'
 import { RenderHero } from '@/heros/RenderHero'
 import { fallbackHomePage } from '@/utilities/fallbackHomePage'
 import { generateMeta } from '@/utilities/generateMeta'
@@ -59,12 +60,18 @@ export default async function Page({ params }: Args) {
   }
 
   const { hero, layout } = page
+  const hasRenderableHero = Boolean(hero?.type && hero.type !== 'none')
+  const pageFrameFamily = slug === 'home' ? 'homepage' : 'marketing'
 
   return (
-    <article className="pt-16 pb-24">
+    <PageFrame
+      as="article"
+      family={pageFrameFamily}
+      hasHero={hasRenderableHero}
+    >
       <RenderHero {...hero} />
       <RenderBlocks blocks={layout} />
-    </article>
+    </PageFrame>
   )
 }
 

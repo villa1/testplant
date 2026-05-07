@@ -34,12 +34,14 @@ export const CategoryItem: React.FC<Props> = ({ category }) => {
 
   return (
     <button
+      aria-pressed={isActive}
       onClick={() => setQuery()}
-      className={clsx('hover:cursor-pointer', {
-        ' underline': isActive,
+      className={clsx('shop-filter-option', {
+        'shop-filter-option--active': isActive,
       })}
     >
-      {category.title}
+      <span>{category.title}</span>
+      <span className="shop-filter-option__indicator">{isActive ? 'Aktif' : 'Pilih'}</span>
     </button>
   )
 }

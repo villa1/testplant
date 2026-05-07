@@ -7,6 +7,7 @@ import { headers as getHeaders } from 'next/headers.js'
 import configPromise from '@payload-config'
 import { AccountForm } from '@/components/forms/AccountForm'
 import { Order } from '@/payload-types'
+import { Surface } from '@/components/layout/Surface'
 import { OrderItem } from '@/components/OrderItem'
 import { getPayload } from 'payload'
 import { redirect } from 'next/navigation'
@@ -48,12 +49,12 @@ export default async function AccountPage() {
 
   return (
     <>
-      <div className="border p-8 rounded-lg bg-primary-foreground">
+      <Surface className="space-y-8" variant="elevated">
         <h1 className="text-3xl font-medium mb-8">Account settings</h1>
         <AccountForm />
-      </div>
+      </Surface>
 
-      <div className=" border p-8 rounded-lg bg-primary-foreground">
+      <Surface className="space-y-8" variant="flat">
         <h2 className="text-3xl font-medium mb-8">Recent Orders</h2>
 
         <div className="prose dark:prose-invert mb-8">
@@ -80,7 +81,7 @@ export default async function AccountPage() {
         <Button asChild variant="default">
           <Link href="/orders">View all orders</Link>
         </Button>
-      </div>
+      </Surface>
     </>
   )
 }

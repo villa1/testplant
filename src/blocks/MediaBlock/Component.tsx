@@ -1,5 +1,6 @@
 import type { StaticImageData } from 'next/image'
 
+import { SectionShell } from '@/components/layout/SectionShell'
 import { cn } from '@/utilities/cn'
 import React from 'react'
 import { RichText } from '@/components/RichText'
@@ -33,33 +34,40 @@ export const MediaBlock: React.FC<
   if (media && typeof media === 'object') caption = media.caption
 
   return (
-    <div
-      className={cn(
-        '',
-        {
-          container: enableGutter,
-        },
-        className,
-      )}
+    <SectionShell
+      containment="full-bleed"
+      id={props.id ? `block-${props.id}` : undefined}
+      spacing="compact"
+      variant="plain"
     >
-      <Media
-        imgClassName={cn('border border-border rounded-[0.8rem]', imgClassName)}
-        resource={media}
-        src={staticImage}
-      />
-      {caption && (
-        <div
-          className={cn(
-            'mt-6',
-            {
-              container: !disableInnerContainer,
-            },
-            captionClassName,
-          )}
-        >
-          <RichText data={caption} enableGutter={false} />
-        </div>
-      )}
-    </div>
+      <div
+        className={cn(
+          '',
+          {
+            container: enableGutter,
+          },
+          className,
+        )}
+      >
+        <Media
+          imgClassName={cn('border border-border rounded-[0.8rem]', imgClassName)}
+          resource={media}
+          src={staticImage}
+        />
+        {caption && (
+          <div
+            className={cn(
+              'mt-6',
+              {
+                container: !disableInnerContainer,
+              },
+              captionClassName,
+            )}
+          >
+            <RichText data={caption} enableGutter={false} />
+          </div>
+        )}
+      </div>
+    </SectionShell>
   )
 }

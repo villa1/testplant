@@ -1,5 +1,8 @@
 import type { Metadata } from 'next'
 
+import { PageFrame } from '@/components/layout/PageFrame'
+import { SectionShell } from '@/components/layout/SectionShell'
+import { Surface } from '@/components/layout/Surface'
 import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
 import React from 'react'
 import { FindOrderForm } from '@/components/forms/FindOrderForm'
@@ -13,9 +16,15 @@ export default async function FindOrderPage() {
   const { user } = await payload.auth({ headers })
 
   return (
-    <div className="container py-16">
-      <FindOrderForm initialEmail={user?.email} />
-    </div>
+    <PageFrame family="utility">
+      <SectionShell containment="narrow" spacing="compact" variant="plain">
+        <div>
+          <Surface variant="elevated">
+            <FindOrderForm initialEmail={user?.email} />
+          </Surface>
+        </div>
+      </SectionShell>
+    </PageFrame>
   )
 }
 

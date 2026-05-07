@@ -10,6 +10,7 @@ import { draftMode } from 'next/headers'
 import React from 'react'
 
 import { ArticleArchive } from '@/components/ArticleArchive'
+import { SectionShell } from '@/components/layout/SectionShell'
 import { RichText } from '@/components/RichText'
 
 const isPost = (value: Post | string | number | null | undefined): value is Post => {
@@ -107,13 +108,18 @@ export const ArticleArchiveBlock: React.FC<
   }
 
   return (
-    <div className="my-16" id={`block-${id}`}>
+    <SectionShell
+      containment="wide"
+      id={id ? `block-${id}` : undefined}
+      spacing="compact"
+      variant="plain"
+    >
       {introContent && (
-        <div className="container mb-16">
+        <div className="mb-16">
           <RichText className="ml-0 max-w-3xl" data={introContent} enableGutter={false} />
         </div>
       )}
       <ArticleArchive posts={posts} />
-    </div>
+    </SectionShell>
   )
 }

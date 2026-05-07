@@ -8,10 +8,21 @@ import { LivePreviewListener } from '@/components/LivePreviewListener'
 import { siteMetadata } from '@/utilities/siteMetadata'
 import { Providers } from '@/providers'
 import { InitTheme } from '@/providers/Theme/InitTheme'
-import { GeistSans } from 'geist/font/sans'
 import { GeistMono } from 'geist/font/mono'
+import { Open_Sans, Sawarabi_Mincho } from 'next/font/google'
 import React from 'react'
 import './globals.css'
+
+const openSans = Open_Sans({
+  subsets: ['latin'],
+  variable: '--font-open-sans',
+})
+
+const sawarabiMincho = Sawarabi_Mincho({
+  subsets: ['latin'],
+  variable: '--font-sawarabi-mincho',
+  weight: '400',
+})
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteMetadata.baseUrl),
@@ -29,7 +40,7 @@ export const metadata: Metadata = {
 export default async function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html
-      className={[GeistSans.variable, GeistMono.variable].filter(Boolean).join(' ')}
+      className={[openSans.variable, sawarabiMincho.variable, GeistMono.variable].filter(Boolean).join(' ')}
       lang="id"
       suppressHydrationWarning
     >
@@ -43,9 +54,11 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
           <AdminBar />
           <LivePreviewListener />
 
-          <Header />
-          <main>{children}</main>
-          <Footer />
+          <div className="app-shell">
+            <Header />
+            <main className="app-main">{children}</main>
+            <Footer />
+          </div>
         </Providers>
       </body>
     </html>

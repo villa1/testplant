@@ -5,6 +5,8 @@ import { useRouter } from 'next/navigation'
 import React, { useCallback, useState } from 'react'
 import { useForm, FormProvider } from 'react-hook-form'
 import { RichText } from '@/components/RichText'
+import { SectionShell } from '@/components/layout/SectionShell'
+import { Surface } from '@/components/layout/Surface'
 import { Button } from '@/components/ui/button'
 import type { SerializedEditorState } from '@payloadcms/richtext-lexical/lexical'
 
@@ -132,64 +134,71 @@ export const FormBlock: React.FC<
   )
 
   return (
-    <div className="container lg:max-w-3xl">
-      {enableIntro && introContent && !hasSubmitted && (
-        <RichText className="mb-8 lg:mb-12" data={introContent} enableGutter={false} />
-      )}
-      <div className="p-4 lg:p-6 border border-border rounded-[0.8rem]">
-        <FormProvider {...formMethods}>
-          {!isLoading && hasSubmitted && confirmationType === 'message' && (
-            <RichText data={confirmationMessage} />
-          )}
-          {isLoading && !hasSubmitted && <p>Loading, please wait...</p>}
-          {error && <div>{`${error.status || '500'}: ${error.message || ''}`}</div>}
-          {!hasSubmitted && (
-            <>
-              <form id={formID} onSubmit={handleSubmit(onSubmit)}>
-                <div className="mb-4 last:mb-0">
-                  {resolvedForm &&
-                    resolvedForm.fields &&
-                    resolvedForm.fields?.map((field, index) => {
-                      const Field: React.FC<any> | undefined =
-                        fields?.[field.blockType as keyof typeof fields]
+    <SectionShell
+      containment="narrow"
+      id={props.id ? `block-${props.id}` : undefined}
+      spacing="compact"
+      variant="plain"
+    >
+      <div>
+        {enableIntro && introContent && !hasSubmitted && (
+          <RichText className="mb-8 lg:mb-12" data={introContent} enableGutter={false} />
+        )}
+        <Surface>
+          <FormProvider {...formMethods}>
+            {!isLoading && hasSubmitted && confirmationType === 'message' && (
+              <RichText data={confirmationMessage} />
+            )}
+            {isLoading && !hasSubmitted && <p>Loading, please wait...</p>}
+            {error && <div>{`${error.status || '500'}: ${error.message || ''}`}</div>}
+            {!hasSubmitted && (
+              <>
+                <form id={formID} onSubmit={handleSubmit(onSubmit)}>
+                  <div className="mb-4 last:mb-0">
+                    {resolvedForm &&
+                      resolvedForm.fields &&
+                      resolvedForm.fields?.map((field, index) => {
+                        const Field: React.FC<any> | undefined =
+                          fields?.[field.blockType as keyof typeof fields]
 
-                      if (Field) {
-                        return (
-                          <div className="mb-6 last:mb-0" key={index}>
-                            <Field
-                              form={resolvedForm}
-                              {...field}
-                              {...formMethods}
-                              control={control}
-                              errors={errors}
-                              register={register}
-                            />
-                          </div>
-                        )
-                      }
-                      return null
-                    })}
-                  {!resolvedForm && (
-                    <p className="text-sm leading-6 text-muted-foreground">
-                      Form configuration is unavailable.
-                    </p>
-                  )}
-                </div>
+                        if (Field) {
+                          return (
+                            <div className="mb-6 last:mb-0" key={index}>
+                              <Field
+                                form={resolvedForm}
+                                {...field}
+                                {...formMethods}
+                                control={control}
+                                errors={errors}
+                                register={register}
+                              />
+                            </div>
+                          )
+                        }
+                        return null
+                      })}
+                    {!resolvedForm && (
+                      <p className="text-sm leading-6 text-muted-foreground">
+                        Form configuration is unavailable.
+                      </p>
+                    )}
+                  </div>
 
-                <Button form={formID} type="submit" variant="default">
-                  {submitButtonLabel}
-                </Button>
-              </form>
+                  <Button form={formID} type="submit" variant="default">
+                    {submitButtonLabel}
+                  </Button>
+                </form>
 
-              {footerNote ? (
-                <p className="mt-4 whitespace-pre-line text-sm leading-6 text-muted-foreground">
-                  {footerNote}
-                </p>
-              ) : null}
-            </>
-          )}
-        </FormProvider>
+                {footerNote ? (
+                  <p className="mt-4 whitespace-pre-line text-sm leading-6 text-muted-foreground">
+                    {footerNote}
+                  </p>
+                ) : null}
+              </>
+            )}
+          </FormProvider>
+        </Surface>
       </div>
-    </div>
+    </SectionShell>
   )
 }

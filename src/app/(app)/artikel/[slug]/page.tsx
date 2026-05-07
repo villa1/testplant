@@ -9,8 +9,12 @@ import React, { cache } from 'react'
 
 import { Media } from '@/components/Media'
 import { RichText } from '@/components/RichText'
+import { PageFrame } from '@/components/layout/PageFrame'
+import { SectionShell } from '@/components/layout/SectionShell'
+import { Surface } from '@/components/layout/Surface'
 import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
 import { siteMetadata } from '@/utilities/siteMetadata'
+import { extractLexicalPlainText } from '@/utilities/extractLexicalPlainText'
 
 import type { Post } from '@/payload-types'
 
@@ -51,51 +55,82 @@ export default async function ArticlePage({ params }: Args) {
 
   const heroImage =
     post.heroImage && typeof post.heroImage === 'object' ? post.heroImage : undefined
+  const normalizedContent = stripDuplicateLeadingHeading(post.content, post.title)
+  const articleLead = getArticleLead(post, normalizedContent)
 
   return (
-    <article className="pt-16 pb-24">
-      <div className="container max-w-4xl">
-        <div className="space-y-4">
-          <Link className="text-sm text-muted-foreground hover:text-foreground" href="/artikel">
-            Kembali ke Artikel
-          </Link>
-          <div className="space-y-3">
-            <h1 className="text-4xl font-semibold tracking-tight md:text-5xl">{post.title}</h1>
-            <div className="flex flex-wrap gap-3 text-sm text-muted-foreground">
-              {post.publishedAt && (
-                <time dateTime={post.publishedAt}>
-                  {new Intl.DateTimeFormat('id-ID', {
-                    dateStyle: 'long',
-                  }).format(new Date(post.publishedAt))}
-                </time>
-              )}
-              {post.populatedAuthors && post.populatedAuthors.length > 0 && (
-                <span>
-                  {post.populatedAuthors
-                    .map((author) => author?.name)
-                    .filter(Boolean)
-                    .join(', ')}
-                </span>
-              )}
+    <PageFrame as="article" className="article-detail-page" family="editorial">
+      <SectionShell containment="wide" spacing="compact" variant="plain">
+        <div className="space-y-8 md:space-y-10">
+          <div className="mx-auto max-w-3xl space-y-6">
+            <Link
+              className="inline-flex text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+              href="/artikel"
+            >
+              Kembali ke Artikel
+            </Link>
+            <div className="space-y-4">
+              <p className="text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-primary/50">
+                Artikel BMJ
+              </p>
+              <h1 className="text-4xl font-semibold tracking-tight text-balance md:text-5xl lg:text-[3.5rem]">
+                {post.title}
+              </h1>
+              <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-muted-foreground">
+                {post.publishedAt && (
+                  <time dateTime={post.publishedAt}>
+                    {new Intl.DateTimeFormat('id-ID', {
+                      dateStyle: 'long',
+                    }).format(new Date(post.publishedAt))}
+                  </time>
+                )}
+                {post.populatedAuthors && post.populatedAuthors.length > 0 && (
+                  <span>
+                    {post.populatedAuthors
+                      .map((author) => author?.name)
+                      .filter(Boolean)
+                      .join(', ')}
+                  </span>
+                )}
+              </div>
+              {articleLead ? (
+                <p className="article-detail__lead max-w-2xl text-lg leading-8 md:text-xl">
+                  {articleLead}
+                </p>
+              ) : null}
             </div>
           </div>
-        </div>
 
-        {heroImage && (
-          <div className="mt-8 overflow-hidden rounded-2xl border border-border bg-card">
-            <Media
-              resource={heroImage}
-              imgClassName="h-auto w-full object-cover"
-              htmlElement={null}
+          {heroImage ? (
+            <Surface
+              className="article-detail__hero mx-auto max-w-5xl overflow-hidden p-0"
+              variant="elevated"
+            >
+              <Media
+                resource={heroImage}
+                imgClassName="article-detail__hero-image h-auto w-full object-cover"
+                htmlElement={null}
+              />
+            </Surface>
+          ) : null}
+        </div>
+      </SectionShell>
+
+      <SectionShell containment="reading" spacing="compact" variant="plain">
+        <div>
+          <Surface
+            className="article-detail__body px-5 py-6 md:px-8 md:py-8 lg:px-10 lg:py-10"
+            variant="flat"
+          >
+            <RichText
+              className="article-detail__prose max-w-none"
+              data={normalizedContent}
+              enableGutter={false}
             />
-          </div>
-        )}
-
-        <div className="mt-10">
-          <RichText className="mx-auto max-w-none" data={post.content} enableGutter={false} />
+          </Surface>
         </div>
-      </div>
-    </article>
+      </SectionShell>
+    </PageFrame>
   )
 }
 
@@ -161,3 +196,67 @@ const queryPostBySlug = cache(async ({ slug }: { slug: string }) => {
 
   return (result.docs?.[0] || null) as Post | null
 })
+
+const getArticleLead = (post: Post, content: Post['content']) => {
+  const metaDescription = post.meta?.description?.trim()
+
+  if (metaDescription) {
+    return metaDescription
+  }
+
+  const plainText = extractLexicalPlainText(content).trim()
+
+  if (!plainText || plainText.toLocaleLowerCase('id-ID') === post.title.trim().toLocaleLowerCase('id-ID')) {
+    return null
+  }
+
+  return plainText.length > 220 ? `${plainText.slice(0, 217).trimEnd()}...` : plainText
+}
+
+const stripDuplicateLeadingHeading = (content: Post['content'], title: string): Post['content'] => {
+  if (!content || typeof content !== 'object') {
+    return content
+  }
+
+  const root = (content as { root?: { children?: unknown[] } }).root
+
+  if (!root || !Array.isArray(root.children) || root.children.length === 0) {
+    return content
+  }
+
+  const [firstChild, ...remainingChildren] = root.children
+
+  if (!isDuplicateHeadingNode(firstChild, title)) {
+    return content
+  }
+
+  return {
+    ...(content as Record<string, unknown>),
+    root: {
+      ...root,
+      children: remainingChildren,
+    },
+  } as Post['content']
+}
+
+const isDuplicateHeadingNode = (node: unknown, title: string) => {
+  if (!node || typeof node !== 'object') {
+    return false
+  }
+
+  const headingNode = node as {
+    children?: unknown[]
+    type?: string
+  }
+
+  if (headingNode.type !== 'heading' || !Array.isArray(headingNode.children)) {
+    return false
+  }
+
+  const headingText = extractLexicalPlainText({ children: headingNode.children })
+    .trim()
+    .toLocaleLowerCase('id-ID')
+  const normalizedTitle = title.trim().toLocaleLowerCase('id-ID')
+
+  return Boolean(headingText) && headingText === normalizedTitle
+}

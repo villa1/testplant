@@ -32,12 +32,14 @@ export const UseCaseItem: React.FC<Props> = ({ useCase }) => {
 
   return (
     <button
+      aria-pressed={isActive}
       onClick={() => setQuery()}
-      className={clsx('hover:cursor-pointer', {
-        ' underline': isActive,
+      className={clsx('shop-filter-option', {
+        'shop-filter-option--active': isActive,
       })}
     >
-      {useCase.title}
+      <span>{useCase.title}</span>
+      <span className="shop-filter-option__indicator">{isActive ? 'Aktif' : 'Pilih'}</span>
     </button>
   )
 }

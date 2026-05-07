@@ -2,6 +2,7 @@ import { Grid } from '@/components/Grid'
 import { ProductGridItem } from '@/components/ProductGridItem'
 import configPromise from '@payload-config'
 import { getPayload } from 'payload'
+import Link from 'next/link'
 import React from 'react'
 
 export const metadata = {
@@ -107,27 +108,47 @@ export default async function ShopPage({ searchParams }: Props) {
       : {}),
   })
 
-  const resultsText = products.docs.length > 1 ? 'results' : 'result'
+  const activeFilterCount = [searchValue, category, attribute, usecase, sort].filter(Boolean).length
+  const hasFilters = activeFilterCount > 0
+  const totalProducts = products.docs.length
 
   return (
     <div>
-      {searchValue ? (
-        <p className="mb-4 text-sm text-primary/70">
-          {products.docs?.length === 0
-            ? 'Tidak ada produk yang cocok untuk '
-            : `Menampilkan ${products.docs.length} ${resultsText} untuk `}
-          <span className="font-bold">&quot;{searchValue}&quot;</span>
-        </p>
+      <section className="catalog-summary">
+        <div className="space-y-2">
+          <p className="catalog-summary__eyebrow">Katalog BMJ</p>
+          <h2 className="catalog-summary__title">
+            {totalProducts > 0 ? `${totalProducts} produk siap dijelajahi` : 'Belum ada produk yang cocok'}
+          </h2>
+          <p className="catalog-summary__meta">
+            {searchValue
+              ? `Hasil pencarian untuk "${searchValue}" dengan kombinasi filter yang sedang aktif.`
+              : hasFilters
+                ? 'Katalog sudah difilter sesuai kategori, atribut, atau use case yang Anda pilih.'
+                : 'Mulai dari koleksi utama BMJ lalu persempit pilihan dengan filter di sisi kiri.'}
+          </p>
+        </div>
+
+        <div className="catalog-summary__actions">
+          {searchValue ? <span className="catalog-summary__chip">Pencarian aktif</span> : null}
+          {category ? <span className="catalog-summary__chip">Kategori dipilih</span> : null}
+          {attribute ? <span className="catalog-summary__chip">Atribut dipilih</span> : null}
+          {usecase ? <span className="catalog-summary__chip">Use case dipilih</span> : null}
+          {sort ? <span className="catalog-summary__chip">Urutan khusus</span> : null}
+          {hasFilters ? (
+            <Link className="catalog-summary__link" href="/shop">
+              Reset filter
+            </Link>
+          ) : null}
+        </div>
+      </section>
+
+      {!searchValue && totalProducts === 0 ? (
+        <p className="mb-4 text-sm text-primary/70">Tidak ada produk yang ditemukan. Coba filter yang berbeda.</p>
       ) : null}
 
-      {!searchValue && products.docs?.length === 0 && (
-        <p className="mb-4 text-sm text-primary/70">
-          Tidak ada produk yang ditemukan. Coba filter yang berbeda.
-        </p>
-      )}
-
       {products?.docs.length > 0 ? (
-        <Grid className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <Grid className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
           {products.docs.map((product) => {
             return <ProductGridItem key={product.id} product={product} />
           })}

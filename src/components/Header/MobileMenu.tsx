@@ -48,7 +48,7 @@ export function MobileMenu({ brandDescription, brandName, menu }: Props) {
 
   return (
     <Sheet onOpenChange={setIsOpen} open={isOpen}>
-      <SheetTrigger className="relative flex h-10 w-10 items-center justify-center rounded-full border border-black/8 bg-white text-foreground/72 shadow-[0_8px_18px_rgba(15,23,42,0.06)] transition-colors hover:border-[#1ca336]/30 hover:text-[#11942b]">
+      <SheetTrigger className="site-header__utility-button relative flex h-10 w-10 items-center justify-center">
         <MenuIcon className="h-[18px] w-[18px]" />
       </SheetTrigger>
 
@@ -64,7 +64,7 @@ export function MobileMenu({ brandDescription, brandName, menu }: Props) {
               {menu.map((item) => (
                 <li className="py-2" key={item.id}>
                   <Link
-                    className="inline-flex w-full rounded-full px-3 py-2.5 text-sm font-medium text-foreground/82 transition-colors hover:bg-[#f3f8f1] hover:text-foreground"
+                    className="site-header__nav-link inline-flex w-full"
                     href={item.href}
                     {...getLinkProps(item.isExternal, item.newTab)}
                   >
@@ -105,7 +105,7 @@ export function MobileMenu({ brandDescription, brandName, menu }: Props) {
                 <Link href="/login">Log in</Link>
               </Button>
               <span className="text-center text-sm text-muted-foreground sm:text-base">or</span>
-              <Button asChild className="w-full sm:flex-1">
+              <Button asChild className="w-full bg-[#617553] hover:bg-[#516347] sm:flex-1">
                 <Link href="/create-account">Create an account</Link>
               </Button>
             </div>

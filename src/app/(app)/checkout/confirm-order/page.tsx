@@ -1,7 +1,10 @@
 import type { Metadata } from 'next'
 
+import { PageFrame } from '@/components/layout/PageFrame'
+import { SectionShell } from '@/components/layout/SectionShell'
+import { Surface } from '@/components/layout/Surface'
 import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
-import React, { Fragment } from 'react'
+import React from 'react'
 import { ConfirmOrder } from '@/components/checkout/ConfirmOrder'
 
 type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>
@@ -16,9 +19,15 @@ export default async function ConfirmOrderPage({
   const paymentIntent = searchParams.paymentId
 
   return (
-    <div className="container min-h-[90vh] flex py-12">
-      <ConfirmOrder />
-    </div>
+    <PageFrame family="utility">
+      <SectionShell containment="narrow" spacing="compact" variant="plain">
+        <div className="min-h-[70vh]">
+          <Surface variant="elevated">
+            <ConfirmOrder />
+          </Surface>
+        </div>
+      </SectionShell>
+    </PageFrame>
   )
 }
 
