@@ -12,6 +12,7 @@ import configPromise from '@payload-config'
 import { getPayload } from 'payload'
 import { LoginForm } from '@/components/forms/LoginForm'
 import { redirect } from 'next/navigation'
+import { Suspense } from 'react'
 
 export default async function Login() {
   const headers = await getHeaders()
@@ -43,7 +44,9 @@ export default async function Login() {
               </p>
             </div>
 
-            <LoginForm />
+            <Suspense fallback={null}>
+              <LoginForm />
+            </Suspense>
           </Surface>
         </div>
       </SectionShell>

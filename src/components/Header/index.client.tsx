@@ -113,7 +113,9 @@ export function HeaderClient({ header }: Props) {
           )}
 
           <div className="flex items-center justify-end gap-2 md:gap-3">
-            <AccountPanel className={utilityButtonClass} />
+            <Suspense fallback={<Skeleton className="h-10 w-10 rounded-full" />}>
+              <AccountPanel className={utilityButtonClass} />
+            </Suspense>
 
             <Suspense fallback={<OpenCartButton />}>
               <Cart />

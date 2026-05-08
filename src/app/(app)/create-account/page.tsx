@@ -12,6 +12,7 @@ import { getPayload } from 'payload'
 
 import { CreateAccountForm } from '@/components/forms/CreateAccountForm'
 import { redirect } from 'next/navigation'
+import { Suspense } from 'react'
 
 export default async function CreateAccount() {
   const headers = await getHeaders()
@@ -37,7 +38,9 @@ export default async function CreateAccount() {
                 Buat akun untuk menyimpan alamat, melacak order, dan mempercepat proses checkout berikutnya.
               </p>
             </div>
-            <CreateAccountForm />
+            <Suspense fallback={null}>
+              <CreateAccountForm />
+            </Suspense>
           </Surface>
         </div>
       </SectionShell>

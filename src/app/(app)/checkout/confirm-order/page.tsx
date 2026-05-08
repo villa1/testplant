@@ -6,6 +6,7 @@ import { Surface } from '@/components/layout/Surface'
 import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
 import React from 'react'
 import { ConfirmOrder } from '@/components/checkout/ConfirmOrder'
+import { Suspense } from 'react'
 
 type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>
 
@@ -23,7 +24,9 @@ export default async function ConfirmOrderPage({
       <SectionShell containment="narrow" spacing="compact" variant="plain">
         <div className="min-h-[70vh]">
           <Surface variant="elevated">
-            <ConfirmOrder />
+            <Suspense fallback={null}>
+              <ConfirmOrder />
+            </Suspense>
           </Surface>
         </div>
       </SectionShell>
